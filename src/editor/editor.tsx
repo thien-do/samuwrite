@@ -1,12 +1,12 @@
 import * as monaco from "monaco-editor";
 import { useEffect, useRef } from "react";
-import * as s from "./editor.module.css";
+import s from "./editor.module.css";
 // @ts-ignore
 import { initVimMode } from "monaco-vim";
 
 const MonacoEnvironment: monaco.Environment = {
 	getWorkerUrl: function (_moduleId, _label) {
-		return "/workers/editor.worker.js";
+		return "/editor.worker.js";
 	},
 };
 

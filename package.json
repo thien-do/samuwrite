@@ -2,20 +2,12 @@
 	"name": "vimdotmd-next",
 	"version": "1.0.0",
 	"license": "MIT",
-	"targets": {
-		"app": {
-			"source": "src/index.html",
-			"distDir": "dist"
-		},
-		"workers": {
-			"source": "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
-			"distDir": "dist/workers"
-		}
-	},
+	"source": "src/index.html",
 	"private": true,
 	"scripts": {
 		"start": "parcel",
-		"build": "parcel build"
+		"build": "yarn build-workers && parcel build",
+		"build-workers": "parcel build node_modules/monaco-editor/esm/vs/editor/editor.worker.js"
 	},
 	"browserslist": [
 		"defaults"
@@ -25,6 +17,7 @@
 		"@parcel/validator-typescript": "^2.0.0-rc.0",
 		"@types/react": "^17.0.19",
 		"@types/react-dom": "^17.0.9",
+		"@types/wicg-file-system-access": "^2020.9.2",
 		"parcel": "^2.0.0-rc.0",
 		"prettier": "2.3.2",
 		"typescript": "^4.3.5"
