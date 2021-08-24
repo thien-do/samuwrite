@@ -1,6 +1,8 @@
 import * as monaco from "monaco-editor";
+// @ts-ignore
+import { initVimMode } from "monaco-vim";
 import { useEffect, useRef } from "react";
-import * as styles from "./editor.module.css";
+import * as s from "./editor.module.css";
 
 const MonacoEnvironment: monaco.Environment = {
 	getWorkerUrl: function (_moduleId, _label) {
@@ -15,27 +17,45 @@ const ensureEditorEnv = () => {
 	}
 };
 
-type Editor = monaco.editor.IStandaloneCodeEditor;
+interface Instance {
+	editor: monaco.editor.IStandaloneCodeEditor;
+	vimMode: any;
+}
 
-const createEditor = (container: HTMLElement): Editor => {
-	return monaco.editor.create(container, {
+interface Containers {
+	editor: HTMLElement;
+	status: HTMLElement;
+}
+
+const createEditor = (containers: Containers): Instance => {
+	const editor = monaco.editor.create(containers.editor, {
 		value: "Hello world",
 		language: "markdown",
 	});
+	const vimMode = initVimMode(editor, containers.status);
+	return { editor, vimMode };
 };
 
 export const Editor = () => {
-	const containerRef = useRef<HTMLDivElement | null>(null);
+	const editorRef = useRef<HTMLDivElement | null>(null);
+	const statusRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		const container = containerRef.current;
-		if (container === null) throw Error("Container is not attached");
+		const [editor, status] = [editorRef.current, statusRef.current];
+		if (editor === null) throw Error("Editor container is null");
+		if (status === null) throw Error("Status container is null");
 		ensureEditorEnv();
-		const editor = createEditor(container);
+		const instance = createEditor({ editor, status });
 		return () => {
-			editor.dispose();
+			instance.editor.dispose();
+			instance.vimMode.dispose();
 		};
 	}, []);
 
-	return <div className={styles.container} ref={containerRef} />;
+	return (
+		<div className={s.container}>
+			<div className={s.editor} ref={editorRef} />
+			<div className={s.status} ref={statusRef} />
+		</div>
+	);
 };
