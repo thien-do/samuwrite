@@ -1,18 +1,15 @@
 {
 	"name": "vimdotmd-next",
 	"version": "1.0.0",
-	"main": "index.js",
 	"license": "MIT",
 	"targets": {
 		"app": {
 			"source": "src/index.html",
-			"distDir": "./dist",
-			"context": "browser"
+			"distDir": "dist"
 		},
 		"workers": {
 			"source": "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
-			"distDir": "./dist",
-			"context": "web-worker"
+			"distDir": "dist/workers"
 		}
 	},
 	"private": true,

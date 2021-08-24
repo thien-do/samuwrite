@@ -1,7 +1,5 @@
 declare module "*.module.css" {
-	interface ClassNames {
-		[className: string]: string;
-	}
-	const classNames: ClassNames;
-	export = classNames;
+	const classes: { readonly [key: string]: string };
+	export = classes;
+	export default classes;
 }

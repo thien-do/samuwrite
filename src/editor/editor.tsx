@@ -1,13 +1,12 @@
 import * as monaco from "monaco-editor";
-// @ts-ignore
-import { initVimMode } from "monaco-vim";
 import { useEffect, useRef } from "react";
 import * as s from "./editor.module.css";
+// @ts-ignore
+import { initVimMode } from "monaco-vim";
 
 const MonacoEnvironment: monaco.Environment = {
 	getWorkerUrl: function (_moduleId, _label) {
-		// @TODO: https://github.com/parcel-bundler/parcel/issues/6756
-		return "./node_modules/monaco-editor/esm/vs/editor/editor.worker.js";
+		return "/workers/editor.worker.js";
 	},
 };
 
