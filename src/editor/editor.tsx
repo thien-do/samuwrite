@@ -1,5 +1,5 @@
 import * as monaco from "monaco-editor";
-import { useEffect, useRef } from "react";
+import { MutableRefObject, RefObject, useEffect, useRef } from "react";
 import s from "./editor.module.css";
 // @ts-ignore
 import { initVimMode } from "monaco-vim";
@@ -22,39 +22,51 @@ interface Instance {
 }
 
 interface Containers {
-	editor: HTMLElement;
-	status: HTMLElement;
+	editor: RefObject<HTMLDivElement>;
+	status: RefObject<HTMLDivElement>;
 }
 
 const createEditor = (containers: Containers): Instance => {
-	const editor = monaco.editor.create(containers.editor, {
+	const editorContainer = containers.editor.current;
+	if (editorContainer === null) throw Error("Editor container is null");
+	const editor = monaco.editor.create(editorContainer, {
 		value: "Hello world",
 		language: "markdown",
 	});
-	const vimMode = initVimMode(editor, containers.status);
+
+	const statusContainer = containers.status.current;
+	if (statusContainer === null) throw Error("Status container is null");
+	const vimMode = initVimMode(editor, statusContainer);
+
 	return { editor, vimMode };
 };
 
-export const Editor = () => {
-	const editorRef = useRef<HTMLDivElement | null>(null);
-	const statusRef = useRef<HTMLDivElement | null>(null);
+interface Props {
+	editorRef: MutableRefObject<monaco.editor.IStandaloneCodeEditor | null>;
+}
 
+export const Editor = (props: Props) => {
+	const editorContainerRef = useRef<HTMLDivElement>(null);
+	const statusContainerRef = useRef<HTMLDivElement>(null);
+
+	const { editorRef } = props;
 	useEffect(() => {
-		const [editor, status] = [editorRef.current, statusRef.current];
-		if (editor === null) throw Error("Editor container is null");
-		if (status === null) throw Error("Status container is null");
 		ensureEditorEnv();
-		const instance = createEditor({ editor, status });
+		const { editor, vimMode } = createEditor({
+			editor: editorContainerRef,
+			status: statusContainerRef,
+		});
+		editorRef.current = editor;
 		return () => {
-			instance.editor.dispose();
-			instance.vimMode.dispose();
+			editor.dispose();
+			vimMode.dispose();
 		};
-	}, []);
+	}, [editorRef]);
 
 	return (
 		<div className={s.container}>
-			<div className={s.editor} ref={editorRef} />
-			<div className={s.status} ref={statusRef} />
+			<div className={s.editor} ref={editorContainerRef} />
+			<div className={s.status} ref={statusContainerRef} />
 		</div>
 	);
 };
