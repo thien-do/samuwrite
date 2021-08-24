@@ -16,7 +16,7 @@ export const App = () => {
 
 	return (
 		<div>
-			<Toolbar setValue={setValue} />
+			<Toolbar editorRef={editorRef} setValue={setValue} />
 			<Editor editorRef={editorRef} />
 		</div>
 	);
