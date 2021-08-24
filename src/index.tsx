@@ -1,4 +1,6 @@
 import * as ReactDom from "react-dom";
 import { App } from "./app/app";
 
-ReactDom.render(<App />, document.getElementById("app"));
+const container = document.getElementById("app");
+if (container === null) throw Error("container is null");
+ReactDom.render(<App />, container);

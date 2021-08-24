@@ -1,28 +1,41 @@
 {
-  "name": "vimdotmd-next",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "source": "src/index.html",
-  "private": true,
-  "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
-  },
-  "browserslist": [
-    "defaults"
-  ],
-  "devDependencies": {
-    "@parcel/transformer-typescript-tsc": "^2.0.0-rc.0",
-    "@parcel/validator-typescript": "^2.0.0-rc.0",
-    "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9",
-    "parcel": "^2.0.0-rc.0",
-    "prettier": "2.3.2",
-    "typescript": "^4.3.5"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  }
+	"name": "vimdotmd-next",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"targets": {
+		"app": {
+			"source": "src/index.html",
+			"distDir": "./dist",
+			"context": "browser"
+		},
+		"workers": {
+			"source": "node_modules/monaco-editor/esm/vs/editor/editor.worker.js",
+			"distDir": "./dist",
+			"context": "web-worker"
+		}
+	},
+	"private": true,
+	"scripts": {
+		"start": "parcel",
+		"build": "parcel build"
+	},
+	"browserslist": [
+		"defaults"
+	],
+	"devDependencies": {
+		"@parcel/transformer-typescript-tsc": "^2.0.0-rc.0",
+		"@parcel/validator-typescript": "^2.0.0-rc.0",
+		"@types/react": "^17.0.19",
+		"@types/react-dom": "^17.0.9",
+		"parcel": "^2.0.0-rc.0",
+		"prettier": "2.3.2",
+		"typescript": "^4.3.5"
+	},
+	"dependencies": {
+		"monaco-editor": "^0.27.0",
+		"monaco-vim": "^0.1.17",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	}
 }
