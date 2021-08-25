@@ -1,10 +1,10 @@
-import { MutableRefObject, RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { createEditor } from "./create";
 import s from "./editor.module.css";
 import { Editor as EditorType } from "./type";
 
 interface Props {
-	editorRef: MutableRefObject<EditorType | null>;
+	setEditor: (editor: EditorType) => void;
 }
 
 const getContainer = (ref: RefObject<HTMLDivElement>): HTMLDivElement => {
@@ -17,18 +17,18 @@ export const Editor = (props: Props) => {
 	const editorContainerRef = useRef<HTMLDivElement>(null);
 	const statusContainerRef = useRef<HTMLDivElement>(null);
 
-	const { editorRef } = props;
+	const { setEditor } = props;
 	useEffect(() => {
 		const { editor, vimMode } = createEditor({
 			editor: getContainer(editorContainerRef),
 			status: getContainer(statusContainerRef),
 		});
-		editorRef.current = editor;
+		setEditor(editor);
 		return () => {
 			editor.dispose();
 			vimMode.dispose();
 		};
-	}, [editorRef]);
+	}, [setEditor]);
 
 	return (
 		<div className={s.container}>
