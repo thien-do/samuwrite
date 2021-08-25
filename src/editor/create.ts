@@ -1,6 +1,4 @@
 import * as monaco from "monaco-editor";
-// @ts-ignore
-import { initVimMode } from "monaco-vim";
 import { ensureEditorEnv } from "./env";
 import { Editor, EditorVimMode } from "./type";
 
@@ -10,7 +8,7 @@ interface Containers {
 }
 
 interface Result {
-	vimMode: EditorVimMode;
+	vimMode: EditorVimMode | null;
 	editor: Editor;
 }
 
@@ -21,7 +19,6 @@ export const createEditor = (containers: Containers): Result => {
 		// To ensure the font is loaded correctly
 		value: "Hello _world_",
 		language: "markdown",
-		// model: null,
 
 		ariaLabel: "Main markdown editor",
 		codeLens: false,
@@ -33,12 +30,11 @@ export const createEditor = (containers: Containers): Result => {
 		cursorWidth: 3,
 		fontFamily: "iA Writer Duo",
 		fontLigatures: true,
-		fontSize: 24,
+		fontSize: 20,
 		fontWeight: "450",
 		glyphMargin: false,
-		// letterSpacing: 0.5,
-		lineHeight: 48,
-		lineNumbers: "interval",
+		lineHeight: 36,
+		lineNumbers: "off",
 		minimap: { enabled: false },
 		padding: { top: 150 },
 		quickSuggestions: false,
@@ -48,10 +44,17 @@ export const createEditor = (containers: Containers): Result => {
 		snippetSuggestions: "none",
 		suggestOnTriggerCharacters: false,
 		wordBasedSuggestions: false,
-		wordWrap: "on",
+		wordWrap: "bounded",
+		wordWrapColumn: 80,
+		occurrencesHighlight: false,
+		renderLineHighlight: "none",
+		hideCursorInOverviewRuler: true,
+		overviewRulerBorder: false,
+		scrollbar: { horizontal: "hidden", verticalSliderSize: 5 },
 	});
 
-	const vimMode = initVimMode(editor, containers.status);
+	// const vimMode = initVimMode(editor, containers.status);
+	const vimMode = null;
 
 	return { editor, vimMode };
 };

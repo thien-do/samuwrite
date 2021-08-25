@@ -4,11 +4,13 @@
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .editor {
 	flex: 1 1 0px;
 	overflow: hidden;
+	width: 1000px;
 }
 
 .status {

@@ -1,0 +1,5 @@
+/* Move scrollbar to screen's right */
+.monaco-editor .decorationsOverviewRuler,
+.monaco-editor .scrollbar.vertical {
+	position: fixed !important;
+}

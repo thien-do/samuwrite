@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef } from "react";
 import * as monaco from "monaco-editor";
 import { createEditor } from "./create";
 import s from "./editor.module.css";
+import "./editor.css";
 import { Editor as EditorType } from "./type";
 import "./font/font.css";
 
@@ -33,8 +34,8 @@ export const Editor = (props: Props) => {
 		});
 		setEditor(editor);
 		return () => {
+			vimMode?.dispose();
 			editor.dispose();
-			vimMode.dispose();
 		};
 	}, [setEditor]);
 
