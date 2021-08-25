@@ -19,6 +19,10 @@ export const createEditor = (containers: Containers): Result => {
 
 	const editor = monaco.editor.create(containers.editor, {
 		model: null,
+		ariaLabel: "Main markdown editor",
+		codeLens: false,
+		contextmenu: false,
+		copyWithSyntaxHighlighting: false,
 	});
 
 	const vimMode = initVimMode(editor, containers.status);

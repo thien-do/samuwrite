@@ -3,6 +3,7 @@ import * as monaco from "monaco-editor";
 import { Editor as EditorComponent } from "../editor/editor";
 import { Toolbar } from "../toolbar/toolbar";
 import { Editor as EditorType } from "../editor/type";
+import s from "./app.module.css";
 
 export const App = () => {
 	const [value, setValue] = useState("");
@@ -19,9 +20,13 @@ export const App = () => {
 	}, [value]);
 
 	return (
-		<div>
-			<Toolbar editorRef={editorRef} setValue={setValue} />
-			<EditorComponent editorRef={editorRef} />
+		<div className={s.app}>
+			<div className={s.toolbar}>
+				<Toolbar editorRef={editorRef} setValue={setValue} />
+			</div>
+			<div className={s.editor}>
+				<EditorComponent editorRef={editorRef} />
+			</div>
 		</div>
 	);
 };
