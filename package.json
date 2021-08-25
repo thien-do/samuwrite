@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@parcel/transformer-typescript-tsc": "^2.0.0-rc.0",
 		"@parcel/validator-typescript": "^2.0.0-rc.0",
+		"@types/css-font-loading-module": "^0.0.6",
 		"@types/react": "^17.0.19",
 		"@types/react-dom": "^17.0.9",
 		"@types/wicg-file-system-access": "^2020.9.2",

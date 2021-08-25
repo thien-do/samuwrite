@@ -1,0 +1,13 @@
+@font-face {
+	font-family: "iA Writer Duo";
+	font-weight: 400 700;
+	font-style: normal;
+	src: url("./iAWriterDuoV.ttf") format("truetype-variations");
+}
+
+@font-face {
+	font-family: "iA Writer Duo";
+	font-weight: 400 700;
+	font-style: italic;
+	src: url("./iAWriterDuoV-Italic.ttf") format("truetype-variations");
+}
