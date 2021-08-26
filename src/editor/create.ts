@@ -22,7 +22,7 @@ export const createEditor = (containers: Containers): Result => {
 
 		ariaLabel: "Main markdown editor",
 		codeLens: false,
-		contextmenu: false,
+		contextmenu: true,
 		copyWithSyntaxHighlighting: false,
 		cursorBlinking: "smooth",
 		cursorSmoothCaretAnimation: true,

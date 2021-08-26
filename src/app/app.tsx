@@ -23,10 +23,12 @@ export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
 
+	// Save handle to local
 	useEffect(() => {
 		if (handle !== null) set("handle", handle);
 	}, [handle]);
 
+	// Load file into editor
 	useEffect(() => {
 		if (handle === null) return;
 		if (editor === null) throw Error("Editor is not inited");

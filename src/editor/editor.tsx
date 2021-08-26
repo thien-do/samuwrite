@@ -1,10 +1,11 @@
-import { RefObject, useEffect, useRef } from "react";
 import * as monaco from "monaco-editor";
+import { RefObject, useEffect, useRef } from "react";
 import { createEditor } from "./create";
-import s from "./editor.module.css";
 import "./editor.css";
-import { Editor as EditorType } from "./type";
+import s from "./editor.module.css";
 import "./font/font.css";
+import { defineEditorTheme } from "./theme/theme";
+import { Editor as EditorType } from "./type";
 
 interface Props {
 	setEditor: (editor: EditorType) => void;
@@ -20,10 +21,16 @@ export const Editor = (props: Props) => {
 	const editorContainerRef = useRef<HTMLDivElement>(null);
 	const statusContainerRef = useRef<HTMLDivElement>(null);
 
+	// Apply editor font
 	useEffect(() => {
 		document.fonts.ready.then(() => {
 			monaco.editor.remeasureFonts();
 		});
+	}, []);
+
+	// Apply editor theme
+	useEffect(() => {
+		defineEditorTheme();
 	}, []);
 
 	const { setEditor } = props;
