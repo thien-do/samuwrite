@@ -3,3 +3,14 @@
 .monaco-editor .scrollbar.vertical {
 	position: fixed !important;
 }
+
+/* Only smooth caret horizontal movements */
+.monaco-editor .cursors-layer.cursor-smooth-caret-animation > .cursor {
+	transition: left 100ms ease-out;
+}
+
+/* Longer blinking */
+.cursor-smooth {
+	animation-duration: 1s;
+	animation-delay: 1s;
+}

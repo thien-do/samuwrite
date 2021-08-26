@@ -24,7 +24,7 @@ export const createEditor = (containers: Containers): Result => {
 		codeLens: false,
 		contextmenu: false,
 		copyWithSyntaxHighlighting: false,
-		cursorBlinking: "solid",
+		cursorBlinking: "smooth",
 		cursorSmoothCaretAnimation: true,
 		cursorSurroundingLines: 3,
 		cursorWidth: 3,
