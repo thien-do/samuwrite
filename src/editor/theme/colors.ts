@@ -1,19 +1,9 @@
 import * as monaco from "monaco-editor";
-import { ThemeBaseColorKey, ThemeBaseColors } from "./base";
+import { ThemeBaseColors } from "./base";
 
-type Colors = monaco.editor.IColors;
-
-export const getEditorThemeColors = (base: ThemeBaseColors): Colors => {
-	const toBase = (prev: Colors, colorId: string): Colors => {
-		const baseKey = idToBaseMap[colorId];
-		prev[colorId] = base[baseKey];
-		return prev;
-	};
-	const colors = Object.keys(idToBaseMap).reduce(toBase, {} as Colors);
-	return colors;
-};
-
-const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
+export const getEditorThemeColors = (
+	base: ThemeBaseColors
+): monaco.editor.IColors => ({
 	// Overall foreground color. This color is only used if not overridden by a component.
 	// "foreground": ,
 	// Overall foreground color for error messages. This color is only used if not overridden by a component.
@@ -111,9 +101,9 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// Border color of hint boxes in the editor.
 	// "editorHint.border": ,
 	// Editor background color.
-	"editor.background": "bg",
+	"editor.background": base.bg,
 	// Editor default foreground color.
-	"editor.foreground": "text",
+	"editor.foreground": base.text,
 	// Background color of editor widgets, such as find/replace.
 	// "editorWidget.background": ,
 	// Foreground color of editor widgets, such as find/replace.
@@ -141,7 +131,7 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// Keybinding label border bottom color. The keybinding label is used to represent a keyboard shortcut.
 	// "keybindingLabel.bottomBorder": ,
 	// Color of the editor selection.
-	"editor.selectionBackground": "sub",
+	"editor.selectionBackground": `${base.sub}80`,
 	// Color of the selected text for high contrast.
 	// "editor.selectionForeground": ,
 	// Color of the selection in an inactive editor. The color must not be opaque so as not to hide underlying decorations.
@@ -151,9 +141,9 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// Border color for regions with the same content as the selection.
 	// "editor.selectionHighlightBorder": ,
 	// Color of the current search match.
-	// "editor.findMatchBackground": ,
+	"editor.findMatchBackground": `${base.main}80`,
 	// Color of the other search matches. The color must not be opaque so as not to hide underlying decorations.
-	// "editor.findMatchHighlightBackground": ,
+	"editor.findMatchHighlightBackground": `${base.main}40`,
 	// Color of the range limiting the search. The color must not be opaque so as not to hide underlying decorations.
 	// "editor.findRangeHighlightBackground": ,
 	// Border color of the current search match.
@@ -297,7 +287,7 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// Background color for the border around the line at the cursor position.
 	// "editor.lineHighlightBorder": ,
 	// Background color of highlighted ranges, like by quick open and find features. The color must not be opaque so as not to hide underlying decorations.
-	// "editor.rangeHighlightBackground": ,
+	"editor.rangeHighlightBackground": `${base.sub}40`,
 	// Background color of the border around highlighted ranges.
 	// "editor.rangeHighlightBorder": ,
 	// Background color of highlighted symbol, like for go to definition or go next/previous symbol. The color must not be opaque so as not to hide underlying decorations.
@@ -305,9 +295,9 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// Background color of the border around highlighted symbols.
 	// "editor.symbolHighlightBorder": ,
 	// Color of the editor cursor.
-	"editorCursor.foreground": "caret",
+	"editorCursor.foreground": base.caret,
 	// The background color of the editor cursor. Allows customizing the color of a character overlapped by a block cursor.
-	"editorCursor.background": "text",
+	"editorCursor.background": base.text,
 	// Color of whitespace characters in the editor.
 	// "editorWhitespace.foreground": ,
 	// Color of the editor indentation guides.
@@ -488,4 +478,4 @@ const idToBaseMap: Record<keyof Colors, ThemeBaseColorKey> = {
 	// "editorOverviewRuler.wordHighlightForeground": ,
 	// Overview ruler marker color for write-access symbol highlights. The color must not be opaque so as not to hide underlying decorations.
 	// "editorOverviewRuler.wordHighlightStrongForeground": ,
-};
+});

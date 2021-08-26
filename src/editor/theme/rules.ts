@@ -33,7 +33,7 @@ export const getEditorThemeRules = (
 
 	// Mute markdown coloring
 	rules.push(
-		{ token: "comment.md", foreground: base.sub },
+		{ token: "comment.md", foreground: base.text },
 		{ token: "keyword.md", foreground: base.text, fontStyle: "bold" },
 		{ token: "keyword.table.header.md", foreground: base.text },
 		{ token: "keyword.table.middle.md", foreground: base.text },

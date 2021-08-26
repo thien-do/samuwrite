@@ -22,7 +22,7 @@ export const createEditor = (containers: Containers): Result => {
 
 		ariaLabel: "Main markdown editor",
 		codeLens: false,
-		contextmenu: true,
+		contextmenu: false,
 		copyWithSyntaxHighlighting: false,
 		cursorBlinking: "smooth",
 		cursorSmoothCaretAnimation: true,
@@ -33,7 +33,7 @@ export const createEditor = (containers: Containers): Result => {
 		fontSize: 20,
 		fontWeight: "450",
 		glyphMargin: false,
-		lineHeight: 36,
+		lineHeight: 40,
 		lineNumbers: "off",
 		minimap: { enabled: false },
 		padding: { top: 150 },
