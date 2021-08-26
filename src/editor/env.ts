@@ -1,13 +1,29 @@
 import * as monaco from "monaco-editor";
+import { VimMode } from "monaco-vim";
 
-const MonacoEnvironment: monaco.Environment = {
-	getWorkerUrl: function (_moduleId, _label) {
-		return "/editor.worker.js";
-	},
+const setup = {
+	current: false,
 };
 
 export const ensureEditorEnv = () => {
-	if ((self as any).MonacoEnvironment !== MonacoEnvironment) {
-		(self as any).MonacoEnvironment = MonacoEnvironment;
-	}
+	if (setup.current === true) return;
+
+	// https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md#using-parcel
+	(self as any).MonacoEnvironment = {
+		getWorkerUrl: function (_moduleId, _label) {
+			return "/editor.worker.js";
+		},
+	} as monaco.Environment;
+
+	// https://github.com/brijeshb42/monaco-vim#adding-custom-key-bindings
+	const { Vim } = VimMode;
+	// @TODO: Monaco-vim doesn't have noremap yet https://github.com/brijeshb42/monaco-vim/pull/84
+	// Vim.noremap("j", "gj");
+	// Vim.noremap("gj", "j");
+	// Vim.noremap("k", "gk");
+	// Vim.noremap("gk", "k");
+	Vim.map("jj", "<Esc>", "insert");
+	Vim.map("jk", "<Esc>", "insert");
+
+	setup.current = true;
 };

@@ -1,10 +1,12 @@
 import * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
-import { Editor, EditorVimMode } from "./type";
+import { Editor } from "./type";
+import { initVimMode, EditorVimMode } from "monaco-vim";
 
-interface Containers {
+interface Options {
 	editor: HTMLDivElement;
 	status: HTMLDivElement;
+	vim: boolean;
 }
 
 interface Result {
@@ -12,10 +14,10 @@ interface Result {
 	editor: Editor;
 }
 
-export const createEditor = (containers: Containers): Result => {
+export const createEditor = (options: Options): Result => {
 	ensureEditorEnv();
 
-	const editor = monaco.editor.create(containers.editor, {
+	const editor = monaco.editor.create(options.editor, {
 		// To ensure the font is loaded correctly
 		value: "Hello _world_",
 		language: "markdown",
@@ -53,8 +55,7 @@ export const createEditor = (containers: Containers): Result => {
 		scrollbar: { horizontal: "hidden", verticalSliderSize: 5 },
 	});
 
-	// const vimMode = initVimMode(editor, containers.status);
-	const vimMode = null;
+	const vimMode = options.vim ? initVimMode(editor, options.status) : null;
 
 	return { editor, vimMode };
 };

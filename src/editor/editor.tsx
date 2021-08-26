@@ -38,6 +38,7 @@ export const Editor = (props: Props) => {
 		const { editor, vimMode } = createEditor({
 			editor: getContainer(editorContainerRef),
 			status: getContainer(statusContainerRef),
+			vim: false,
 		});
 		setEditor(editor);
 		return () => {
