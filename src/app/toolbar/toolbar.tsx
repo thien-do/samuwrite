@@ -39,62 +39,59 @@ const saveFile = async (props: Props) => {
 
 export const Toolbar = (props: Props) => (
 	<div className={s.toolbar}>
-		<div className={s.container}>
-			<div className={s.content}>
-				<Button
-					onClick={() => void openFile(props)}
-					Icon={VscFolder}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "O" },
-					]}
-					more={[]}
-				/>
-				<Button
-					onClick={() => void saveFile(props)}
-					Icon={VscSave}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "S" },
-					]}
-					more={[]}
-				/>
-				{/* <div className={s.divider} /> */}
-				<Button
-					onClick={() => {}}
-					Icon={VscBook}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "P" },
-					]}
-					more={[]}
-				/>
-				<Button
-					onClick={() => {}}
-					Icon={DiVim}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "M" },
-					]}
-				/>
-				<div className={s.grow} />
-				<Button
-					onClick={() => {}}
-					Icon={VscSettingsGear}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "," },
-					]}
-				/>
-				<Button
-					onClick={() => {}}
-					Icon={VscMenu}
-					shortcut={[
-						{ type: "command-or-control" },
-						{ type: "char", value: "/" },
-					]}
-				/>
-			</div>
+		<div className={s.content}>
+			<Button
+				onClick={() => void openFile(props)}
+				Icon={VscFolder}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "O" },
+				]}
+				more={[]}
+			/>
+			<Button
+				onClick={() => void saveFile(props)}
+				Icon={VscSave}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "S" },
+				]}
+				more={[]}
+			/>
+			<Button
+				onClick={() => window.alert("Coming soon")}
+				Icon={VscBook}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "P" },
+				]}
+				more={[]}
+			/>
+			<Button
+				onClick={() => window.alert("Coming soon")}
+				Icon={DiVim}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "M" },
+				]}
+			/>
+			<div className={s.grow} />
+			<Button
+				onClick={() => window.alert("Coming soon!")}
+				Icon={VscSettingsGear}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "," },
+				]}
+			/>
+			<Button
+				onClick={() => window.alert("Coming soon!")}
+				Icon={VscMenu}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "/" },
+				]}
+			/>
 		</div>
 	</div>
 );

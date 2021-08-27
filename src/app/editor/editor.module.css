@@ -1,16 +1,17 @@
 .container {
-	width: 100%;
+	max-width: 1000px;
 	height: 100%;
-	overflow: hidden;
+	/* Align with the buttons in toolbar */
+	padding: 0 24px;
+	margin: auto;
+
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 
 .editor {
 	flex: 1 1 0px;
 	overflow: hidden;
-	width: 1000px;
 }
 
 .status {
