@@ -1,10 +1,10 @@
 import { set } from "idb-keyval";
 import * as monaco from "monaco-editor";
 import { useEffect, useState } from "react";
-import { Editor as EditorComponent } from "../editor/editor";
-import { Editor as EditorType, EditorModel } from "../editor/type";
-import { readFile } from "../file/read";
-import { Toolbar } from "../toolbar/toolbar";
+import { Editor as EditorComponent } from "./editor/editor";
+import { Editor as EditorType, EditorModel } from "./editor/type";
+import { readFile } from "../utils/file/read";
+import { Toolbar } from "./toolbar/toolbar";
 import s from "./app.module.css";
 
 const loadFileToEditor = (

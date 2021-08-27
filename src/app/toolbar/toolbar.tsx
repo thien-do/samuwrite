@@ -1,6 +1,8 @@
 import { get } from "idb-keyval";
 import { Editor } from "../editor/type";
 import s from "./toolbar.module.css";
+import { RiFolderOpenLine } from "react-icons/ri";
+import { Button } from "../../components/button/button";
 
 interface Props {
 	editor: Editor | null;
@@ -31,7 +33,11 @@ export const Toolbar = (props: Props) => (
 	<div className={s.toolbar}>
 		<div className={s.content}>
 			<button onClick={() => void reopenFile(props)}>Re-Open</button>
-			<button onClick={() => void openFile(props)}>Open</button>
+			<Button
+				onClick={() => void openFile(props)}
+				Icon={RiFolderOpenLine}
+				shortcut={["command-or-control", "O"]}
+			/>
 			<button onClick={() => void saveFile(props)}>Save</button>
 		</div>
 	</div>
