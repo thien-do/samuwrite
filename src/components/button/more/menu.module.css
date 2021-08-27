@@ -1,0 +1,45 @@
+.menu {
+	/* Position is set by Popper */
+	z-index: 1;
+	border: solid 1px var(--sub-color);
+	border-radius: 4px;
+	background-color: rgba(var(--bg-color-rgb), 0.5);
+	backdrop-filter: blur(20px);
+	box-shadow: 0px 8px 24px 0 rgba(0, 0, 0, 0.5);
+
+	width: 240px;
+	padding: 8px 0;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 8px 16px;
+
+	cursor: pointer;
+	transition: color 0.1s, outline 0.2s ease-out;
+	user-select: none;
+
+	color: var(--sub-color);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+
+	outline: 8px solid transparent;
+}
+
+.item:hover,
+.item:focus-visible {
+	color: var(--text-color);
+}
+
+.item:focus-visible {
+	outline-width: 2px;
+	outline-color: var(--main-color);
+}

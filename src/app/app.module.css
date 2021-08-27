@@ -18,4 +18,7 @@
 	left: 0;
 	z-index: 1;
 	width: 100%;
+
+	background-color: rgba(var(--bg-color-rgb), 0.5);
+	backdrop-filter: blur(20px);
 }

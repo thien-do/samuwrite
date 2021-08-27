@@ -1,10 +1,4 @@
 .toolbar {
-	background-color: rgba(var(--bg-color-rgb), 0.5);
-	backdrop-filter: blur(20px);
-	width: 100%;
-}
-
-.content {
 	max-width: 1000px;
 	margin: auto;
 	display: flex;
