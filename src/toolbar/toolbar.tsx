@@ -1,6 +1,6 @@
 import { get } from "idb-keyval";
 import { Editor } from "../editor/type";
-import { getRef } from "../utils/ref";
+import s from "./toolbar.module.css";
 
 interface Props {
 	editor: Editor | null;
@@ -27,12 +27,12 @@ const saveFile = async (props: Props) => {
 	await writable.close();
 };
 
-export const Toolbar = (props: Props) => {
-	return (
-		<div>
+export const Toolbar = (props: Props) => (
+	<div className={s.toolbar}>
+		<div className={s.content}>
 			<button onClick={() => void reopenFile(props)}>Re-Open</button>
 			<button onClick={() => void openFile(props)}>Open</button>
 			<button onClick={() => void saveFile(props)}>Save</button>
 		</div>
-	);
-};
+	</div>
+);

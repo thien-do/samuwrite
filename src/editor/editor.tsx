@@ -40,6 +40,7 @@ export const Editor = (props: Props) => {
 			status: getContainer(statusContainerRef),
 			vim: false,
 		});
+		editor.focus();
 		setEditor(editor);
 		return () => {
 			vimMode?.dispose();

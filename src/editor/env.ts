@@ -17,7 +17,6 @@ export const ensureEditorEnv = () => {
 
 	// https://github.com/brijeshb42/monaco-vim#adding-custom-key-bindings
 	const { Vim } = VimMode;
-	// @TODO: Monaco-vim doesn't have noremap yet https://github.com/brijeshb42/monaco-vim/pull/84
 	// Vim.noremap("j", "gj");
 	// Vim.noremap("gj", "j");
 	// Vim.noremap("k", "gk");

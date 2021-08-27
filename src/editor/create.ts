@@ -18,8 +18,7 @@ export const createEditor = (options: Options): Result => {
 	ensureEditorEnv();
 
 	const editor = monaco.editor.create(options.editor, {
-		// To ensure the font is loaded correctly
-		value: "Hello _world_",
+		value: "",
 		language: "markdown",
 
 		ariaLabel: "Main markdown editor",
@@ -35,10 +34,11 @@ export const createEditor = (options: Options): Result => {
 		fontSize: 20,
 		fontWeight: "450",
 		glyphMargin: false,
+		lineDecorationsWidth: 0,
 		lineHeight: 40,
 		lineNumbers: "off",
 		minimap: { enabled: false },
-		padding: { top: 150 },
+		padding: { top: 150, bottom: 150 },
 		quickSuggestions: false,
 		roundedSelection: false,
 		selectionHighlight: false,
@@ -47,12 +47,18 @@ export const createEditor = (options: Options): Result => {
 		suggestOnTriggerCharacters: false,
 		wordBasedSuggestions: false,
 		wordWrap: "bounded",
+		scrollBeyondLastLine: false,
 		wordWrapColumn: 80,
+		folding: false,
 		occurrencesHighlight: false,
 		renderLineHighlight: "none",
 		hideCursorInOverviewRuler: true,
 		overviewRulerBorder: false,
-		scrollbar: { horizontal: "hidden", verticalSliderSize: 5 },
+		scrollbar: {
+			useShadows: false,
+			horizontal: "hidden",
+			verticalSliderSize: 5,
+		},
 	});
 
 	const vimMode = options.vim ? initVimMode(editor, options.status) : null;
