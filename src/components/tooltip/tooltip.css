@@ -18,7 +18,7 @@
 	backdrop-filter: blur(20px);
 	color: var(--text-color);
 	border: solid 1px var(--sub-color);
-	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 1), 0 8px 24px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 1), 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .tippy-box[data-inertia][data-state="visible"] {

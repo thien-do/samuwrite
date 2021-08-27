@@ -1,14 +1,8 @@
 .menu {
-	/* Position is set by Popper */
-	z-index: 1;
-	border: solid 1px var(--sub-color);
-	border-radius: 4px;
-	background-color: rgba(var(--bg-color-rgb), 0.5);
-	backdrop-filter: blur(20px);
-	box-shadow: 0px 8px 24px 0 rgba(0, 0, 0, 0.5);
-
-	width: 240px;
+	width: 200px;
 	padding: 8px 0;
+	/* Eliminate tooltip padding */
+	margin: -4px -8px;
 }
 
 .item {

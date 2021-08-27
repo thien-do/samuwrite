@@ -40,9 +40,6 @@ export const ToolbarOpen = (props: Props): JSX.Element => (
 		shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
 		tooltip="Open…"
 		tooltipSingleton={props.singleton}
-		more={{
-			items: [recentItem(props), newItem(props)],
-			tooltip: "More open options",
-		}}
+		more={[recentItem(props), newItem(props)]}
 	/>
 );

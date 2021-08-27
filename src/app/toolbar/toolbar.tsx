@@ -1,14 +1,13 @@
-import Tippy, { useSingleton } from "@tippyjs/react";
-import { DiVim } from "react-icons/di";
-import { VscBook, VscMenu, VscSave, VscSettingsGear } from "react-icons/vsc";
-import { Button } from "../../components/button/button";
-import { Tooltip, TooltipSource } from "../../components/tooltip/tooltip";
+import { useSingleton } from "@tippyjs/react";
+import { TooltipSource } from "../../components/tooltip/tooltip";
 import { Editor } from "../editor/type";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
+import { ToolbarPreview } from "./preview";
 import { ToolbarSave } from "./save";
 import { ToolbarSetting } from "./setting";
 import s from "./toolbar.module.css";
+import { ToolbarVim } from "./vim";
 
 interface Props {
 	editor: Editor | null;
@@ -27,30 +26,8 @@ export const Toolbar = (props: Props) => {
 				handle={props.handle}
 				editor={props.editor}
 			/>
-			<Button
-				onClick={() => window.alert("Coming soon")}
-				Icon={VscBook}
-				shortcut={[
-					{ type: "command-or-control" },
-					{ type: "char", value: "P" },
-				]}
-				tooltip="Preview"
-				tooltipSingleton={target}
-				more={{
-					items: [],
-					tooltip: "More preview options",
-				}}
-			/>
-			<Button
-				onClick={() => window.alert("Coming soon")}
-				Icon={DiVim}
-				tooltip="Toggle Vim mode"
-				tooltipSingleton={target}
-				shortcut={[
-					{ type: "command-or-control" },
-					{ type: "char", value: "M" },
-				]}
-			/>
+			<ToolbarPreview singleton={target} />
+			<ToolbarVim singleton={target} />
 			<div className={s.grow} />
 			<ToolbarSetting singleton={target} />
 			<ToolbarMenu singleton={target} />
