@@ -9,4 +9,5 @@ body,
 body {
 	background-color: var(--bg-color);
 	color: var(--text-color);
+	font-family: "Inter var", sans-serif;
 }

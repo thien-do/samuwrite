@@ -11,7 +11,7 @@ interface Props {
 
 export const Button = (props: Props): JSX.Element => (
 	<button className={s.button} onClick={props.onClick}>
-		<props.Icon />
+		<props.Icon size={24} />
 		<Shortcut keys={props.shortcut} />
 	</button>
 );

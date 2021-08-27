@@ -9,5 +9,17 @@
 	width: 1000px;
 	margin: auto;
 	display: flex;
+	align-items: center;
 	gap: 16px;
+}
+
+.divider {
+	background-color: var(--sub-color);
+	width: 1px;
+	height: 16px;
+	margin: 0 16px;
+}
+
+.grow {
+	flex: 1 1 0px;
 }

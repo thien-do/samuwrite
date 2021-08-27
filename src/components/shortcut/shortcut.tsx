@@ -1,19 +1,19 @@
 import { isApple } from "../../utils/platform";
 
 export type ShortcutKey =
-	| string
-	| "command"
-	| "control"
-	| "shift"
-	| "option"
-	| "command-or-control";
+	| { type: "char"; value: string }
+	| { type: "command" }
+	| { type: "control" }
+	| { type: "shift" }
+	| { type: "option" }
+	| { type: "command-or-control" };
 
 interface Props {
 	keys: ShortcutKey[];
 }
 
 const getText = (key: ShortcutKey): string => {
-	switch (key) {
+	switch (key.type) {
 		case "command":
 			return "⌘";
 		case "control":
@@ -25,7 +25,7 @@ const getText = (key: ShortcutKey): string => {
 		case "command-or-control":
 			return isApple() ? "⌘" : "⌃";
 		default:
-			return key;
+			return key.value;
 	}
 };
 

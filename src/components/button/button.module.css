@@ -2,4 +2,22 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 4px;
+
+	appearance: none;
+	background-color: transparent;
+	border: none;
+
+	cursor: pointer;
+	transition: color 0.1s;
+	user-select: none;
+
+	color: var(--sub-color);
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.button:hover {
+	color: var(--text-color);
 }
