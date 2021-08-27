@@ -1,14 +1,10 @@
-import { get } from "idb-keyval";
+import Tippy, { useSingleton } from "@tippyjs/react";
 import { DiVim } from "react-icons/di";
-import {
-	VscBook,
-	VscFolder,
-	VscMenu,
-	VscSave,
-	VscSettingsGear,
-} from "react-icons/vsc";
+import { VscBook, VscMenu, VscSave, VscSettingsGear } from "react-icons/vsc";
 import { Button } from "../../components/button/button";
+import { Tooltip } from "../../components/tooltip/tooltip";
 import { Editor } from "../editor/type";
+import { ToolbarOpen } from "./open";
 import s from "./toolbar.module.css";
 
 interface Props {
@@ -16,16 +12,6 @@ interface Props {
 	handle: FileSystemFileHandle | null;
 	setHandle: (handle: FileSystemFileHandle | null) => void;
 }
-
-const openFile = async (props: Props) => {
-	const [handle] = await window.showOpenFilePicker();
-	props.setHandle(handle);
-};
-
-const reopenFile = async (props: Props) => {
-	const handle = await get("handle");
-	if (handle) props.setHandle(handle);
-};
 
 const saveFile = async (props: Props) => {
 	if (props.handle === null) throw Error("Not support save new file yet");
@@ -36,59 +22,57 @@ const saveFile = async (props: Props) => {
 	await writable.close();
 };
 
-export const Toolbar = (props: Props) => (
-	<div className={s.toolbar}>
-		<Button
-			onClick={() => void openFile(props)}
-			Icon={VscFolder}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
-			more={[
-				{
-					action: () => window.alert("Coming soon"),
-					label: "New file",
-					shortcut: [
+export const Toolbar = (props: Props) => {
+	const [source, target] = useSingleton();
+	return (
+		<div className={s.toolbar}>
+			<Tippy singleton={source} delay={500} />
+			<ToolbarOpen singleton={target} setHandle={props.setHandle} />
+			<Tooltip singleton={target} content="Open">
+				<Button
+					onClick={() => void saveFile(props)}
+					Icon={VscSave}
+					shortcut={[
 						{ type: "command-or-control" },
-						{ type: "char", value: "N" },
-					],
-				},
-				{
-					action: () => reopenFile(props),
-					label: "Open last file",
-					shortcut: [
-						{ type: "command-or-control" },
-						{ type: "shift" },
-						{ type: "char", value: "O" },
-					],
-				},
-			]}
-		/>
-		<Button
-			onClick={() => void saveFile(props)}
-			Icon={VscSave}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "S" }]}
-			more={[]}
-		/>
-		<Button
-			onClick={() => window.alert("Coming soon")}
-			Icon={VscBook}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "P" }]}
-			more={[]}
-		/>
-		<Button
-			onClick={() => window.alert("Coming soon")}
-			Icon={DiVim}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "M" }]}
-		/>
-		<div className={s.grow} />
-		<Button
-			onClick={() => window.alert("Coming soon!")}
-			Icon={VscSettingsGear}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "," }]}
-		/>
-		<Button
-			onClick={() => window.alert("Coming soon!")}
-			Icon={VscMenu}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "/" }]}
-		/>
-	</div>
-);
+						{ type: "char", value: "S" },
+					]}
+					more={[]}
+				/>
+			</Tooltip>
+			<Button
+				onClick={() => window.alert("Coming soon")}
+				Icon={VscBook}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "P" },
+				]}
+				more={[]}
+			/>
+			<Button
+				onClick={() => window.alert("Coming soon")}
+				Icon={DiVim}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "M" },
+				]}
+			/>
+			<div className={s.grow} />
+			<Button
+				onClick={() => window.alert("Coming soon!")}
+				Icon={VscSettingsGear}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "," },
+				]}
+			/>
+			<Button
+				onClick={() => window.alert("Coming soon!")}
+				Icon={VscMenu}
+				shortcut={[
+					{ type: "command-or-control" },
+					{ type: "char", value: "/" },
+				]}
+			/>
+		</div>
+	);
+};

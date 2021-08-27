@@ -1,0 +1,28 @@
+.tippy-box[data-animation="fade"][data-state="hidden"] {
+	opacity: 0;
+}
+[data-tippy-root] {
+	max-width: calc(100vw - 10px);
+}
+.tippy-box {
+	position: relative;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 20px;
+	outline: 0;
+	transition-property: transform, visibility, opacity;
+
+	background-color: rgba(var(--bg-color-rgb), 0.5);
+	backdrop-filter: blur(20px);
+	color: var(--text-color);
+	border: solid 1px var(--sub-color);
+	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 1), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.tippy-box[data-inertia][data-state="visible"] {
+	transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+}
+.tippy-content {
+	position: relative;
+	padding: 4px 8px;
+	z-index: 1;
+}
