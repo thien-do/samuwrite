@@ -29,6 +29,9 @@ const getText = (key: ShortcutKey): string => {
 	}
 };
 
+// const THIN_SPACE = "\u{2009}";
+const HAIR_SPACE = "\u{200A}";
+
 export const Shortcut = (props: Props) => (
-	<span>{props.keys.map(getText).join("")}</span>
+	<span>{props.keys.map(getText).join(HAIR_SPACE)}</span>
 );

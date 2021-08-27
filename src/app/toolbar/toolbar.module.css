@@ -1,16 +1,22 @@
 .toolbar {
 	background-color: rgba(var(--bg-color-rgb), 0.5);
 	backdrop-filter: blur(20px);
-	padding: 20px;
+	padding: 8px 0;
 	width: 100%;
 }
 
-.content {
-	width: 1000px;
+.container {
+	max-width: 1000px;
 	margin: auto;
+}
+
+.content {
 	display: flex;
 	align-items: center;
 	gap: 16px;
+
+	/* offset 8px padding of first and last button */
+	margin: 0 -8px;
 }
 
 .divider {

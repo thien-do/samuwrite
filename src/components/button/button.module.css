@@ -1,23 +1,44 @@
-.button {
+.container {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 4px;
+	align-items: flex-start;
+}
 
+.button {
 	appearance: none;
 	background-color: transparent;
 	border: none;
+	margin: 0;
+	padding: 8px;
 
 	cursor: pointer;
-	transition: color 0.1s;
+	transition: color 0.1s, outline 0.2s ease-out;
 	user-select: none;
 
 	color: var(--sub-color);
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 16px;
+
+	outline: 8px solid transparent;
 }
 
-.button:hover {
+.button:hover,
+.button:focus-visible {
 	color: var(--text-color);
+}
+
+.button:focus-visible {
+	outline-width: 2px;
+	outline-color: var(--main-color);
+}
+
+.primary {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.more {
+	margin-left: -8px;
 }
