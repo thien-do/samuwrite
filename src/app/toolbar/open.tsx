@@ -3,7 +3,6 @@ import { get } from "idb-keyval";
 import { VscFolder } from "react-icons/vsc";
 import { Button } from "../../components/button/button";
 import { ButtonMoreMenuItem } from "../../components/button/more/menu";
-import { Tooltip } from "../../components/tooltip/tooltip";
 
 interface Props {
 	setHandle: (handle: FileSystemFileHandle | null) => void;
@@ -35,12 +34,15 @@ const newItem = (_props: Props): ButtonMoreMenuItem => ({
 });
 
 export const ToolbarOpen = (props: Props): JSX.Element => (
-	<Tooltip singleton={props.singleton} content="Open">
-		<Button
-			onClick={() => void openFile(props)}
-			Icon={VscFolder}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
-			more={[recentItem(props), newItem(props)]}
-		/>
-	</Tooltip>
+	<Button
+		onClick={() => void openFile(props)}
+		Icon={VscFolder}
+		shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
+		tooltip="Open…"
+		tooltipSingleton={props.singleton}
+		more={{
+			items: [recentItem(props), newItem(props)],
+			tooltip: "More open options",
+		}}
+	/>
 );
