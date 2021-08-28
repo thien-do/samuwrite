@@ -21,4 +21,8 @@
 
 	background-color: rgba(var(--bg-color-rgb), 0.5);
 	backdrop-filter: blur(20px);
+
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
 }
