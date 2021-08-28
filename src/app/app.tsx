@@ -23,7 +23,7 @@ export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
 	const toolbarRef = useRef<HTMLDivElement>(null);
-	const isSelecting = useRef<boolean>(false);
+	const isMouseDown = useRef<boolean>(false);
 
 	// Save handle to local
 	useEffect(() => {
@@ -41,6 +41,11 @@ export const App = () => {
 	const hideToolbar = () => toolbarRef.current?.classList.add(s.hideToolbar);
 	const showToolbar = () => toolbarRef.current?.classList.remove(s.hideToolbar);
 
+	const disableToolbarPointerEvents = () =>
+		toolbarRef.current?.classList.add(s.disablePointerEvent);
+	const enableToolbarPointerEvents = () =>
+		toolbarRef.current?.classList.remove(s.disablePointerEvent);
+
 	// Show toolbar on mouseover
 	useEffect(() => {
 		if (toolbarRef === null) return;
@@ -49,22 +54,24 @@ export const App = () => {
 			toolbarRef.current?.removeEventListener("mouseover", showToolbar);
 	}, [toolbarRef]);
 
+	const onMouseEvent = (type: "mouseup" | "mousedown") => {
+		const mouseDown = type === "mousedown";
+		isMouseDown.current = mouseDown;
+		if (mouseDown) {
+			disableToolbarPointerEvents();
+		} else {
+			enableToolbarPointerEvents();
+		}
+	};
+
 	// Hide toolbar when scrolling or typing
 	useEffect(() => {
 		if (editor === null) return;
 		const disposable = [
 			editor.onDidScrollChange(() => hideToolbar()),
 			editor.onDidChangeModelContent(() => hideToolbar()),
-			editor.onDidChangeCursorSelection((event) => {
-				const selecting = !event.selection.isEmpty();
-				if (isSelecting.current === selecting) return;
-				isSelecting.current = selecting;
-				if (selecting) {
-					toolbarRef.current?.classList.add(s.disablePointerEvent);
-				} else {
-					toolbarRef.current?.classList.remove(s.disablePointerEvent);
-				}
-			}),
+			editor.onMouseUp(() => onMouseEvent("mouseup")),
+			editor.onMouseDown(() => onMouseEvent("mousedown")),
 		];
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
