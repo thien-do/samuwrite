@@ -38,20 +38,16 @@ export const App = () => {
 		return () => void dispose();
 	}, [handle, editor]);
 
-	const setToolbarOpacity = (opacity: number) => {
-		if (toolbarRef.current) {
-			toolbarRef.current.style.opacity = opacity.toString();
-		}
-	};
+	const hideToolbar = () => toolbarRef.current?.classList.add(s.hideToolbar);
+	const showToolbar = () => toolbarRef.current?.classList.remove(s.hideToolbar);
 
-	const showToolbar = () => setToolbarOpacity(1);
-	const hideToolbar = () => setToolbarOpacity(0);
-
+	// Show toolbar on hover on toolbar
 	useEnhancedHover(toolbarRef, {
 		hoverIn: () => showToolbar(),
 		options: { top: 30 },
 	});
 
+	// Hide toolbar when scrolling or typing
 	useEffect(() => {
 		if (editor === null) return;
 		const disposable = [
