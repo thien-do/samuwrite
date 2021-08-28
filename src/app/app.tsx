@@ -23,6 +23,7 @@ export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
 	const toolbarRef = useRef<HTMLDivElement>(null);
+	const isSelecting = useRef<boolean>(false);
 
 	// Save handle to local
 	useEffect(() => {
@@ -54,6 +55,16 @@ export const App = () => {
 		const disposable = [
 			editor.onDidScrollChange(() => hideToolbar()),
 			editor.onDidChangeModelContent(() => hideToolbar()),
+			editor.onDidChangeCursorSelection((event) => {
+				const selecting = !event.selection.isEmpty();
+				if (isSelecting.current === selecting) return;
+				isSelecting.current = selecting;
+				if (selecting) {
+					toolbarRef.current?.classList.add(s.disablePointerEvent);
+				} else {
+					toolbarRef.current?.classList.remove(s.disablePointerEvent);
+				}
+			}),
 		];
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);

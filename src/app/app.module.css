@@ -38,3 +38,7 @@
 .hideToolbar {
 	opacity: 0;
 }
+
+.disablePointerEvent {
+	pointer-events: none;
+}
