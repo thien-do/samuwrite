@@ -24,6 +24,7 @@ export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
 	const toolbarRef = useRef<HTMLDivElement>(null);
+	const isMouseDown = useRef<boolean>(false);
 
 	// Save handle to local
 	useEffect(() => {
@@ -41,11 +42,29 @@ export const App = () => {
 	const hideToolbar = () => toolbarRef.current?.classList.add(s.hideToolbar);
 	const showToolbar = () => toolbarRef.current?.classList.remove(s.hideToolbar);
 
+	const disableToolbarPointerEvents = () =>
+		toolbarRef.current?.classList.add(s.disablePointerEvent);
+	const enableToolbarPointerEvents = () =>
+		toolbarRef.current?.classList.remove(s.disablePointerEvent);
+
 	// Show toolbar on hover on toolbar
 	useEnhancedHover(toolbarRef, {
-		hoverIn: () => showToolbar(),
+		hoverIn: () => {
+			if (isMouseDown.current) return;
+			showToolbar();
+		},
 		options: { top: 30 },
 	});
+
+	const onMouseEvent = (type: "mouseup" | "mousedown") => {
+		const mouseDown = type === "mousedown";
+		isMouseDown.current = mouseDown;
+		if (mouseDown) {
+			disableToolbarPointerEvents();
+		} else {
+			enableToolbarPointerEvents();
+		}
+	};
 
 	// Hide toolbar when scrolling or typing
 	useEffect(() => {
@@ -53,6 +72,8 @@ export const App = () => {
 		const disposable = [
 			editor.onDidScrollChange(() => hideToolbar()),
 			editor.onDidChangeModelContent(() => hideToolbar()),
+			editor.onMouseUp(() => onMouseEvent("mouseup")),
+			editor.onMouseDown(() => onMouseEvent("mousedown")),
 		];
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
