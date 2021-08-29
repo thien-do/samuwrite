@@ -6,6 +6,7 @@ import s from "./app.module.css";
 import { Editor as EditorComponent } from "./editor/editor";
 import { Editor as EditorType, EditorModel } from "./editor/type";
 import { Toolbar } from "./toolbar/toolbar";
+import { Helmet } from "react-helmet";
 
 const loadFileToEditor = (
 	handle: FileSystemFileHandle,
@@ -22,6 +23,7 @@ const loadFileToEditor = (
 export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
+	const [isDirty, setDirtyFile] = useState(false);
 
 	// Save handle to local
 	useEffect(() => {
@@ -70,8 +72,23 @@ export const App = () => {
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
 
+	// Set file as dirty when user changes the editor content
+	useEffect(() => {
+		if (editor === null) return;
+		const dirty = editor.onDidChangeModelContent(() => void setDirtyFile(true));
+		return () => dirty.dispose();
+	}, [editor]);
+
+	const title =
+		handle === null
+			? "Samuwrite"
+			: `${isDirty ? "* " : ""}${handle.name} - Samuwrite`;
+
 	return (
 		<div className={s.app}>
+			<Helmet>
+				<title>{title}</title>
+			</Helmet>
 			<div
 				className={[s.toolbar, muteToolbar ? s.muted : ""].join(" ")}
 				ref={toolbarRef}
@@ -81,6 +98,7 @@ export const App = () => {
 					editor={editor}
 					handle={handle}
 					setHandle={setHandle}
+					setDirtyFile={setDirtyFile}
 				/>
 			</div>
 			<div className={s.editor}>

@@ -8,6 +8,7 @@ interface Props {
 	handle: FileSystemFileHandle | null;
 	editor: Editor | null;
 	singleton: TippyProps["singleton"];
+	setDirtyFile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const save = async (props: Props) => {
@@ -16,6 +17,7 @@ const save = async (props: Props) => {
 	if (props.editor === null) throw Error("Editor is not inited");
 	const text = props.editor.getValue();
 	writable.write(text);
+	props.setDirtyFile(false);
 	await writable.close();
 };
 
