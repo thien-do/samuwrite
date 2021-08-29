@@ -12,33 +12,15 @@
 	overflow: hidden;
 }
 
-.toolbarWrapper {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index: 1;
-	width: 100%;
-	padding-top: 30px;
-
-	transition-property: opacity;
-	transition-duration: 0.2s;
-	transition-timing-function: linear;
-}
-
 .toolbar {
-	position: relative;
+	position: absolute;
+	z-index: 1;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-
-	background-color: rgba(var(--bg-color-rgb), 0.5);
-	backdrop-filter: blur(20px);
 }
 
-.hideToolbar {
-	opacity: 0;
-}
-
-.disablePointerEvent {
+/* Must be done here instead of inside the Toolbar component */
+.toolbar.muted {
 	pointer-events: none;
 }

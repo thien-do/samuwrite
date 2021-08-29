@@ -1,11 +1,11 @@
 import { set } from "idb-keyval";
 import * as monaco from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
+import { readFile } from "../utils/file/read";
+import s from "./app.module.css";
 import { Editor as EditorComponent } from "./editor/editor";
 import { Editor as EditorType, EditorModel } from "./editor/type";
-import { readFile } from "../utils/file/read";
 import { Toolbar } from "./toolbar/toolbar";
-import s from "./app.module.css";
 
 const loadFileToEditor = (
 	handle: FileSystemFileHandle,
@@ -22,8 +22,6 @@ const loadFileToEditor = (
 export const App = () => {
 	const [handle, setHandle] = useState<FileSystemFileHandle | null>(null);
 	const [editor, setEditor] = useState<EditorType | null>(null);
-	const toolbarRef = useRef<HTMLDivElement>(null);
-	const isMouseDown = useRef<boolean>(false);
 
 	// Save handle to local
 	useEffect(() => {
@@ -38,50 +36,52 @@ export const App = () => {
 		return () => void dispose();
 	}, [handle, editor]);
 
-	const hideToolbar = () => toolbarRef.current?.classList.add(s.hideToolbar);
-	const showToolbar = () => toolbarRef.current?.classList.remove(s.hideToolbar);
+	const toolbarRef = useRef<HTMLDivElement>(null);
+	const [muteToolbar, setMuteToolbar] = useState(false);
+	const [showToolbar, setShowToolbar] = useState(true);
 
-	const disableToolbarPointerEvents = () =>
-		toolbarRef.current?.classList.add(s.disablePointerEvent);
-	const enableToolbarPointerEvents = () =>
-		toolbarRef.current?.classList.remove(s.disablePointerEvent);
-
-	// Show toolbar on mouseover
-	useEffect(() => {
-		if (toolbarRef === null) return;
-		toolbarRef.current?.addEventListener("mouseover", showToolbar);
-		return () =>
-			toolbarRef.current?.removeEventListener("mouseover", showToolbar);
-	}, [toolbarRef]);
-
-	const onMouseEvent = (type: "mouseup" | "mousedown") => {
-		const mouseDown = type === "mousedown";
-		isMouseDown.current = mouseDown;
-		if (mouseDown) {
-			disableToolbarPointerEvents();
-		} else {
-			enableToolbarPointerEvents();
-		}
-	};
-
-	// Hide toolbar when scrolling or typing
+	// Hide toolbar when user starts typing or scrolling
 	useEffect(() => {
 		if (editor === null) return;
-		const disposable = [
-			editor.onDidScrollChange(() => hideToolbar()),
-			editor.onDidChangeModelContent(() => hideToolbar()),
-			editor.onMouseUp(() => onMouseEvent("mouseup")),
-			editor.onMouseDown(() => onMouseEvent("mousedown")),
+		const disposable: monaco.IDisposable[] = [
+			editor.onDidChangeModelContent(() => void setShowToolbar(false)),
+			editor.onDidScrollChange(() => void setShowToolbar(false)),
+		];
+		return () => disposable.forEach((d) => d.dispose());
+	}, [editor]);
+
+	// Show toolbar on hover (note that we don't auto hide toolbar on mouse out)
+	useEffect(() => {
+		const toolbar = toolbarRef.current;
+		if (toolbar === null) throw Error("Toolbar ref is null");
+		const listener = () => void setShowToolbar(true);
+		toolbar.addEventListener("mouseover", listener);
+		return () => toolbar.removeEventListener("mouseover", listener);
+	}, []);
+
+	// Mute/cancel mouse events on toolbar while user is interacting with the
+	// editor with their mouse (e.g. drag to copy)
+	useEffect(() => {
+		if (editor === null) return;
+		const disposable: monaco.IDisposable[] = [
+			editor.onMouseDown(() => void setMuteToolbar(true)),
+			editor.onMouseUp(() => void setMuteToolbar(false)),
 		];
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
 
 	return (
 		<div className={s.app}>
-			<div ref={toolbarRef} className={s.toolbarWrapper}>
-				<div className={s.toolbar}>
-					<Toolbar editor={editor} handle={handle} setHandle={setHandle} />
-				</div>
+			<div
+				className={[s.toolbar, muteToolbar ? s.muted : ""].join(" ")}
+				ref={toolbarRef}
+			>
+				<Toolbar
+					show={showToolbar}
+					editor={editor}
+					handle={handle}
+					setHandle={setHandle}
+				/>
 			</div>
 			<div className={s.editor}>
 				<EditorComponent setEditor={setEditor} />
