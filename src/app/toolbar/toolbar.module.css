@@ -18,7 +18,7 @@
 
 /* The one with flex, and yes this is Friends reference */
 .body {
-	max-width: 1000px;
+	max-width: calc(1000px + 24px * 2);
 	margin: auto;
 	display: flex;
 	align-items: center;

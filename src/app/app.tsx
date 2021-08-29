@@ -17,12 +17,7 @@ export const App = () => {
 				className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
 				ref={toolbar.ref}
 			>
-				<Toolbar
-					show={toolbar.show}
-					editor={editor}
-					handle={file.handle}
-					setHandle={file.setHandle}
-				/>
+				<Toolbar show={toolbar.show} editor={editor} file={file} />
 			</div>
 			<div className={s.editor}>
 				<EditorComponent setEditor={setEditor} />
