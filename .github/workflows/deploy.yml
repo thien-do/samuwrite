@@ -20,7 +20,13 @@ jobs:
             - name: Install vercel
               run: npm install -g vercel
 
+            - name: Set Vercel project to samuwrite
+              run: |
+                  mkdir samuwrite
+                  mv -f * ./samuwrite/ || true
+
             - name: Deploy production
+              working-directory: ./samuwrite
               if: ${{ github.ref == 'refs/heads/main' }}
               env:
                   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -30,6 +36,7 @@ jobs:
 
             - name: Deploy preview
               id: deploy
+              working-directory: ./samuwrite
               if: ${{ github.ref != 'refs/heads/main' }}
               env:
                   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -43,5 +50,5 @@ jobs:
               with:
                   message: |
                       This pull request is deployed automatically with Vercel.
-                      ## vimdotmd-next
+                      ## samuwrite
                       ✅ Preview: [${{ steps.deploy.outputs.DEPLOYMENT_URL }}](${{ steps.deploy.outputs.DEPLOYMENT_URL }})
