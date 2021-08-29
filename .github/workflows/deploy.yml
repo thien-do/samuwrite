@@ -1,0 +1,47 @@
+name: deploy
+
+on:
+    pull_request:
+        branches:
+            - '**'
+    push:
+        branches:
+            - main
+
+jobs:
+    preview:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: 15.x
+
+            - name: Install vercel
+              run: npm install -g vercel
+
+            - name: Deploy production
+              if: ${{ github.ref == 'refs/heads/main' }}
+              env:
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+              run: |
+                  DEPLOYMENT_URL=$(vercel --token $VERCEL_TOKEN --confirm --no-clipboard --prod)
+                  echo "::set-output name=deployment_url::$DEPLOYMENT_URL"
+
+            - name: Deploy preview
+              id: deploy
+              if: ${{ github.ref != 'refs/heads/main' }}
+              env:
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+              run: |
+                  DEPLOYMENT_URL=$(vercel --token $VERCEL_TOKEN --confirm --no-clipboard)
+                  echo "::set-output name=deployment_url::$DEPLOYMENT_URL"
+
+            - name: Teardown the deployment
+              if: ${{ github.ref != 'refs/heads/master' }}
+              uses: marocchino/sticky-pull-request-comment@v2
+              with:
+                  message: |
+                      This pull request is deployed automatically with Vercel.
+                      ## vimdotmd-next
+                      ✅ Preview: [${{ steps.deploy.outputs.DEPLOYMENT_URL }}](${{ steps.deploy.outputs.DEPLOYMENT_URL }})
