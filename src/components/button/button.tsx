@@ -14,6 +14,7 @@ interface Props {
 	more?: ButtonMoreMenuItem[];
 	tooltip: string;
 	tooltipSingleton?: TippyProps["singleton"];
+	selected?: boolean;
 }
 
 export const Button = (props: Props): JSX.Element => (

@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
-import { Editor } from "./type";
+import { Editor } from "../state/state";
 import { initVimMode, EditorVimMode } from "monaco-vim";
 
 interface Options {
@@ -14,7 +14,7 @@ interface Result {
 	editor: Editor;
 }
 
-const getLeftPadding = (container: HTMLDivElement) => {
+export const getLeftPadding = (container: HTMLDivElement) => {
 	return Math.max((container.clientWidth - 1000) / 2, 24);
 };
 

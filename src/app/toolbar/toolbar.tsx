@@ -1,7 +1,8 @@
 import { useSingleton } from "@tippyjs/react";
 import { TooltipSource } from "../../components/tooltip/tooltip";
 import { HandleState } from "../../file/use-handle";
-import { Editor } from "../editor/type";
+import { Editor } from "../editor/state/state";
+import { LayoutState } from "../use-layout";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
 import { ToolbarPreview } from "./preview";
@@ -15,6 +16,7 @@ interface Props {
 	file: HandleState;
 	/** Always show the toolbar, not only on hover */
 	show: boolean;
+	layout: LayoutState;
 }
 
 export const Toolbar = (props: Props) => {
@@ -28,7 +30,7 @@ export const Toolbar = (props: Props) => {
 				handle={props.file.handle}
 				editor={props.editor}
 			/>
-			<ToolbarPreview singleton={target} />
+			<ToolbarPreview layout={props.layout} singleton={target} />
 			<ToolbarVim singleton={target} />
 			<div className={s.grow} />
 			<ToolbarSetting singleton={target} />

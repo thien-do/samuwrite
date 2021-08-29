@@ -1,0 +1,34 @@
+.body {
+	height: 100%;
+}
+
+.editor,
+.preview {
+	height: 100%;
+}
+
+/* Editor only */
+
+/* Don't need to hide "preview" because we remove it from the DOM completely */
+
+/* Preview only */
+
+/* Need to hide "editor" using CSS since we need to keep it in the DOM to avoid
+losing the state */
+.body.previewView .editor {
+	display: none;
+}
+
+/* Split */
+
+.body.splitView {
+	display: flex;
+	justify-content: center;
+}
+
+.body.splitView .editor,
+.body.splitView .preview {
+	flex: 1 1 0px;
+	overflow: hidden;
+	max-width: 1280px;
+}
