@@ -1,4 +1,23 @@
-.toolbar {
+/* The one with padding (hit-area) */
+.buffer {
+	/* The hit area */
+	padding-top: 30px;
+	transition: opacity 200ms linear;
+	opacity: 0;
+}
+
+.buffer.show {
+	opacity: 1;
+}
+
+/* The one with background */
+.container {
+	background-color: rgba(var(--bg-color-rgb), 0.5);
+	backdrop-filter: blur(20px);
+}
+
+/* The one with flex, and yes this is Friends reference */
+.body {
 	max-width: 1000px;
 	margin: auto;
 	display: flex;

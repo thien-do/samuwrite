@@ -14,11 +14,13 @@
 
 .toolbar {
 	position: absolute;
+	z-index: 1;
 	bottom: 0;
 	left: 0;
-	z-index: 1;
 	width: 100%;
+}
 
-	background-color: rgba(var(--bg-color-rgb), 0.5);
-	backdrop-filter: blur(20px);
+/* Must be done here instead of inside the Toolbar component */
+.toolbar.muted {
+	pointer-events: none;
 }
