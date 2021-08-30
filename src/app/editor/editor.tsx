@@ -1,14 +1,15 @@
 import * as monaco from "monaco-editor";
 import { RefObject, useEffect, useRef } from "react";
-import { createEditor } from "./create";
+import { getRef } from "../../utils/ref";
+import { createEditor, getLeftPadding } from "./create/create";
 import "./editor.css";
 import s from "./editor.module.css";
 import "./font/font.css";
 import { defineEditorTheme } from "./theme/theme";
-import { Editor as EditorType } from "./type";
+import { EditorState } from "./state/state";
 
 interface Props {
-	setEditor: (editor: EditorType) => void;
+	editor: EditorState;
 }
 
 const getContainer = (ref: RefObject<HTMLDivElement>): HTMLDivElement => {
@@ -18,6 +19,8 @@ const getContainer = (ref: RefObject<HTMLDivElement>): HTMLDivElement => {
 };
 
 export const Editor = (props: Props) => {
+	const { set: setEditor, value: editor } = props.editor;
+
 	const editorContainerRef = useRef<HTMLDivElement>(null);
 	const statusContainerRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +36,7 @@ export const Editor = (props: Props) => {
 		defineEditorTheme();
 	}, []);
 
-	const { setEditor } = props;
+	// Create editor
 	useEffect(() => {
 		const { editor, vimMode } = createEditor({
 			editor: getContainer(editorContainerRef),
@@ -47,6 +50,21 @@ export const Editor = (props: Props) => {
 			editor.dispose();
 		};
 	}, [setEditor]);
+
+	// Re-calculate editor layout when container changes
+	useEffect(() => {
+		if (editor === null) return;
+		const container = getRef(editorContainerRef, "Container is null");
+		const observer = new ResizeObserver(() => {
+			console.log(Date.now());
+			editor.layout();
+			editor.updateOptions({
+				lineDecorationsWidth: getLeftPadding(container),
+			});
+		});
+		observer.observe(container);
+		return () => void observer.unobserve(container);
+	}, [editor]);
 
 	return (
 		<div className={s.container}>

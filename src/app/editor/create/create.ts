@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
-import { Editor } from "./type";
+import { Editor } from "../state/state";
 import { initVimMode, EditorVimMode } from "monaco-vim";
 
 interface Options {
@@ -13,6 +13,10 @@ interface Result {
 	vimMode: EditorVimMode | null;
 	editor: Editor;
 }
+
+export const getLeftPadding = (container: HTMLDivElement) => {
+	return Math.max((container.clientWidth - 1000) / 2, 24);
+};
 
 export const createEditor = (options: Options): Result => {
 	ensureEditorEnv();
@@ -31,10 +35,11 @@ export const createEditor = (options: Options): Result => {
 		cursorWidth: 3,
 		fontFamily: "iA Writer Duo",
 		fontLigatures: true,
-		fontSize: 20,
 		fontWeight: "450",
 		glyphMargin: false,
-		lineDecorationsWidth: 0,
+		lineDecorationsWidth: getLeftPadding(options.editor),
+		disableMonospaceOptimizations: true,
+		fontSize: 20,
 		lineHeight: 40,
 		lineNumbers: "off",
 		minimap: { enabled: false },

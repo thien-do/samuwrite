@@ -2,7 +2,7 @@ import { TippyProps } from "@tippyjs/react";
 import { VscSave } from "react-icons/vsc";
 import { Button } from "../../components/button/button";
 import { ButtonMoreMenuItem } from "../../components/button/more/menu";
-import { Editor } from "../editor/type";
+import { Editor } from "../editor/state/state";
 
 interface Props {
 	handle: FileSystemFileHandle | null;

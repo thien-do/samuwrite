@@ -1,6 +1,6 @@
 import { readFile } from "../file/read";
 import { Handle, useFileHandle } from "../file/use-handle";
-import { Editor, EditorModel } from "./editor/type";
+import { Editor, EditorModel } from "./editor/state/state";
 import * as monaco from "monaco-editor";
 import { Dispatch, SetStateAction, useEffect } from "react";
 

@@ -1,8 +1,6 @@
 .container {
-	max-width: 1000px;
+	width: 100%;
 	height: 100%;
-	/* Align with the buttons in toolbar */
-	padding: 0 24px;
 	margin: auto;
 
 	display: flex;

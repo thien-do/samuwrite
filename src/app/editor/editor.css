@@ -1,9 +1,3 @@
-/* Move scrollbar to screen's right */
-.monaco-editor .decorationsOverviewRuler,
-.monaco-editor .scrollbar.vertical {
-	position: fixed !important;
-}
-
 /* Only smooth caret horizontal movements */
 .monaco-editor .cursors-layer.cursor-smooth-caret-animation > .cursor {
 	transition: left 100ms ease-out;
