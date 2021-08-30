@@ -7,11 +7,13 @@ import { ButtonMoreMenuItem } from "../../components/button/more/menu";
 interface Props {
 	setHandle: (handle: FileSystemFileHandle | null) => void;
 	singleton: TippyProps["singleton"];
+	setDirtyFile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const openFile = async (props: Props) => {
 	const [handle] = await window.showOpenFilePicker();
 	props.setHandle(handle);
+	props.setDirtyFile(false);
 };
 
 const recentItem = (props: Props): ButtonMoreMenuItem => ({
