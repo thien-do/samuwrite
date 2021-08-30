@@ -1,33 +1,27 @@
-import { useState, useEffect } from "react";
-import s from "./app.module.css";
-import { AppBody } from "./body/body";
-import { useEditor } from "./editor/state/state";
-import { Toolbar } from "./toolbar/toolbar";
-import { useAppFile } from "./use-file";
-import { useLayout } from "./use-layout";
-import { useAppToolbar } from "./use-toolbar";
+import { useEditor } from "~/src/components/editor/state/state";
+import { useFile } from "~/src/components/file/state";
+import { Layout } from "~/src/components/layout/layout";
+import { useLayout } from "~/src/components/layout/state";
+import { Toolbar } from "~/src/components/toolbar/toolbar";
 import { Helmet } from "react-helmet";
+import s from "./app.module.css";
+import { useFileDirty } from "./state/file-dirty";
+import { useFileLoad } from "./state/file-load";
+import { useToolbarAutohide } from "./state/toolbar-autohide";
 
 export const App = () => {
-	const [isDirty, setDirtyFile] = useState(false);
 	const layout = useLayout();
 	const editor = useEditor();
-	const toolbar = useAppToolbar({ editor: editor.value });
-	const file = useAppFile({ editor: editor.value });
+	const file = useFile();
 
-	// Set file as dirty when user changes the editor content
-	useEffect(() => {
-		if (editor.value === null) return;
-		const dirty = editor.value.onDidChangeModelContent(
-			() => void setDirtyFile(true)
-		);
-		return () => dirty.dispose();
-	}, [editor.value]);
+	useFileDirty({ editor: editor.value, setFileDirty: file.setDirty });
+	useFileLoad({ editor: editor.value, fileHandle: file.handle });
+	const toolbar = useToolbarAutohide({ editor: editor.value });
 
 	const title =
 		file.handle === null
 			? "Samuwrite"
-			: `${isDirty ? "* " : ""}${file.handle.name} - Samuwrite`;
+			: `${file.dirty ? "* " : ""}${file.handle.name} - Samuwrite`;
 
 	return (
 		<div className={s.app}>
@@ -42,12 +36,11 @@ export const App = () => {
 					layout={layout}
 					show={toolbar.show}
 					editor={editor.value}
-					setDirtyFile={setDirtyFile}
 					file={file}
 				/>
 			</div>
 			<div className={s.body}>
-				<AppBody layout={layout.value} editor={editor} />
+				<Layout layout={layout.value} editor={editor} />
 			</div>
 		</div>
 	);

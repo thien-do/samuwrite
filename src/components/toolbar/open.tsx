@@ -1,25 +1,29 @@
 import { TippyProps } from "@tippyjs/react";
+import { Button } from "~/src/components/button/button";
+import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
+import { FileHandle, FileState } from "~/src/components/file/state";
 import { get } from "idb-keyval";
 import { VscFolder } from "react-icons/vsc";
-import { Button } from "../../components/button/button";
-import { ButtonMoreMenuItem } from "../../components/button/more/menu";
 
 interface Props {
-	setHandle: (handle: FileSystemFileHandle | null) => void;
 	singleton: TippyProps["singleton"];
-	setDirtyFile: React.Dispatch<React.SetStateAction<boolean>>;
+	file: FileState;
 }
 
-const openFile = async (props: Props) => {
+const setFile = async (props: Props, handle: FileHandle): Promise<void> => {
+	props.file.setHandle(handle);
+	props.file.setDirty(false);
+};
+
+const openFile = async (props: Props): Promise<void> => {
 	const [handle] = await window.showOpenFilePicker();
-	props.setHandle(handle);
-	props.setDirtyFile(false);
+	await setFile(props, handle);
 };
 
 const recentItem = (props: Props): ButtonMoreMenuItem => ({
 	action: async () => {
 		const handle = await get("handle");
-		if (handle) props.setHandle(handle);
+		if (handle) setFile(props, handle);
 	},
 	label: "Open last file",
 	shortcut: [

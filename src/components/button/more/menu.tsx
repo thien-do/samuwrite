@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import { createPortal } from "react-dom";
-import { Shortcut, ShortcutKey } from "../../shortcut/shortcut";
+import { Shortcut, ShortcutKey } from "~/src/components/shortcut/shortcut";
 import s from "./menu.module.css";
 
 const container = document.getElementById("portal");

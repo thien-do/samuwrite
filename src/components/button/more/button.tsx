@@ -1,7 +1,7 @@
 import { TippyProps } from "@tippyjs/react";
 import { VscChevronDown } from "react-icons/vsc";
-import { Popover } from "../../popover/popover";
-import { Tooltip } from "../../tooltip/tooltip";
+import { Popover } from "~/src/components/popover/popover";
+import { Tooltip } from "~/src/components/tooltip/tooltip";
 import s from "../button.module.css";
 import { ButtonMoreMenu, ButtonMoreMenuItem } from "./menu";
 

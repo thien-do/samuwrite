@@ -1,4 +1,4 @@
-import { isApple } from "../../utils/platform";
+import { isApple } from "~/src/utils/platform";
 
 export type ShortcutKey =
 	| { type: "char"; value: string }
