@@ -1,19 +1,23 @@
-import { FileState } from "~/src/components/file/state";
 import { useEffect } from "react";
-import { Editor } from "~src/components/editor/state/state";
+import { FileState } from "~/src/components/file/state";
+import { EditorState } from "~src/components/editor/state/state";
 
 interface Params {
-	setFileDirty: FileState["setDirty"];
-	editor: Editor | null;
+	file: FileState;
+	editor: EditorState;
 }
 
 export const useFileDirty = (params: Params): void => {
-	const { setFileDirty, editor } = params;
+	const { dirty, setDirty } = params.file;
+	const editor = params.editor.value;
+
 	useEffect(() => {
+		if (dirty) return;
 		if (editor === null) return;
-		const dirty = editor.onDidChangeModelContent(() => {
-			setFileDirty(true);
+		const disposable = editor.onDidChangeModelContent(() => {
+			setDirty(true);
+			disposable.dispose(); // No need to listen anymore
 		});
-		return () => void dirty.dispose();
-	}, [editor]);
+		return () => void disposable.dispose();
+	}, [editor, dirty, setDirty]);
 };
