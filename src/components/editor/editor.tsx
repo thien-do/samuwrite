@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor";
 import { RefObject, useEffect, useRef } from "react";
-import { getRef } from "../../utils/ref";
+import { getRef } from "~/src/utils/ref";
 import { createEditor, getLeftPadding } from "./create/create";
 import "./editor.css";
 import s from "./editor.module.css";
@@ -46,6 +46,7 @@ export const Editor = (props: Props) => {
 		editor.focus();
 		setEditor(editor);
 		return () => {
+			setEditor(null);
 			vimMode?.dispose();
 			editor.dispose();
 		};
@@ -56,7 +57,6 @@ export const Editor = (props: Props) => {
 		if (editor === null) return;
 		const container = getRef(editorContainerRef, "Container is null");
 		const observer = new ResizeObserver(() => {
-			console.log(Date.now());
 			editor.layout();
 			editor.updateOptions({
 				lineDecorationsWidth: getLeftPadding(container),

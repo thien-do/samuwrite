@@ -1,8 +1,8 @@
 import { useSingleton } from "@tippyjs/react";
-import { TooltipSource } from "../../components/tooltip/tooltip";
-import { HandleState } from "../../file/use-handle";
-import { Editor } from "../editor/state/state";
-import { LayoutState } from "../use-layout";
+import { Editor } from "~/src/components/editor/state/state";
+import { FileState } from "~/src/components/file/state";
+import { LayoutState } from "~/src/components/layout/state";
+import { TooltipSource } from "~/src/components/tooltip/tooltip";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
 import { ToolbarPreview } from "./preview";
@@ -13,11 +13,10 @@ import { ToolbarVim } from "./vim";
 
 interface Props {
 	editor: Editor | null;
-	file: HandleState;
+	file: FileState;
+	layout: LayoutState;
 	/** Always show the toolbar, not only on hover */
 	show: boolean;
-	layout: LayoutState;
-	setDirtyFile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Toolbar = (props: Props) => {
@@ -25,17 +24,8 @@ export const Toolbar = (props: Props) => {
 	const body = (
 		<div className={s.body}>
 			<TooltipSource singleton={source} delay={500} />
-			<ToolbarOpen
-				singleton={target}
-				setHandle={props.file.setHandle}
-				setDirtyFile={props.setDirtyFile}
-			/>
-			<ToolbarSave
-				singleton={target}
-				handle={props.file.handle}
-				editor={props.editor}
-				setDirtyFile={props.setDirtyFile}
-			/>
+			<ToolbarOpen singleton={target} file={props.file} />
+			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarPreview layout={props.layout} singleton={target} />
 			<ToolbarVim singleton={target} />
 			<div className={s.grow} />

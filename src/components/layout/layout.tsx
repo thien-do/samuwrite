@@ -1,22 +1,21 @@
-import { Dispatch, SetStateAction } from "react";
 import { Editor as EditorComponent } from "../editor/editor";
-import { Editor as EditorType, EditorState } from "../editor/state/state";
-import { Layout } from "../use-layout";
-import s from "./body.module.css";
+import { EditorState } from "../editor/state/state";
+import s from "./layout.module.css";
+import { Layout as LayoutType } from "./state";
 
 interface Props {
-	layout: Layout;
+	layout: LayoutType;
 	editor: EditorState;
 }
 
-const layoutClass: Record<Layout, string> = {
+const layoutClass: Record<LayoutType, string> = {
 	editor: s.editorView,
 	preview: s.previewView,
 	split: s.splitView,
 };
 
-export const AppBody = (props: Props): JSX.Element => (
-	<div className={[s.body, layoutClass[props.layout]].join(" ")}>
+export const Layout = (props: Props): JSX.Element => (
+	<div className={[s.layout, layoutClass[props.layout]].join(" ")}>
 		{/* Always render Editor to avoid losing content state */}
 		<div className={s.editor}>
 			<EditorComponent editor={props.editor} />

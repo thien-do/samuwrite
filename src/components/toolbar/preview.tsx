@@ -1,8 +1,8 @@
 import { TippyProps } from "@tippyjs/react";
 import { VscBook } from "react-icons/vsc";
-import { Button } from "../../components/button/button";
-import { ButtonMoreMenuItem } from "../../components/button/more/menu";
-import { Layout, LayoutState } from "../use-layout";
+import { Button } from "~/src/components/button/button";
+import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
+import { Layout, LayoutState } from "~/src/components/layout/state";
 
 interface Props {
 	singleton: TippyProps["singleton"];

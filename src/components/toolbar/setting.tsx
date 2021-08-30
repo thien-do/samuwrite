@@ -1,6 +1,6 @@
 import { TippyProps } from "@tippyjs/react";
 import { VscSettings } from "react-icons/vsc";
-import { Button } from "../../components/button/button";
+import { Button } from "~/src/components/button/button";
 
 interface Props {
 	singleton: TippyProps["singleton"];

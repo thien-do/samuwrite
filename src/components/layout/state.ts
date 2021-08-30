@@ -15,13 +15,16 @@ const getInitial = (): Layout => {
 	return stored as Layout;
 };
 
-export const useLayout = (): LayoutState => {
-	const [layout, setLayout] = useState<Layout>(getInitial);
-
-	// Save preference
+const useSaveLayout = (layout: Layout): void => {
 	useEffect(() => {
 		window.localStorage.setItem(STORAGE_KEY, layout);
 	}, [layout]);
+};
+
+export const useLayout = (): LayoutState => {
+	const [layout, setLayout] = useState<Layout>(getInitial);
+
+	useSaveLayout(layout);
 
 	return { value: layout, set: setLayout };
 };

@@ -1,5 +1,7 @@
-export const verifyFilePermission = async (
-	handle: FileSystemFileHandle,
+import { FileHandle } from "./state";
+
+const verifyPermission = async (
+	handle: FileHandle,
 	mode: FileSystemPermissionMode
 ): Promise<boolean> => {
 	// Check if permission was already granted. If so, return true.
@@ -10,4 +12,16 @@ export const verifyFilePermission = async (
 	if (request === "granted") return true;
 	// The user didn't grant permission, so return false.
 	return false;
+};
+
+const read = async (handle: FileHandle): Promise<string> => {
+	const permission = await verifyPermission(handle, "read");
+	if (permission === false) throw Error("No permission");
+	const file = await handle.getFile();
+	const text = await file.text();
+	return text;
+};
+
+export const fileSystem = {
+	read,
 };
