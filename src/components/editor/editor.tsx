@@ -1,7 +1,8 @@
 import * as monaco from "monaco-editor";
 import { RefObject, useEffect, useRef } from "react";
 import { getRef } from "~/src/utils/ref";
-import { createEditor, getLeftPadding } from "./create/create";
+import { createEditor } from "./create/create";
+import { getLeftPadding } from "./create/options";
 import "./editor.css";
 import s from "./editor.module.css";
 import "./font/font.css";
