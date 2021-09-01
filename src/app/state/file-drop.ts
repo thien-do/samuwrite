@@ -5,39 +5,35 @@ interface Params {
 	file: FileState;
 }
 
-export const useFileDrop = (params: Params): React.RefObject<HTMLDivElement> => {
+const handleDragOver = (e: DragEvent) => e.preventDefault();
+
+export const useFileDrop = (
+	params: Params
+): React.RefObject<HTMLDivElement> => {
 	const dropRef = useRef<HTMLDivElement>(null);
 
-	const handleDragOver = (e: DragEvent) => e.preventDefault();
 	const handleDrop = async (e: DragEvent) => {
 		e.preventDefault();
 		if (!e.dataTransfer) return;
+
 		const { items } = e.dataTransfer;
-		if (1 < items.length) throw Error("Only one file can be upload at a time");
-		if (Array.from(items).some((item) => item.kind !== "file"))
-			throw Error("Support upload single file only");
-		if (items && items.length) {
-			const file = await items[0].getAsFileSystemHandle();
-			if (!file) return;
-			try {
-				params.file.setHandle(file as FileSystemFileHandle);
-				params.file.setDirty(false);
-			} catch (e) {
-				throw Error(e);
-			}
-		}
+		if (1 < items.length || items[0].kind !== "file")
+			throw Error("Only a single file upload is supported.");
+
+		const file = await items[0].getAsFileSystemHandle();
+		if (file) params.file.setFile(file as FileSystemFileHandle);
 	};
 
 	useEffect(() => {
 		const { current } = dropRef;
-		if (!current) return;
+		if (!current) throw Error("Drop ref is null");
 		current.addEventListener("dragover", handleDragOver);
 		current.addEventListener("drop", handleDrop);
 		return () => {
 			current.removeEventListener("dragover", handleDragOver);
 			current.removeEventListener("drop", handleDrop);
 		};
-	});
+	}, [dropRef]);
 
 	return dropRef;
-}
+};

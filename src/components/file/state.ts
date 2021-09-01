@@ -9,6 +9,7 @@ export interface FileState {
 	setHandle: SetState<FileHandle | null>;
 	dirty: boolean;
 	setDirty: SetState<boolean>;
+	setFile: (handle: FileHandle | null) => void;
 }
 
 const useSaveHandle = (handle: FileHandle | null): void => {
@@ -23,5 +24,10 @@ export const useFile = (): FileState => {
 
 	useSaveHandle(handle);
 
-	return { handle, setHandle, dirty, setDirty };
+	const setFile = (handle: FileHandle | null): void => {
+		setHandle(handle);
+		setDirty(false);
+	};
+
+	return { handle, setHandle, dirty, setDirty, setFile };
 };
