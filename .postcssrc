@@ -1,0 +1,9 @@
+{
+  "modules": true,
+  "plugins": {
+    "autoprefixer": true,
+    "postcss-modules": {
+      "globalModulePaths": ["./src/components/style/global.css"]
+    }
+  }
+}
