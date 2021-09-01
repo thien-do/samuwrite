@@ -4,6 +4,7 @@ html.theme-serika-dark {
 	--main-color: #e2b714;
 	--caret-color: #e2b714;
 	--sub-color: #646669;
+	--sub-color-rgb: 100, 102, 105;
 	--text-color: #d1d0c5;
 	--error-color: #ca4754;
 }

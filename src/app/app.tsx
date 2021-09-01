@@ -22,10 +22,10 @@ export const App = () => {
 	useFileLoad({ editor, file });
 	const toolbar = useToolbarAutohide({ editor });
 	useEditorTheme({ editor, prefs });
-	const dropRef = useFileDrop({ file });
+	const drop = useFileDrop({ file });
 
 	return (
-		<div className={s.app} ref={dropRef}>
+		<div className={s.app} ref={drop.ref}>
 			<AppTitle file={file} />
 			<div
 				className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
@@ -41,6 +41,11 @@ export const App = () => {
 			<div className={s.body}>
 				<Layout layout={layout.value} editor={editor} />
 			</div>
+			{drop.dragging && (
+				<div className={s.dragging}>
+					<span>drop file here</span>
+				</div>
+			)}
 		</div>
 	);
 };
