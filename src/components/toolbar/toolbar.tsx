@@ -7,14 +7,16 @@ import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
 import { ToolbarPreview } from "./preview";
 import { ToolbarSave } from "./save";
-import { ToolbarSetting } from "./setting";
+import { ToolbarPrefs } from "./prefs";
 import s from "./toolbar.module.css";
 import { ToolbarVim } from "./vim";
+import { PrefsState } from "../prefs/state";
 
 interface Props {
 	editor: Editor | null;
 	file: FileState;
 	layout: LayoutState;
+	prefs: PrefsState;
 	/** Always show the toolbar, not only on hover */
 	show: boolean;
 }
@@ -29,7 +31,7 @@ export const Toolbar = (props: Props) => {
 			<ToolbarPreview layout={props.layout} singleton={target} />
 			<ToolbarVim singleton={target} />
 			<div className={s.grow} />
-			<ToolbarSetting singleton={target} />
+			<ToolbarPrefs singleton={target} prefs={props.prefs} />
 			<ToolbarMenu singleton={target} />
 		</div>
 	);

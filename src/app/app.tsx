@@ -34,6 +34,7 @@ export const App = () => {
 					show={toolbar.show}
 					editor={editor.value}
 					file={file}
+					prefs={prefs}
 				/>
 			</div>
 			<div className={s.body}>
