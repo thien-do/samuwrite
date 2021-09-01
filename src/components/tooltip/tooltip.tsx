@@ -2,7 +2,7 @@ import Tippy, { TippyProps } from "@tippyjs/react";
 import { forwardRef } from "react";
 import "./tooltip.css";
 
-type Props = TippyProps
+type Props = TippyProps;
 
 const container = document.getElementById("portal");
 if (container === null) throw Error(`#portal is null`);

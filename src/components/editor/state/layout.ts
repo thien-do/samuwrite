@@ -7,7 +7,7 @@ interface Params {
 	containerRef: RefObject<HTMLDivElement>;
 }
 
-export const getEditorLeftPadding = (container: HTMLDivElement) => {
+export const getEditorLeftPadding = (container: HTMLDivElement): number => {
 	const freePadding = container.clientWidth - 1000;
 	const expected = Math.round(freePadding / 2);
 	return Math.max(expected, 24);
