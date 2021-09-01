@@ -18,7 +18,14 @@
 		"react/jsx-uses-react": "off",
 		"react/react-in-jsx-scope": "off",
 		// We allow inline component definition
-		"react/display-name": "off"
+		"react/display-name": "off",
+		// We accept component without propTypes
+		"react/prop-types": "off",
+		// We allow unused variables/arguments with underscore as prefix
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+		]
 	},
 	"settings": {
 		"react": {
