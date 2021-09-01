@@ -7,6 +7,7 @@ import { usePrefs } from "~src/components/prefs/state";
 import s from "./app.module.css";
 import { useEditorTheme } from "./state/editor-theme";
 import { useFileDirty } from "./state/file-dirty";
+import { useFileDrop } from "./state/file-drop";
 import { useFileLoad } from "./state/file-load";
 import { useToolbarAutohide } from "./state/toolbar-autohide";
 import { AppTitle } from "./title";
@@ -21,9 +22,10 @@ export const App = () => {
 	useFileLoad({ editor, file });
 	const toolbar = useToolbarAutohide({ editor });
 	useEditorTheme({ editor, prefs });
+	const dropRef = useFileDrop({ file });
 
 	return (
-		<div className={s.app}>
+		<div className={s.app} ref={dropRef}>
 			<AppTitle file={file} />
 			<div
 				className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
