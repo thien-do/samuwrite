@@ -1,6 +1,7 @@
 import * as monaco from "monaco-editor";
 import { ThemeBaseColors } from "./base";
 
+// Generated with "./debug.ts"
 export const getEditorThemeColors = (
 	base: ThemeBaseColors
 ): monaco.editor.IColors => ({

@@ -3,7 +3,9 @@ import { useFile } from "~/src/components/file/state";
 import { Layout } from "~/src/components/layout/layout";
 import { useLayout } from "~/src/components/layout/state";
 import { Toolbar } from "~/src/components/toolbar/toolbar";
+import { usePrefs } from "~src/components/prefs/state";
 import s from "./app.module.css";
+import { useEditorTheme } from "./state/editor-theme";
 import { useFileDirty } from "./state/file-dirty";
 import { useFileLoad } from "./state/file-load";
 import { useToolbarAutohide } from "./state/toolbar-autohide";
@@ -13,10 +15,12 @@ export const App = () => {
 	const layout = useLayout();
 	const editor = useEditor();
 	const file = useFile();
+	const prefs = usePrefs();
 
 	useFileDirty({ editor, file });
-	useFileLoad({ editor: editor.value, fileHandle: file.handle });
-	const toolbar = useToolbarAutohide({ editor: editor.value });
+	useFileLoad({ editor, file });
+	const toolbar = useToolbarAutohide({ editor });
+	useEditorTheme({ editor, prefs });
 
 	return (
 		<div className={s.app}>

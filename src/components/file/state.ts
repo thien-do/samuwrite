@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SetState } from "~/src/utils/state";
+import { SetState } from "~src/utils/state/type";
 import { set } from "idb-keyval";
 
 export type FileHandle = FileSystemFileHandle;

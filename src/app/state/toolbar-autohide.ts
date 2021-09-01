@@ -1,9 +1,9 @@
 import * as monaco from "monaco-editor";
 import { RefObject, useEffect, useRef, useState } from "react";
-import { Editor } from "~/src/components/editor/state/state";
+import { Editor, EditorState } from "~/src/components/editor/state/state";
 
 interface Params {
-	editor: Editor | null;
+	editor: EditorState;
 }
 
 interface AppToolbarState {
@@ -13,7 +13,7 @@ interface AppToolbarState {
 }
 
 export const useToolbarAutohide = (params: Params): AppToolbarState => {
-	const { editor } = params;
+	const editor = params.editor.value;
 
 	const ref = useRef<HTMLDivElement>(null);
 	const [mute, setMute] = useState(false);
