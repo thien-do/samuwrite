@@ -2,11 +2,15 @@ import { FileHandle, FileState } from "~/src/components/file/state";
 import { fileSystem } from "~/src/components/file/system";
 import * as monaco from "monaco-editor";
 import { useEffect } from "react";
-import { Editor, EditorModel } from "~src/components/editor/state/state";
+import {
+	Editor,
+	EditorModel,
+	EditorState,
+} from "~src/components/editor/state/state";
 
 interface Params {
-	editor: Editor | null;
-	fileHandle: FileState["handle"];
+	editor: EditorState;
+	file: FileState;
 }
 
 const loadFile = (handle: FileHandle, editor: Editor): (() => void) => {
@@ -19,12 +23,13 @@ const loadFile = (handle: FileHandle, editor: Editor): (() => void) => {
 };
 
 export const useFileLoad = (params: Params): void => {
-	const { fileHandle, editor } = params;
+	const handle = params.file.handle;
+	const editor = params.editor.value;
 
 	useEffect(() => {
-		if (fileHandle === null) return;
+		if (handle === null) return;
 		if (editor === null) throw Error("Editor is not created");
-		const dispose = loadFile(fileHandle, editor);
+		const dispose = loadFile(handle, editor);
 		return () => void dispose();
-	}, [fileHandle, editor]);
+	}, [handle, editor]);
 };

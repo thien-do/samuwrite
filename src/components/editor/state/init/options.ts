@@ -1,12 +1,7 @@
 import * as monaco from "monaco-editor";
+import { getEditorLeftPadding } from "../layout";
 
 type EditorOptions = monaco.editor.IStandaloneEditorConstructionOptions;
-
-export const getLeftPadding = (container: HTMLDivElement) => {
-	const freePadding = container.clientWidth - 1000;
-	const expected = Math.round(freePadding / 2);
-	return Math.max(expected, 24);
-};
 
 const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	value: "",
@@ -54,5 +49,5 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 
 export const getEditorOptions = (container: HTMLDivElement): EditorOptions => ({
 	...EDITOR_STATIC_OPTIONS,
-	lineDecorationsWidth: getLeftPadding(container),
+	lineDecorationsWidth: getEditorLeftPadding(container),
 });
