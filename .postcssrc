@@ -3,7 +3,7 @@
   "plugins": {
     "autoprefixer": true,
     "postcss-modules": {
-      "globalModulePaths": ["^.+(?<!.module.css)$"]
+      "globalModulePaths": ["^.+(?<!\.module)\.css$"]
     }
   }
 }
