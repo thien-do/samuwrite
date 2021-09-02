@@ -1,10 +1,33 @@
+/* Note: The selectors in this file should be the same with the original
+selectors, with a :not(.x) to win the specificity */
+
 /* Only smooth caret horizontal movements */
-.monaco-editor .cursors-layer.cursor-smooth-caret-animation > .cursor {
+.monaco-editor .cursors-layer.cursor-smooth-caret-animation > .cursor:not(.x) {
 	transition: left 100ms ease-out;
 }
 
 /* Longer blinking */
-.cursor-smooth {
+.cursor-smooth:not(.x) {
 	animation-duration: 1s;
 	animation-delay: 1s;
+}
+
+/* Don't use the wrapped character (inside caret). It does not work well with
+the fat + smooth cursor */
+.monaco-editor .cursors-layer .cursor:not(.x) {
+	color: transparent;
+}
+
+/* Put the caret behind the text */
+.monaco-editor .cursors-layer:not(.x) {
+	z-index: -1;
+}
+.monaco-editor .lines-content .cslr:not(.x) {
+	z-index: -1;
+}
+
+/* Hide the textarea. Actually the original code should also hide it already,
+but we don't know why it still leave a gray background */
+.monaco-editor .inputarea:not(.x) {
+	opacity: 0;
 }
