@@ -21,6 +21,12 @@
 	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 1), 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+@supports not (backdrop-filter: blur(20px)) {
+	.tippy-box {
+		background-color: rgba(var(--bg-color-rgb), 0.98);
+	}
+}
+
 .tippy-box[data-inertia][data-state="visible"] {
 	transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
 }

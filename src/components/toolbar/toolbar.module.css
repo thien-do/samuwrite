@@ -16,6 +16,12 @@
 	backdrop-filter: blur(20px);
 }
 
+@supports not (backdrop-filter: blur(20px)) {
+	.container {
+		background-color: rgba(var(--bg-color-rgb), 0.98);
+	}
+}
+
 /* The one with flex, and yes this is Friends reference */
 .body {
 	max-width: calc(1000px + 24px * 2);
