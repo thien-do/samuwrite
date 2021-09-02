@@ -15,6 +15,7 @@ export const ToolbarVim = (props: Props): JSX.Element => {
 		<Button
 			onClick={() => setVim(!vim)}
 			Icon={DiVim}
+			selected={vim}
 			tooltip="Toggle Vim mode"
 			tooltipSingleton={props.singleton}
 			shortcut={[{ type: "command-or-control" }, { type: "char", value: "M" }]}

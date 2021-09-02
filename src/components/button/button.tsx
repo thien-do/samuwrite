@@ -22,7 +22,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
 		<div className={[s.container].join(" ")}>
 			<Tooltip content={props.tooltip} singleton={props.tooltipSingleton}>
 				<button
-					className={[s.button, s.primary].join(" ")}
+					className={[
+						s.button,
+						s.primary,
+						props.selected ? s.selected : "",
+					].join(" ")}
 					onClick={props.onClick}
 					ref={ref}
 				>

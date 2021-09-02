@@ -8,11 +8,11 @@ import s from "./app.module.css";
 import { AppDrop } from "./drop/drop";
 import { useAppDrop } from "./drop/state";
 import { useEditorTheme } from "./state/editor-theme";
+import { useEditorVim } from "./state/editor-vim";
 import { useFileDirty } from "./state/file-dirty";
 import { useFileLoad } from "./state/file-load";
 import { useToolbarAutohide } from "./state/toolbar-autohide";
 import { AppTitle } from "./title";
-import { useVimMode } from "~src/components/prefs/vim";
 
 export const App = (): JSX.Element => {
 	const layout = useLayout();
@@ -25,7 +25,7 @@ export const App = (): JSX.Element => {
 	const toolbar = useToolbarAutohide({ editor });
 	useEditorTheme({ editor, prefs });
 	const drop = useAppDrop({ file });
-	const vim = useVimMode({ editor, prefs });
+	const vim = useEditorVim({ editor, prefs });
 
 	return (
 		<div className={s.app} {...drop.handlers}>
@@ -43,9 +43,12 @@ export const App = (): JSX.Element => {
 				/>
 			</div>
 			<div className={s.body}>
-				<Layout layout={layout.value} editor={editor} />
+				<Layout
+					statusRef={vim.statusRef}
+					layout={layout.value}
+					editor={editor}
+				/>
 			</div>
-			<div ref={vim.statusElmRef} />
 			{drop.dragging && <AppDrop />}
 		</div>
 	);

@@ -23,7 +23,8 @@
 }
 
 .button:hover,
-.button:focus-visible {
+.button:focus-visible,
+.button.selected {
 	color: var(--text-color);
 }
 
