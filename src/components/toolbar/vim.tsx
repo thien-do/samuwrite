@@ -8,17 +8,13 @@ interface Props {
 	prefs: PrefsState;
 }
 
-export const ToolbarVim = (props: Props): JSX.Element => {
-	const { vim, setVim } = props.prefs;
-
-	return (
-		<Button
-			onClick={() => setVim(!vim)}
-			Icon={DiVim}
-			selected={vim}
-			tooltip="Toggle Vim mode"
-			tooltipSingleton={props.singleton}
-			shortcut={[{ type: "command-or-control" }, { type: "char", value: "M" }]}
-		/>
-	);
-};
+export const ToolbarVim = (props: Props): JSX.Element => (
+	<Button
+		onClick={() => props.prefs.setVim((v) => !v)}
+		Icon={DiVim}
+		selected={props.prefs.vim}
+		tooltip="Toggle Vim mode"
+		tooltipSingleton={props.singleton}
+		shortcut={[{ type: "command-or-control" }, { type: "char", value: "M" }]}
+	/>
+);
