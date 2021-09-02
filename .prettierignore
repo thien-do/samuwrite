@@ -1,3 +1,5 @@
-node_modules/
-dist/
-public/
+/node_modules
+/.parcel-cache
+/dist
+.DS_Store
+.vercel

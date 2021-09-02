@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { useEditor } from "~/src/components/editor/state/state";
 import { useFile } from "~/src/components/file/state";
 import { Layout } from "~/src/components/layout/layout";
