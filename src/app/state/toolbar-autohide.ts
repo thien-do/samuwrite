@@ -23,8 +23,12 @@ export const useToolbarAutohide = (params: Params): AppToolbarState => {
 	useEffect(() => {
 		if (editor === null) return;
 		const disposable: monaco.IDisposable[] = [
-			editor.onDidChangeModelContent(() => void setShow(false)),
-			editor.onDidScrollChange(() => void setShow(false)),
+			editor.onDidChangeModelContent(() => {
+				setShow(false);
+			}),
+			editor.onDidScrollChange((event) => {
+				if (event.scrollTopChanged) setShow(false);
+			}),
 		];
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
