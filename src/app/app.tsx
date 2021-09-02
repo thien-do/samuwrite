@@ -5,6 +5,8 @@ import { useLayout } from "~/src/components/layout/state";
 import { Toolbar } from "~/src/components/toolbar/toolbar";
 import { usePrefs } from "~src/components/prefs/state";
 import s from "./app.module.css";
+import { AppDrop } from "./drop/drop";
+import { useAppDrop } from "./drop/state";
 import { useEditorTheme } from "./state/editor-theme";
 import { useFileDirty } from "./state/file-dirty";
 import { useFileLoad } from "./state/file-load";
@@ -21,9 +23,10 @@ export const App = (): JSX.Element => {
 	useFileLoad({ editor, file });
 	const toolbar = useToolbarAutohide({ editor });
 	useEditorTheme({ editor, prefs });
+	const drop = useAppDrop({ file });
 
 	return (
-		<div className={s.app}>
+		<div className={s.app} {...drop.handlers}>
 			<AppTitle file={file} />
 			<div
 				className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
@@ -40,6 +43,7 @@ export const App = (): JSX.Element => {
 			<div className={s.body}>
 				<Layout layout={layout.value} editor={editor} />
 			</div>
+			{drop.dragging && <AppDrop />}
 		</div>
 	);
 };

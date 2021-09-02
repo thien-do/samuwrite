@@ -11,8 +11,7 @@ interface Props {
 }
 
 const setFile = async (props: Props, handle: FileHandle): Promise<void> => {
-	props.file.setHandle(handle);
-	props.file.setDirty(false);
+	props.file.setFile(handle);
 };
 
 const openFile = async (props: Props): Promise<void> => {
