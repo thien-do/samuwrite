@@ -12,13 +12,18 @@
 
 /* The one with background */
 .container {
-	background-color: rgba(var(--bg-color-rgb), 0.5);
-	backdrop-filter: blur(20px);
+}
+
+@supports (backdrop-filter: blur(20px)) {
+	.container {
+		background-color: rgba(var(--bg-color-rgb), 0.5);
+		backdrop-filter: blur(20px);
+	}
 }
 
 @supports not (backdrop-filter: blur(20px)) {
 	.container {
-		background-color: rgba(var(--bg-color-rgb), 0.98);
+		background-color: rgba(var(--bg-color-rgb), 0.95);
 	}
 }
 
