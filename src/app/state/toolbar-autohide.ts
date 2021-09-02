@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor";
 import { RefObject, useEffect, useRef, useState } from "react";
-import { Editor, EditorState } from "~/src/components/editor/state/state";
+import { EditorState } from "~/src/components/editor/state/state";
 
 interface Params {
 	editor: EditorState;

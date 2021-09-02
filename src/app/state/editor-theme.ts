@@ -8,7 +8,7 @@ interface Params {
 	prefs: PrefsState;
 }
 
-export const useEditorTheme = (params: Params) => {
+export const useEditorTheme = (params: Params): void => {
 	const editor = params.editor.value;
 	const theme = params.prefs.theme;
 

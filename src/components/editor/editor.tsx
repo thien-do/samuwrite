@@ -10,7 +10,7 @@ interface Props {
 	editor: EditorState;
 }
 
-export const Editor = (props: Props) => {
+export const Editor = (props: Props): JSX.Element => {
 	const { set: setEditor, value: editor } = props.editor;
 
 	const containerRef = useRef<HTMLDivElement>(null);

@@ -4,11 +4,12 @@ const setup = {
 	current: false,
 };
 
-export const ensureEditorEnv = () => {
+export const ensureEditorEnv = (): void => {
 	if (setup.current === true) return;
 
 	// Setup workers
 	// https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md#using-parcel
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(self as any).MonacoEnvironment = {
 		getWorkerUrl: function (_moduleId, _label) {
 			return "/editor.worker.js";

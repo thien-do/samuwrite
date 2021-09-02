@@ -21,7 +21,7 @@ interface Props {
 	show: boolean;
 }
 
-export const Toolbar = (props: Props) => {
+export const Toolbar = (props: Props): JSX.Element => {
 	const [source, target] = useSingleton();
 	const body = (
 		<div className={s.body}>
