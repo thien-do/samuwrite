@@ -29,7 +29,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 			<ToolbarOpen singleton={target} file={props.file} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarPreview layout={props.layout} singleton={target} />
-			<ToolbarVim singleton={target} />
+			<ToolbarVim singleton={target} prefs={props.prefs} />
 			<div className={s.grow} />
 			<ToolbarPrefs singleton={target} prefs={props.prefs} />
 			<ToolbarMenu singleton={target} />

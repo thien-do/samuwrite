@@ -1,7 +1,7 @@
 import { ThemeState, usePrefsTheme } from "./theme/state";
-import { usePrefsVim } from "./vim";
+import { usePrefsVim, VimState } from "./vim";
 
-export type PrefsState = ThemeState;
+export interface PrefsState extends ThemeState, VimState {}
 
 export const usePrefs = (): PrefsState => {
 	const theme = usePrefsTheme();
