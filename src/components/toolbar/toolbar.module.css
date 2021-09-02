@@ -2,16 +2,17 @@
 .buffer {
 	/* The hit area */
 	padding-top: 30px;
-	transition: opacity 200ms linear;
-	opacity: 0;
 }
 
-.buffer.show {
-	opacity: 1;
-}
-
-/* The one with background */
 .container {
+	/* The opacity and backdrop-filter must be defined on the same element to
+	avoid laggy transition */
+	opacity: 0;
+	transition: opacity 300ms ease-out;
+}
+
+.buffer.show .container {
+	opacity: 1;
 }
 
 @supports (backdrop-filter: blur(20px)) {
