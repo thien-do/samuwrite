@@ -1,5 +1,5 @@
 import { TippyProps } from "@tippyjs/react";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 import { IconType } from "react-icons";
 import { Shortcut, ShortcutKey } from "../shortcut/shortcut";
 import { Tooltip } from "../tooltip/tooltip";
@@ -9,7 +9,7 @@ import { ButtonMoreMenuItem } from "./more/menu";
 
 interface Props {
 	Icon: IconType;
-	onClick: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
+	onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 	shortcut: ShortcutKey[];
 	more?: ButtonMoreMenuItem[];
 	tooltip: string;
@@ -17,22 +17,25 @@ interface Props {
 	selected?: boolean;
 }
 
-export const Button = (props: Props): JSX.Element => (
-	<div className={[s.container].join(" ")}>
-		<Tooltip content={props.tooltip} singleton={props.tooltipSingleton}>
-			<button
-				className={[s.button, s.primary].join(" ")}
-				onClick={props.onClick}
-			>
-				<props.Icon size={24} />
-				<Shortcut keys={props.shortcut} />
-			</button>
-		</Tooltip>
-		{props.more && (
-			<ButtonMoreButton
-				items={props.more}
-				tooltipSingleton={props.tooltipSingleton}
-			/>
-		)}
-	</div>
+export const Button = forwardRef<HTMLButtonElement, Props>(
+	(props, ref): JSX.Element => (
+		<div className={[s.container].join(" ")}>
+			<Tooltip content={props.tooltip} singleton={props.tooltipSingleton}>
+				<button
+					className={[s.button, s.primary].join(" ")}
+					onClick={props.onClick}
+					ref={ref}
+				>
+					<props.Icon size={24} />
+					<Shortcut keys={props.shortcut} />
+				</button>
+			</Tooltip>
+			{props.more && (
+				<ButtonMoreButton
+					items={props.more}
+					tooltipSingleton={props.tooltipSingleton}
+				/>
+			)}
+		</div>
+	)
 );

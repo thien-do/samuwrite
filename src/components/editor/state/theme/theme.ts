@@ -3,7 +3,7 @@ import { getThemeBaseColors } from "./base";
 import { getEditorThemeColors } from "./colors";
 import { getEditorThemeRules } from "./rules";
 
-export const defineEditorTheme = () => {
+export const defineEditorTheme = (): void => {
 	const base = getThemeBaseColors();
 	monaco.editor.defineTheme("custom", {
 		base: "vs-dark",

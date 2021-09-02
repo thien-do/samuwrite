@@ -12,7 +12,7 @@ import { useFileLoad } from "./state/file-load";
 import { useToolbarAutohide } from "./state/toolbar-autohide";
 import { AppTitle } from "./title";
 
-export const App = () => {
+export const App = (): JSX.Element => {
 	const layout = useLayout();
 	const editor = useEditor();
 	const file = useFile();
@@ -36,6 +36,7 @@ export const App = () => {
 					show={toolbar.show}
 					editor={editor.value}
 					file={file}
+					prefs={prefs}
 				/>
 			</div>
 			<div className={s.body}>
