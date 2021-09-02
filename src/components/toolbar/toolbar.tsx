@@ -3,14 +3,14 @@ import { Editor } from "~/src/components/editor/state/state";
 import { FileState } from "~/src/components/file/state";
 import { LayoutState } from "~/src/components/layout/state";
 import { TooltipSource } from "~/src/components/tooltip/tooltip";
+import { PrefsState } from "../prefs/state";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
+import { ToolbarPrefs } from "./prefs";
 import { ToolbarPreview } from "./preview";
 import { ToolbarSave } from "./save";
-import { ToolbarPrefs } from "./prefs";
 import s from "./toolbar.module.css";
 import { ToolbarVim } from "./vim";
-import { PrefsState } from "../prefs/state";
 
 interface Props {
 	editor: Editor | null;
@@ -29,7 +29,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 			<ToolbarOpen singleton={target} file={props.file} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarPreview layout={props.layout} singleton={target} />
-			<ToolbarVim singleton={target} />
+			<ToolbarVim singleton={target} prefs={props.prefs} />
 			<div className={s.grow} />
 			<ToolbarPrefs singleton={target} prefs={props.prefs} />
 			<ToolbarMenu singleton={target} />

@@ -1,7 +1,7 @@
 import { useStorageState } from "~src/utils/state/storage";
 import { SetState } from "~src/utils/state/type";
 
-interface VimState {
+export interface VimState {
 	vim: boolean;
 	setVim: SetState<boolean>;
 }

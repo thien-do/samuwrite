@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import { useEditorInit } from "./state/init/init";
 import { useEditorLayout } from "./state/layout";
 import { EditorState } from "./state/state";
@@ -8,13 +8,13 @@ import "./style/font/font.css";
 
 interface Props {
 	editor: EditorState;
+	statusRef: RefObject<HTMLDivElement>;
 }
 
 export const Editor = (props: Props): JSX.Element => {
 	const { set: setEditor, value: editor } = props.editor;
 
 	const containerRef = useRef<HTMLDivElement>(null);
-	const statusRef = useRef<HTMLDivElement>(null);
 
 	useEditorInit({ containerRef, setEditor });
 	useEditorLayout({ containerRef, editor });
@@ -22,7 +22,7 @@ export const Editor = (props: Props): JSX.Element => {
 	return (
 		<div className={s.container}>
 			<div className={s.editor} ref={containerRef} />
-			<div className={s.status} ref={statusRef} />
+			<div className={s.status} ref={props.statusRef} />
 		</div>
 	);
 };
