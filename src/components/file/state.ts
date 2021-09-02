@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SetState } from "~src/utils/state/type";
 import { set } from "idb-keyval";
 
@@ -24,10 +24,10 @@ export const useFile = (): FileState => {
 
 	useSaveHandle(handle);
 
-	const setFile = (handle: FileHandle | null): void => {
+	const setFile = useCallback((handle: FileHandle | null): void => {
 		setHandle(handle);
 		setDirty(false);
-	};
+	}, []);
 
 	return { handle, setHandle, dirty, setDirty, setFile };
 };
