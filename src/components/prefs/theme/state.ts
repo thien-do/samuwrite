@@ -18,7 +18,7 @@ const htmlClass = document.documentElement.classList;
 const useThemeApply = (theme: Theme): void => {
 	useEffect(() => {
 		htmlClass.add(`theme-${theme}`);
-		return () => htmlClass.remove(`theme-${theme}`);
+		return () => void htmlClass.remove(`theme-${theme}`);
 	}, [theme]);
 };
 
