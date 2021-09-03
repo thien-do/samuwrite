@@ -2,11 +2,11 @@ import { TippyProps } from "@tippyjs/react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
-import { Layout, LayoutState } from "~/src/components/layout/state";
+import { PrefsState } from "../prefs/state";
 
 interface Props {
 	singleton: TippyProps["singleton"];
-	layout: LayoutState;
+	prefs: PrefsState;
 }
 
 const print = (_props: Props): ButtonMoreMenuItem => ({
@@ -19,19 +19,19 @@ const print = (_props: Props): ButtonMoreMenuItem => ({
 	],
 });
 
-const toggleLayout = (layout: Layout): Layout => {
+const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 	if (layout !== "editor") return "editor";
 	return window.innerWidth < 1000 ? "preview" : "split";
 };
 
 export const ToolbarPreview = (props: Props): JSX.Element => (
 	<Button
-		onClick={() => void props.layout.set(toggleLayout)}
+		onClick={() => void props.prefs.setLayout(toggleLayout)}
 		Icon={VscBook}
 		shortcut={[{ type: "command-or-control" }, { type: "char", value: "P" }]}
 		tooltip="Toggle Preview"
 		tooltipSingleton={props.singleton}
 		more={[print(props)]}
-		selected={props.layout.value !== "editor"}
+		selected={props.prefs.layout !== "editor"}
 	/>
 );
