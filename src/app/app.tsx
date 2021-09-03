@@ -1,7 +1,6 @@
 import { useEditor } from "~/src/components/editor/state/state";
 import { useFile } from "~/src/components/file/state";
 import { Layout } from "~/src/components/layout/layout";
-import { useLayout } from "~/src/components/layout/state";
 import { Toolbar } from "~/src/components/toolbar/toolbar";
 import { usePrefs } from "~src/components/prefs/state";
 import s from "./app.module.css";
@@ -11,7 +10,6 @@ import { AppTitle } from "./title";
 import { useToolbarAutohide } from "./toolbar/autohide";
 
 export const App = (): JSX.Element => {
-	const layout = useLayout();
 	const editor = useEditor();
 	const file = useFile();
 	const prefs = usePrefs();
@@ -27,7 +25,6 @@ export const App = (): JSX.Element => {
 				ref={toolbar.ref}
 			>
 				<Toolbar
-					layout={layout}
 					show={toolbar.show}
 					editor={editor.value}
 					file={file}
@@ -35,12 +32,7 @@ export const App = (): JSX.Element => {
 				/>
 			</div>
 			<div className={s.body}>
-				<Layout
-					layout={layout.value}
-					editor={editor}
-					file={file}
-					prefs={prefs}
-				/>
+				<Layout editor={editor} file={file} prefs={prefs} />
 			</div>
 			{drop.dragging && <AppDrop />}
 		</div>

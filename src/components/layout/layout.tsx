@@ -4,23 +4,21 @@ import { FileState } from "../file/state";
 import { PrefsState } from "../prefs/state";
 import { Preview } from "../preview/preview";
 import s from "./layout.module.css";
-import { Layout as LayoutType } from "./state";
 
 interface Props {
 	editor: EditorState;
 	file: FileState;
 	prefs: PrefsState;
-	layout: LayoutType;
 }
 
-const layoutClass: Record<LayoutType, string> = {
+const layoutClass: Record<PrefsState["layout"], string> = {
 	editor: s.editorView,
 	preview: s.previewView,
 	split: s.splitView,
 };
 
 export const Layout = (props: Props): JSX.Element => (
-	<div className={[s.layout, layoutClass[props.layout]].join(" ")}>
+	<div className={[s.layout, layoutClass[props.prefs.layout]].join(" ")}>
 		{/* Always render Editor to avoid losing content state */}
 		<div className={s.editor}>
 			<EditorComponent
@@ -30,7 +28,7 @@ export const Layout = (props: Props): JSX.Element => (
 			/>
 		</div>
 		{/* Only render Preview when necessary to avoid re-calculating the HTML */}
-		{props.layout !== "editor" && (
+		{props.prefs.layout !== "editor" && (
 			<div className={s.preview}>
 				<Preview editor={props.editor.value} />
 			</div>

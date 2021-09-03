@@ -1,7 +1,6 @@
 import { useSingleton } from "@tippyjs/react";
 import { Editor } from "~/src/components/editor/state/state";
 import { FileState } from "~/src/components/file/state";
-import { LayoutState } from "~/src/components/layout/state";
 import { TooltipSource } from "~/src/components/tooltip/tooltip";
 import { PrefsState } from "../prefs/state";
 import { ToolbarMenu } from "./menu";
@@ -15,7 +14,6 @@ import { ToolbarVim } from "./vim";
 interface Props {
 	editor: Editor | null;
 	file: FileState;
-	layout: LayoutState;
 	prefs: PrefsState;
 	/** Always show the toolbar, not only on hover */
 	show: boolean;
@@ -28,7 +26,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 			<TooltipSource singleton={source} delay={500} />
 			<ToolbarOpen singleton={target} file={props.file} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
-			<ToolbarPreview layout={props.layout} singleton={target} />
+			<ToolbarPreview singleton={target} prefs={props.prefs} />
 			<ToolbarVim singleton={target} prefs={props.prefs} />
 			<div className={s.grow} />
 			<ToolbarPrefs singleton={target} prefs={props.prefs} />
