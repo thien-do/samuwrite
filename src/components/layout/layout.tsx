@@ -2,6 +2,7 @@ import { Editor as EditorComponent } from "../editor/editor";
 import { EditorState } from "../editor/state/state";
 import { FileState } from "../file/state";
 import { PrefsState } from "../prefs/state";
+import { Preview } from "../preview/preview";
 import s from "./layout.module.css";
 import { Layout as LayoutType } from "./state";
 
@@ -29,6 +30,10 @@ export const Layout = (props: Props): JSX.Element => (
 			/>
 		</div>
 		{/* Only render Preview when necessary to avoid re-calculating the HTML */}
-		{props.layout !== "editor" && <div className={s.preview}>Preview</div>}
+		{props.layout !== "editor" && (
+			<div className={s.preview}>
+				<Preview editor={props.editor.value} />
+			</div>
+		)}
 	</div>
 );
