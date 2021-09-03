@@ -22,14 +22,26 @@ const loadFile = (handle: FileHandle, editor: Editor): (() => void) => {
 	return () => void model?.dispose();
 };
 
-export const useFileLoad = (params: Params): void => {
-	const handle = params.file.handle;
+export const useEditorFile = (params: Params): void => {
+	const { dirty, setDirty, handle } = params.file;
 	const editor = params.editor.value;
 
+	// Load file into editor
 	useEffect(() => {
 		if (handle === null) return;
 		if (editor === null) throw Error("Editor is not created");
 		const dispose = loadFile(handle, editor);
 		return () => void dispose();
 	}, [handle, editor]);
+
+	// Mark file as dirty when content changed
+	useEffect(() => {
+		if (dirty) return;
+		if (editor === null) return;
+		const disposable = editor.onDidChangeModelContent(() => {
+			setDirty(true);
+			disposable.dispose(); // No need to listen anymore
+		});
+		return () => void disposable.dispose();
+	}, [editor, dirty, setDirty]);
 };

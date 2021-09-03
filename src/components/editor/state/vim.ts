@@ -1,11 +1,12 @@
 import { EditorState } from "~src/components/editor/state/state";
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 import { initVimMode } from "monaco-vim";
 import { PrefsState } from "~src/components/prefs/state";
 
 interface Params {
 	editor: EditorState;
 	prefs: PrefsState;
+	statusRef: RefObject<HTMLDivElement>;
 }
 
 interface VimModeState {
@@ -15,8 +16,7 @@ interface VimModeState {
 export const useEditorVim = (params: Params): VimModeState => {
 	const editor = params.editor.value;
 	const vim = params.prefs.vim;
-
-	const statusRef = useRef<HTMLDivElement>(null);
+	const statusRef = params.statusRef;
 
 	useEffect(() => {
 		const status = statusRef.current;

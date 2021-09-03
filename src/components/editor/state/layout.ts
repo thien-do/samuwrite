@@ -1,9 +1,9 @@
 import { RefObject, useEffect } from "react";
 import { getRef } from "~src/utils/ref";
-import { Editor } from "./state";
+import { EditorState } from "./state";
 
 interface Params {
-	editor: Editor | null;
+	editor: EditorState;
 	containerRef: RefObject<HTMLDivElement>;
 }
 
@@ -17,7 +17,8 @@ export const getEditorLeftPadding = (container: HTMLDivElement): number => {
  * Re-calculate editor layout when container changes
  */
 export const useEditorLayout = (params: Params): void => {
-	const { editor, containerRef } = params;
+	const { containerRef } = params;
+	const editor = params.editor.value;
 
 	useEffect(() => {
 		if (editor === null) return;

@@ -1,10 +1,9 @@
 import * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
-import { Editor } from "../state";
+import { Editor, EditorState } from "../state";
 import { getEditorOptions } from "./options";
 import { RefObject, useEffect } from "react";
 import { getRef } from "~src/utils/ref";
-import { SetState } from "~src/utils/state/type";
 
 interface Options {
 	container: HTMLDivElement;
@@ -19,11 +18,12 @@ const createEditor = ({ container }: Options): Editor => {
 
 interface Params {
 	containerRef: RefObject<HTMLDivElement>;
-	setEditor: SetState<Editor | null>;
+	editor: EditorState;
 }
 
 export const useEditorInit = (params: Params): void => {
-	const { containerRef, setEditor } = params;
+	const { containerRef } = params;
+	const setEditor = params.editor.set;
 
 	useEffect(() => {
 		const container = getRef(containerRef, "editor container is null");
