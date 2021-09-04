@@ -1,9 +1,9 @@
 import * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
 import { Editor, EditorState } from "../state";
-import { getEditorOptions } from "./options";
 import { RefObject, useEffect } from "react";
 import { getRef } from "~src/utils/ref";
+import { EDITOR_STATIC_OPTIONS } from "./options";
 
 interface Options {
 	container: HTMLDivElement;
@@ -11,8 +11,7 @@ interface Options {
 
 const createEditor = ({ container }: Options): Editor => {
 	ensureEditorEnv();
-	const options = getEditorOptions(container);
-	const editor = monaco.editor.create(container, options);
+	const editor = monaco.editor.create(container, EDITOR_STATIC_OPTIONS);
 	return editor;
 };
 

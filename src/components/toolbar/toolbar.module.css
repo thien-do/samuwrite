@@ -9,6 +9,8 @@
 	avoid laggy transition */
 	opacity: 0;
 	transition: opacity 300ms ease-out;
+
+	padding: 8px 48px;
 }
 
 .buffer.show .container {
@@ -28,14 +30,20 @@
 	}
 }
 
-/* The one with flex, and yes this is Friends reference */
+/* The one with flex */
 .body {
-	max-width: calc(720px + 24px * 2);
 	margin: auto;
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	padding: 8px 16px;
+}
+
+/* Perfectly align with the editor content */
+.body > *:first-child {
+	margin-left: -8px;
+}
+.body > *:last-child {
+	margin-right: -8px;
 }
 
 .divider {

@@ -2,6 +2,7 @@ import { useSingleton } from "@tippyjs/react";
 import { Editor } from "~/src/components/editor/state/state";
 import { FileState } from "~/src/components/file/state";
 import { TooltipSource } from "~/src/components/tooltip/tooltip";
+import { getContentWidth } from "../prefs/size/size";
 import { PrefsState } from "../prefs/state";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
@@ -21,8 +22,10 @@ interface Props {
 
 export const Toolbar = (props: Props): JSX.Element => {
 	const [source, target] = useSingleton();
+	const size = props.prefs.size;
+
 	const body = (
-		<div className={s.body}>
+		<div className={s.body} style={{ maxWidth: getContentWidth({ size }) }}>
 			<TooltipSource singleton={source} delay={500} />
 			<ToolbarOpen singleton={target} file={props.file} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
