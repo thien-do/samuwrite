@@ -1,9 +1,14 @@
 import * as monaco from "monaco-editor";
-import { ThemeBaseColors } from "./base";
+import { ThemeColors } from "~src/components/prefs/theme/theme";
 
-// Generated with "./debug.ts"
+/**
+ * Returns monaco theme's colors (i.e. colors for UI elements such as search
+ * box and mini map)
+ *
+ * Generated with "./debug.ts"
+ */
 export const getEditorThemeColors = (
-	base: ThemeBaseColors
+	theme: ThemeColors
 ): monaco.editor.IColors => ({
 	// Overall foreground color. This color is only used if not overridden by a component.
 	// "foreground": ,
@@ -102,9 +107,9 @@ export const getEditorThemeColors = (
 	// Border color of hint boxes in the editor.
 	// "editorHint.border": ,
 	// Editor background color.
-	"editor.background": base.bg,
+	"editor.background": theme.bg.hex(),
 	// Editor default foreground color.
-	"editor.foreground": base.text,
+	"editor.foreground": theme.text.hex(),
 	// Background color of editor widgets, such as find/replace.
 	// "editorWidget.background": ,
 	// Foreground color of editor widgets, such as find/replace.
@@ -132,7 +137,7 @@ export const getEditorThemeColors = (
 	// Keybinding label border bottom color. The keybinding label is used to represent a keyboard shortcut.
 	// "keybindingLabel.bottomBorder": ,
 	// Color of the editor selection.
-	"editor.selectionBackground": `${base.sub}80`,
+	"editor.selectionbackground": `${theme.sub.hex()}80`,
 	// Color of the selected text for high contrast.
 	// "editor.selectionForeground": ,
 	// Color of the selection in an inactive editor. The color must not be opaque so as not to hide underlying decorations.
@@ -142,9 +147,9 @@ export const getEditorThemeColors = (
 	// Border color for regions with the same content as the selection.
 	// "editor.selectionHighlightBorder": ,
 	// Color of the current search match.
-	"editor.findMatchBackground": `${base.main}80`,
+	"editor.findMatchBackground": `${theme.main.hex()}80`,
 	// Color of the other search matches. The color must not be opaque so as not to hide underlying decorations.
-	"editor.findMatchHighlightBackground": `${base.main}40`,
+	"editor.findMatchHighlightBackground": `${theme.main.hex()}40`,
 	// Color of the range limiting the search. The color must not be opaque so as not to hide underlying decorations.
 	// "editor.findRangeHighlightBackground": ,
 	// Border color of the current search match.
@@ -288,7 +293,7 @@ export const getEditorThemeColors = (
 	// Background color for the border around the line at the cursor position.
 	// "editor.lineHighlightBorder": ,
 	// Background color of highlighted ranges, like by quick open and find features. The color must not be opaque so as not to hide underlying decorations.
-	"editor.rangeHighlightBackground": `${base.sub}40`,
+	"editor.rangeHighlightBackground": `${theme.sub.hex()}40`,
 	// Background color of the border around highlighted ranges.
 	// "editor.rangeHighlightBorder": ,
 	// Background color of highlighted symbol, like for go to definition or go next/previous symbol. The color must not be opaque so as not to hide underlying decorations.
@@ -296,9 +301,9 @@ export const getEditorThemeColors = (
 	// Background color of the border around highlighted symbols.
 	// "editor.symbolHighlightBorder": ,
 	// Color of the editor cursor.
-	"editorCursor.foreground": base.caret,
+	"editorCursor.foreground": theme.caret.hex(),
 	// The background color of the editor cursor. Allows customizing the color of a character overlapped by a block cursor.
-	"editorCursor.background": base.text,
+	"editorCursor.background": theme.text.hex(),
 	// Color of whitespace characters in the editor.
 	// "editorWhitespace.foreground": ,
 	// Color of the editor indentation guides.
