@@ -22,7 +22,7 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	disableMonospaceOptimizations: true,
 	lineNumbers: "off",
 	minimap: { enabled: false },
-	padding: { top: 150, bottom: 150 },
+	padding: { top: 96, bottom: 150 },
 	quickSuggestions: false,
 	roundedSelection: false,
 	selectionHighlight: false,

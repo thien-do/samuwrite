@@ -137,7 +137,7 @@ export const getEditorThemeColors = (
 	// Keybinding label border bottom color. The keybinding label is used to represent a keyboard shortcut.
 	// "keybindingLabel.bottomBorder": ,
 	// Color of the editor selection.
-	"editor.selectionbackground": `${theme.sub.hex()}80`,
+	"editor.selectionBackground": `${theme.sub.hex()}80`,
 	// Color of the selected text for high contrast.
 	// "editor.selectionForeground": ,
 	// Color of the selection in an inactive editor. The color must not be opaque so as not to hide underlying decorations.
