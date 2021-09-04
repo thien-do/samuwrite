@@ -12,9 +12,6 @@ export const getEditorLayout = (container: HTMLDivElement): EditorOptions => {
 	const expected = Math.round(freePadding / 2);
 	return {
 		lineDecorationsWidth: Math.max(expected, 48),
-		fontSize: 18,
-		lineHeight: 34,
-		letterSpacing: 0.54, // 0.03 em/%
 		wordWrapColumn: 64,
 	};
 };

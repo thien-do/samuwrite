@@ -4,6 +4,7 @@ import { PrefsState } from "../prefs/state";
 import { useEditorFile } from "./state/file";
 import { useEditorInit } from "./state/init/init";
 import { useEditorLayout } from "./state/layout";
+import { useEditorSize } from "./state/size";
 import { EditorState } from "./state/state";
 import { useEditorTheme } from "./state/theme/theme";
 import { useEditorVim } from "./state/vim";
@@ -28,6 +29,7 @@ export const Editor = (props: Props): JSX.Element => {
 	useEditorVim({ editor, prefs, statusRef });
 	useEditorFile({ editor, file });
 	useEditorTheme({ editor, prefs });
+	useEditorSize({ editor, prefs });
 
 	return (
 		<div className={s.container}>
