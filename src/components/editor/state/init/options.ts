@@ -1,9 +1,6 @@
-import * as monaco from "monaco-editor";
-import { getEditorLayout } from "../layout";
+import { EditorOptions } from "../state";
 
-type EditorOptions = monaco.editor.IStandaloneEditorConstructionOptions;
-
-const EDITOR_STATIC_OPTIONS: EditorOptions = {
+export const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	value: "",
 	language: "markdown",
 
@@ -17,7 +14,7 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	cursorWidth: 3,
 	fontFamily: "iA Writer Duo",
 	fontLigatures: true,
-	fontWeight: "400",
+	wordWrapColumn: 64,
 	glyphMargin: false,
 	disableMonospaceOptimizations: true,
 	lineNumbers: "off",
@@ -45,8 +42,3 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 		verticalScrollbarSize: 16,
 	},
 };
-
-export const getEditorOptions = (container: HTMLDivElement): EditorOptions => ({
-	...EDITOR_STATIC_OPTIONS,
-	...getEditorLayout(container),
-});

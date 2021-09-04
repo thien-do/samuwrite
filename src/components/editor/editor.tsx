@@ -3,8 +3,8 @@ import { FileState } from "../file/state";
 import { PrefsState } from "../prefs/state";
 import { useEditorFile } from "./state/file";
 import { useEditorInit } from "./state/init/init";
-import { useEditorLayout } from "./state/layout";
 import { useEditorSize } from "./state/size";
+import { useEditorLength } from "./state/length";
 import { EditorState } from "./state/state";
 import { useEditorTheme } from "./state/theme/theme";
 import { useEditorVim } from "./state/vim";
@@ -25,7 +25,7 @@ export const Editor = (props: Props): JSX.Element => {
 	const statusRef = useRef<HTMLDivElement>(null);
 
 	useEditorInit({ editor, containerRef });
-	useEditorLayout({ editor, containerRef });
+	useEditorLength({ editor, containerRef, prefs });
 	useEditorVim({ editor, prefs, statusRef });
 	useEditorFile({ editor, file });
 	useEditorTheme({ editor, prefs });
