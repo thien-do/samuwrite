@@ -6,9 +6,8 @@
 
 /* Mimic the print paper with background */
 .paper {
-	/* max-width: 210mm; */
-	border-radius: 8px;
-	padding: 48px 48px;
+	/* Total padding of container and paper should be 150 as in editor */
+	padding: calc(96px - 24px) 48px;
 	margin: auto;
 	background-color: rgba(var(--sub-color-rgb), 0.2);
 	border: solid 1px var(--sub-color);
