@@ -21,7 +21,9 @@ const print = (_props: Props): ButtonMoreMenuItem => ({
 
 const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 	if (layout !== "editor") return "editor";
-	return window.innerWidth < 1000 ? "preview" : "split";
+	// return "preview";
+	// return window.innerWidth < 1000 ? "preview" : "split";
+	return "split";
 };
 
 export const ToolbarPreview = (props: Props): JSX.Element => (
