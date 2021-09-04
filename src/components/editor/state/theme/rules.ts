@@ -33,7 +33,7 @@ export const getEditorThemeRules = (
 
 	// Mute markdown coloring
 	rules.push(
-		{ token: "comment.md", foreground: base.text },
+		{ token: "comment.md", foreground: base.sub },
 		{ token: "keyword.md", foreground: base.text, fontStyle: "bold" },
 		{ token: "keyword.table.header.md", foreground: base.text },
 		{ token: "keyword.table.middle.md", foreground: base.text },
@@ -42,7 +42,11 @@ export const getEditorThemeRules = (
 		{ token: "string.md", foreground: base.text },
 		{ token: "string.link.md", foreground: base.sub },
 		// Background doesn't work yet: https://github.com/microsoft/monaco-editor/issues/586
-		{ token: "variable.md", foreground: base.text, background: base.sub }
+		{ token: "variable.md", foreground: base.text, background: base.sub },
+		{ token: "tag.md", foreground: base.sub },
+		{ token: "string.html.md", foreground: base.sub },
+		{ token: "delimiter.html.md", foreground: base.sub },
+		{ token: "attribute.name.html.md", foreground: base.sub }
 	);
 
 	switch (options.code) {

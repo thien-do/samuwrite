@@ -1,5 +1,5 @@
 import * as monaco from "monaco-editor";
-import { getEditorLeftPadding } from "../layout";
+import { getEditorLayout } from "../layout";
 
 type EditorOptions = monaco.editor.IStandaloneEditorConstructionOptions;
 
@@ -17,11 +17,9 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	cursorWidth: 3,
 	fontFamily: "iA Writer Duo",
 	fontLigatures: true,
-	fontWeight: "425",
+	fontWeight: "400",
 	glyphMargin: false,
 	disableMonospaceOptimizations: true,
-	fontSize: 20,
-	lineHeight: 40,
 	lineNumbers: "off",
 	minimap: { enabled: false },
 	padding: { top: 150, bottom: 150 },
@@ -34,7 +32,6 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	wordBasedSuggestions: false,
 	wordWrap: "bounded",
 	scrollBeyondLastLine: false,
-	wordWrapColumn: 80,
 	folding: false,
 	occurrencesHighlight: false,
 	renderLineHighlight: "none",
@@ -51,5 +48,5 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 
 export const getEditorOptions = (container: HTMLDivElement): EditorOptions => ({
 	...EDITOR_STATIC_OPTIONS,
-	lineDecorationsWidth: getEditorLeftPadding(container),
+	...getEditorLayout(container),
 });
