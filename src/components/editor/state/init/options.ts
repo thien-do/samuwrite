@@ -43,7 +43,9 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	scrollbar: {
 		useShadows: false,
 		horizontal: "hidden",
-		verticalSliderSize: 5,
+		// This creates a 8px scrollbar. See editor.global.css
+		verticalSliderSize: 16,
+		verticalScrollbarSize: 16,
 	},
 };
 

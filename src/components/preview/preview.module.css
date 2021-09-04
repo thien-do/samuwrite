@@ -21,3 +21,28 @@
 	margin: auto;
 	height: auto;
 }
+
+/* Scroll bar */
+.paper {
+	--scroll-bg: transparent;
+	--scroll-fg: var(--sub-color);
+}
+.paper::-webkit-scrollbar {
+	width: 16px;
+}
+.paper {
+	scrollbar-width: thin;
+	scrollbar-color: var(--scroll-bg) var(--scroll-fg);
+}
+.paper::-webkit-scrollbar-track {
+	background: var(--scroll-bg);
+	padding-right: 8px;
+}
+.paper::-webkit-scrollbar-thumb {
+	background-color: var(--scroll-fg);
+	border-radius: 20px;
+
+	/* The magic padding https://stackoverflow.com/a/21684424 */
+	border: 4px solid transparent;
+	background-clip: padding-box;
+}
