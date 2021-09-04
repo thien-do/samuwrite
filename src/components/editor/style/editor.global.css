@@ -31,3 +31,14 @@ but we don't know why it still leave a gray background */
 .monaco-editor .inputarea:not(.x) {
 	opacity: 0;
 }
+
+/* Set scrollbar color. The one in "options" is only for minimap
+https://github.com/microsoft/monaco-editor/issues/2650 */
+.vs-dark .monaco-scrollable-element > .scrollbar > .slider:not(.x) {
+	background-color: var(--sub-color);
+	border-radius: 8px;
+
+	/* The magic padding https://stackoverflow.com/a/21684424 */
+	border: 4px solid transparent;
+	background-clip: padding-box;
+}
