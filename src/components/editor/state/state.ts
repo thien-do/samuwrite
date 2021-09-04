@@ -5,6 +5,8 @@ export type Editor = monaco.editor.IStandaloneCodeEditor;
 
 export type EditorModel = monaco.editor.ITextModel;
 
+export type EditorOptions = monaco.editor.IStandaloneEditorConstructionOptions;
+
 export interface EditorState {
 	value: Editor | null;
 	set: Dispatch<SetStateAction<Editor | null>>;
