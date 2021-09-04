@@ -1,5 +1,5 @@
 import * as monaco from "monaco-editor";
-import { ThemeBaseColors } from "./base";
+import { ThemeColors } from "~src/components/prefs/theme/theme";
 
 type Rule = monaco.editor.ITokenThemeRule;
 
@@ -17,36 +17,44 @@ interface Options {
 	code: "duo" | "colorful";
 }
 
+/**
+ * Return monaco theme's rules (i.e. colors for tokens such as keywords and
+ * comments)
+ */
 export const getEditorThemeRules = (
-	base: ThemeBaseColors,
+	theme: ThemeColors,
 	options: Options
 ): Rule[] => {
 	const rules: Rule[] = [];
 
 	// Basic style
 	rules.push(
-		{ token: "", foreground: base.text },
-		{ token: "invalid", foreground: base.error },
+		{ token: "", foreground: theme.text.hex() },
+		{ token: "invalid", foreground: theme.error.hex() },
 		{ token: "emphasis", fontStyle: "italic" },
 		{ token: "strong", fontStyle: "bold" }
 	);
 
 	// Mute markdown coloring
 	rules.push(
-		{ token: "comment.md", foreground: base.sub },
-		{ token: "keyword.md", foreground: base.text, fontStyle: "bold" },
-		{ token: "keyword.table.header.md", foreground: base.text },
-		{ token: "keyword.table.middle.md", foreground: base.text },
-		{ token: "keyword.table.left.md", foreground: base.text },
-		{ token: "keyword.table.right.md", foreground: base.text },
-		{ token: "string.md", foreground: base.text },
-		{ token: "string.link.md", foreground: base.sub },
+		{ token: "comment.md", foreground: theme.sub.hex() },
+		{ token: "keyword.md", foreground: theme.text.hex(), fontStyle: "bold" },
+		{ token: "keyword.table.header.md", foreground: theme.text.hex() },
+		{ token: "keyword.table.middle.md", foreground: theme.text.hex() },
+		{ token: "keyword.table.left.md", foreground: theme.text.hex() },
+		{ token: "keyword.table.right.md", foreground: theme.text.hex() },
+		{ token: "string.md", foreground: theme.text.hex() },
+		{ token: "string.link.md", foreground: theme.sub.hex() },
 		// Background doesn't work yet: https://github.com/microsoft/monaco-editor/issues/586
-		{ token: "variable.md", foreground: base.text, background: base.sub },
-		{ token: "tag.md", foreground: base.sub },
-		{ token: "string.html.md", foreground: base.sub },
-		{ token: "delimiter.html.md", foreground: base.sub },
-		{ token: "attribute.name.html.md", foreground: base.sub }
+		{
+			token: "variable.md",
+			foreground: theme.text.hex(),
+			background: theme.sub.hex(),
+		},
+		{ token: "tag.md", foreground: theme.sub.hex() },
+		{ token: "string.html.md", foreground: theme.sub.hex() },
+		{ token: "delimiter.html.md", foreground: theme.sub.hex() },
+		{ token: "attribute.name.html.md", foreground: theme.sub.hex() }
 	);
 
 	switch (options.code) {
@@ -67,10 +75,10 @@ export const getEditorThemeRules = (
 			break;
 		case "duo":
 			rules.push(
-				{ token: "keyword", foreground: base.main },
-				{ token: "comment", foreground: base.sub },
-				{ token: "number", foreground: base.main },
-				{ token: "tag", foreground: base.main }
+				{ token: "keyword", foreground: theme.main.hex() },
+				{ token: "comment", foreground: theme.sub.hex() },
+				{ token: "number", foreground: theme.main.hex() },
+				{ token: "tag", foreground: theme.main.hex() }
 			);
 			break;
 	}

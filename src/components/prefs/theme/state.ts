@@ -1,34 +1,17 @@
-import { useEffect } from "react";
-import { SetState } from "~src/utils/state/type";
 import { useStorageState } from "~src/utils/state/storage";
-import "./styles/bushido.css";
-import "./styles/serika-dark.css";
-
-export const THEMES = ["bushido", "serika-dark"] as const;
-
-export type Theme = typeof THEMES[number];
+import { SetState } from "~src/utils/state/type";
+import { ThemeName } from "./theme";
 
 export interface ThemeState {
-	theme: Theme;
-	setTheme: SetState<Theme>;
+	theme: ThemeName;
+	setTheme: SetState<ThemeName>;
 }
 
-const htmlClass = document.documentElement.classList;
-
-const useThemeApply = (theme: Theme): void => {
-	useEffect(() => {
-		htmlClass.add(`theme-${theme}`);
-		return () => void htmlClass.remove(`theme-${theme}`);
-	}, [theme]);
-};
-
 export const usePrefsTheme = (): ThemeState => {
-	const [theme, setTheme] = useStorageState<Theme>({
+	const [theme, setTheme] = useStorageState<ThemeName>({
 		storageKey: "theme",
 		defaultValue: "bushido",
 	});
-
-	useThemeApply(theme);
 
 	return { theme, setTheme };
 };
