@@ -17,7 +17,7 @@ const EDITOR_STATIC_OPTIONS: EditorOptions = {
 	cursorWidth: 3,
 	fontFamily: "iA Writer Duo",
 	fontLigatures: true,
-	fontWeight: "450",
+	fontWeight: "425",
 	glyphMargin: false,
 	disableMonospaceOptimizations: true,
 	fontSize: 20,

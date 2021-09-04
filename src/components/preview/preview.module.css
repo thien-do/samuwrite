@@ -1,5 +1,23 @@
+/* Cover full screen, so users can scroll anywhere */
 .container {
-	width: 100%;
 	height: 100%;
+	padding: 24px;
+}
+
+/* Mimic the print paper with background */
+.paper {
+	/* max-width: 210mm; */
+	border-radius: 8px;
+	padding: 48px 48px;
+	margin: auto;
+	background-color: rgba(var(--sub-color-rgb), 0.2);
+	border: solid 1px var(--sub-color);
+	box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.3);
 	overflow: auto;
+	height: 100%;
+}
+
+.content {
+	margin: auto;
+	height: auto;
 }
