@@ -496,11 +496,11 @@
 	margin-bottom: 0;
 }
 
-* {
+.prose * {
 	--tw-shadow: 0 0 transparent;
 }
 
-* {
+.prose * {
 	--tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
 	--tw-ring-offset-width: 0px;
 	--tw-ring-offset-color: #fff;
