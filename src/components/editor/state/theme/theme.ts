@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor";
 import { useEffect } from "react";
 import { EditorState } from "~src/components/editor/state/state";
 import { PrefsState } from "~src/components/prefs/state";
-import { THEME_COLORS } from "~src/components/prefs/theme/theme";
+import { THEME_COLORS } from "~src/components/theme/theme";
 import { getEditorThemeColors } from "./colors";
 import { getEditorThemeRules } from "./rules";
 

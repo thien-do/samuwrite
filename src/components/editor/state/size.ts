@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SizeName, SIZE_METRICS } from "~src/components/prefs/size/size";
 import { PrefsState } from "~src/components/prefs/state";
-import { ThemeName, THEME_COLORS } from "~src/components/prefs/theme/theme";
+import { ThemeName, THEME_COLORS } from "~src/components/theme/theme";
 import { isApple } from "~src/utils/platform";
 import { EditorState } from "./state";
 

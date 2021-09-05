@@ -1,6 +1,6 @@
 import { LayoutState, usePrefsLayout } from "./layout";
 import { SizeState, usePrefsSize } from "./size/state";
-import { ThemeState, usePrefsTheme } from "./theme/state";
+import { ThemeState, useThemeState } from "../theme/state";
 import { VimState, usePrefsVim } from "./vim";
 
 export interface PrefsState
@@ -10,7 +10,7 @@ export interface PrefsState
 		SizeState {}
 
 export const usePrefs = (): PrefsState => {
-	const theme = usePrefsTheme();
+	const theme = useThemeState();
 	const vim = usePrefsVim();
 	const layout = usePrefsLayout();
 	const size = usePrefsSize();

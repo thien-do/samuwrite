@@ -3,7 +3,7 @@ import { useFile } from "~/src/components/file/state";
 import { Layout } from "~/src/components/layout/layout";
 import { Toolbar } from "~/src/components/toolbar/toolbar";
 import { usePrefs } from "~src/components/prefs/state";
-import { ThemeInject } from "~src/components/prefs/theme/inject";
+import { ThemeInject } from "~src/components/theme/inject";
 import s from "./app.module.css";
 import { AppDrop } from "./drop/drop";
 import { useAppDrop } from "./drop/state";
