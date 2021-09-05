@@ -1,4 +1,3 @@
-import "modern-normalize/modern-normalize.css";
 import * as ReactDom from "react-dom";
 import { App } from "./app/app";
 import "./components/style/style.ts";

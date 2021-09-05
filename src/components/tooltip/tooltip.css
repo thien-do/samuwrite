@@ -16,7 +16,9 @@
 
 	color: var(--text-color);
 	border: solid 1px var(--sub-color);
-	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 1), 0 8px 24px rgba(0, 0, 0, 0.2);
+	/* @TODO: Temporarily hide the 1px black border. It is better for dark
+	theme but can't make it work for light theme yet */
+	box-shadow: 0 0px 0 1px rgba(0, 0, 0, 0), 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 @supports (backdrop-filter: blur(20px)) {
@@ -40,4 +42,8 @@
 	position: relative;
 	padding: 4px 8px;
 	z-index: 1;
+}
+
+.tippy-no-padding .tippy-content {
+	padding: 0;
 }

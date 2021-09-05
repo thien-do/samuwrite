@@ -1,0 +1,39 @@
+.container {
+	appearance: none;
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 2px;
+
+	outline: dashed 2px transparent;
+	outline-offset: 2px;
+	font-size: 14px;
+	line-height: 21px;
+	font-family: "iA Writer Duo", monospace;
+
+	cursor: pointer;
+	transition: outline-color 100ms;
+}
+
+.container:hover,
+.container:focus-visible,
+.container.selected {
+	outline-color: var(--main-color);
+}
+
+.container.selected {
+	outline-style: solid;
+}
+
+.caret {
+	width: 2px;
+	height: 21px;
+	margin-left: 1px;
+}

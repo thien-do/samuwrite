@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SizeName, SIZE_METRICS } from "~src/components/prefs/size/size";
 import { PrefsState } from "~src/components/prefs/state";
-import { ThemeName, THEME_COLORS } from "~src/components/prefs/theme/theme";
+import { ThemeName, THEME_DETAILS } from "~src/components/theme/theme";
 import { isApple } from "~src/utils/platform";
 import { EditorState } from "./state";
 
@@ -14,7 +14,7 @@ const getWeight = (params: { theme: ThemeName; size: SizeName }): number => {
 	// Should not have complicated calculation for low dpi screen
 	if (window.devicePixelRatio === 1) return 400;
 	// Light text on dark background makes text look bolder
-	const theme = THEME_COLORS[params.theme];
+	const theme = THEME_DETAILS[params.theme].colors;
 	const darkMod = theme.bg.isDark() ? -20 : 0;
 	// Apple renders font bolder than Windows
 	const appleMod = isApple() ? -35 : 0;

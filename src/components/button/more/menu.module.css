@@ -1,8 +1,6 @@
 .menu {
 	width: 200px;
 	padding: 8px 0;
-	/* Eliminate tooltip padding */
-	margin: -4px -8px;
 }
 
 .item {
