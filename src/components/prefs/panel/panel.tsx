@@ -1,13 +1,14 @@
-import { ThemePref } from "../theme/pref/pref";
-import { SizeName, SIZE_NAMES } from "./size/size";
-import { PrefsState } from "./state";
+import { ThemePref } from "../../theme/pref/pref";
+import { SizeName, SIZE_NAMES } from "../size/size";
+import { PrefsState } from "../state";
+import s from "./panel.module.css";
 
 interface Props {
 	prefs: PrefsState;
 }
 
-export const Prefs = (props: Props): JSX.Element => (
-	<div>
+export const PrefsPanel = (props: Props): JSX.Element => (
+	<div className={s.container}>
 		<select
 			value={props.prefs.size}
 			onChange={(event) => {

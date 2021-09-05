@@ -1,5 +1,5 @@
 import Color from "color";
-import { ThemeColors, ThemeName, THEME_COLORS } from "./theme";
+import { ThemeColors, ThemeName, THEME_DETAILS } from "./theme";
 
 interface Props {
 	theme: ThemeName;
@@ -7,7 +7,7 @@ interface Props {
 
 const getCss = (theme: ThemeName): string => {
 	const variables: string[] = [];
-	const colors = THEME_COLORS[theme];
+	const colors = THEME_DETAILS[theme].colors;
 	Object.keys(colors).forEach((key) => {
 		const color = colors[key as keyof ThemeColors] as Color;
 		variables.push(`--${key}-color: ${color.hex()};`);

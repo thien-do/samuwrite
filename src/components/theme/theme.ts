@@ -19,38 +19,60 @@ export interface ThemeColors {
 	error: Color;
 }
 
+export interface ThemeDetail {
+	name: string;
+	description: string;
+	colors: ThemeColors;
+}
+
 // This may change over time
-export const THEME_COLORS: Record<ThemeName, ThemeColors> = {
+export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	bushido: {
-		bg: Color("#242933"),
-		main: Color("#ec4c56"),
-		caret: Color("#ec4c56"),
-		sub: Color("#596172"),
-		text: Color("#f6f0e9"),
-		error: Color("#ec4c56"),
+		name: "Bushido",
+		description: "",
+		colors: {
+			bg: Color("#242933"),
+			main: Color("#ec4c56"),
+			caret: Color("#ec4c56"),
+			sub: Color("#596172"),
+			text: Color("#f6f0e9"),
+			error: Color("#ec4c56"),
+		},
 	},
 	"serika-dark": {
-		bg: Color("#323437"),
-		main: Color("#e2b714"),
-		caret: Color("#e2b714"),
-		sub: Color("#646669"),
-		text: Color("#d1d0c5"),
-		error: Color("#ca4754"),
+		name: "Serika Dark",
+		description: "",
+		colors: {
+			bg: Color("#323437"),
+			main: Color("#e2b714"),
+			caret: Color("#e2b714"),
+			sub: Color("#646669"),
+			text: Color("#d1d0c5"),
+			error: Color("#ca4754"),
+		},
 	},
 	paper: {
-		bg: Color("#eeeeee"),
-		main: Color("#444444"),
-		caret: Color("#3B82F6"),
-		sub: Color("#b2b2b2"),
-		text: Color("#444444"),
-		error: Color("#d70000"),
+		name: "Paper",
+		description: "",
+		colors: {
+			bg: Color("#eeeeee"),
+			main: Color("#444444"),
+			caret: Color("#3B82F6"),
+			sub: Color("#b2b2b2"),
+			text: Color("#444444"),
+			error: Color("#d70000"),
+		},
 	},
 	"rose-pine-dawn": {
-		bg: Color("#faf4ed"),
-		main: Color("#d7827e"),
-		caret: Color("#d7827e"),
-		sub: Color("#9893a5"),
-		text: Color("#575279"),
-		error: Color("#b4637a"),
+		name: "Rosé Pine Dawn",
+		description: "",
+		colors: {
+			bg: Color("#faf4ed"),
+			main: Color("#d7827e"),
+			caret: Color("#d7827e"),
+			sub: Color("#b0acb9"),
+			text: Color("#575279"),
+			error: Color("#b4637a"),
+		},
 	},
 };

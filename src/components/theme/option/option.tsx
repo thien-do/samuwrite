@@ -1,27 +1,33 @@
+import { TippyProps } from "@tippyjs/react";
 import { PrefsState } from "~src/components/prefs/state";
-import { ThemeName, THEME_COLORS } from "../theme";
+import { Tooltip } from "~src/components/tooltip/tooltip";
+import { ThemeName, THEME_DETAILS } from "../theme";
 import s from "./option.module.css";
 
 interface Props {
 	name: ThemeName;
 	prefs: PrefsState;
+	singleton: TippyProps["singleton"];
 }
 
 export const ThemeOption = (props: Props): JSX.Element => {
-	const colors = THEME_COLORS[props.name];
+	const detail = THEME_DETAILS[props.name];
+	const colors = detail.colors;
 	return (
-		<button
-			className={[
-				s.container,
-				props.name === props.prefs.theme ? s.selected : "",
-			].join(" ")}
-			onClick={() => props.prefs.setTheme(props.name)}
-			style={{ background: colors.bg.hex() }}
-		>
-			<span className={s.text} style={{ color: colors.text.hex() }}>
-				Aa
-			</span>
-			<span className={s.caret} style={{ background: colors.caret.hex() }} />
-		</button>
+		<Tooltip content={detail.name} singleton={props.singleton}>
+			<button
+				className={[
+					s.container,
+					props.name === props.prefs.theme ? s.selected : "",
+				].join(" ")}
+				onClick={() => props.prefs.setTheme(props.name)}
+				style={{ background: colors.bg.hex() }}
+			>
+				<span className={s.text} style={{ color: colors.text.hex() }}>
+					Aa
+				</span>
+				<span className={s.caret} style={{ background: colors.caret.hex() }} />
+			</button>
+		</Tooltip>
 	);
 };

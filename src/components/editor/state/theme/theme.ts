@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor";
 import { useEffect } from "react";
 import { EditorState } from "~src/components/editor/state/state";
 import { PrefsState } from "~src/components/prefs/state";
-import { THEME_COLORS } from "~src/components/theme/theme";
+import { THEME_DETAILS } from "~src/components/theme/theme";
 import { getEditorThemeColors } from "./colors";
 import { getEditorThemeRules } from "./rules";
 
@@ -21,12 +21,12 @@ export const useEditorTheme = (params: Params): void => {
 		// option of Monaco. We intentionally ask for the "editor" instance for
 		// completeness.
 
-		const theme = THEME_COLORS[name];
+		const colors = THEME_DETAILS[name].colors;
 		monaco.editor.defineTheme("custom", {
 			base: "vs-dark",
 			inherit: false,
-			colors: getEditorThemeColors(theme), // UI colors
-			rules: getEditorThemeRules(theme, { code: "colorful" }), // Token colors
+			colors: getEditorThemeColors(colors), // UI colors
+			rules: getEditorThemeRules(colors, { code: "colorful" }), // Token colors
 		});
 		monaco.editor.setTheme("custom");
 	}, [name, editor]);

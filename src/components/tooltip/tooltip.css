@@ -43,3 +43,7 @@
 	padding: 4px 8px;
 	z-index: 1;
 }
+
+.tippy-no-padding .tippy-content {
+	padding: 0;
+}

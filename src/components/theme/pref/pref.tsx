@@ -1,4 +1,6 @@
+import { useSingleton } from "@tippyjs/react";
 import { PrefsState } from "~src/components/prefs/state";
+import { TooltipSource } from "~src/components/tooltip/tooltip";
 import { ThemeOption } from "../option/option";
 import { THEME_NAMES } from "../theme";
 import s from "./pref.module.css";
@@ -10,12 +12,16 @@ interface Props {
 /**
  * The area to set theme in prefs panel
  */
-export const ThemePref = (props: Props): JSX.Element => (
-	<div className={s.container}>
-		{THEME_NAMES.map((name) => (
-			<div key={name}>
-				<ThemeOption name={name} prefs={props.prefs} />
-			</div>
-		))}
-	</div>
-);
+export const ThemePref = (props: Props): JSX.Element => {
+	const [source, target] = useSingleton();
+	return (
+		<div className={s.container}>
+			<TooltipSource singleton={source} />
+			{THEME_NAMES.map((name) => (
+				<div key={name}>
+					<ThemeOption singleton={target} name={name} prefs={props.prefs} />
+				</div>
+			))}
+		</div>
+	);
+};

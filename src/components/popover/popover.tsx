@@ -18,6 +18,7 @@ export const Popover = forwardRef<Element, Props>(
 			delay={0}
 			trigger="click"
 			interactive
+			className="tippy-no-padding"
 			{...props}
 		/>
 	)
