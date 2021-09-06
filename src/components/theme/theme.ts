@@ -22,6 +22,10 @@ export interface ThemeColors {
 export interface ThemeDetail {
 	name: string;
 	description: string;
+	// Actually this can be calculated using colors.bg.isDark() but it's better
+	// (in performance and in semantic) as a static field. Also, we should
+	// support "high contrast" in the future
+	scheme: "light" | "dark";
 	colors: ThemeColors;
 }
 
@@ -30,6 +34,7 @@ export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	bushido: {
 		name: "Bushido",
 		description: "",
+		scheme: "dark",
 		colors: {
 			bg: Color("#242933"),
 			main: Color("#ec4c56"),
@@ -42,6 +47,7 @@ export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	"serika-dark": {
 		name: "Serika Dark",
 		description: "",
+		scheme: "dark",
 		colors: {
 			bg: Color("#323437"),
 			main: Color("#e2b714"),
@@ -54,6 +60,7 @@ export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	paper: {
 		name: "Paper",
 		description: "",
+		scheme: "light",
 		colors: {
 			bg: Color("#eeeeee"),
 			main: Color("#444444"),
@@ -66,6 +73,7 @@ export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	"rose-pine-dawn": {
 		name: "Rosé Pine Dawn",
 		description: "",
+		scheme: "light",
 		colors: {
 			bg: Color("#faf4ed"),
 			main: Color("#d7827e"),
