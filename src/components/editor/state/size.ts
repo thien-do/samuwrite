@@ -14,8 +14,7 @@ const getWeight = (params: { theme: ThemeName; size: SizeName }): number => {
 	// Should not have complicated calculation for low dpi screen
 	if (window.devicePixelRatio === 1) return 400;
 	// Light text on dark background makes text look bolder
-	const theme = THEME_DETAILS[params.theme].colors;
-	const darkMod = theme.bg.isDark() ? -20 : 0;
+	const darkMod = THEME_DETAILS[params.theme].scheme === "dark" ? -20 : 0;
 	// Apple renders font bolder than Windows
 	const appleMod = isApple() ? -35 : 0;
 	// Final value
