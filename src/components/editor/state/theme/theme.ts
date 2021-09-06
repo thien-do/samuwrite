@@ -21,9 +21,10 @@ export const useEditorTheme = (params: Params): void => {
 		// option of Monaco. We intentionally ask for the "editor" instance for
 		// completeness.
 
-		const colors = THEME_DETAILS[name].colors;
+		const detail = THEME_DETAILS[name];
+		const colors = detail.colors;
 		monaco.editor.defineTheme("custom", {
-			base: "vs-dark",
+			base: detail.scheme === "light" ? "vs" : "vs-dark",
 			inherit: false,
 			colors: getEditorThemeColors(colors), // UI colors
 			rules: getEditorThemeRules(colors, { code: "colorful" }), // Token colors
