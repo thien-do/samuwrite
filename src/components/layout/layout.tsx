@@ -30,7 +30,7 @@ export const Layout = (props: Props): JSX.Element => (
 		{/* Only render Preview when necessary to avoid re-calculating the HTML */}
 		{props.prefs.layout !== "editor" && (
 			<div className={s.preview}>
-				<Preview editor={props.editor.value} />
+				<Preview editor={props.editor.value} prefs={props.prefs} />
 			</div>
 		)}
 	</div>
