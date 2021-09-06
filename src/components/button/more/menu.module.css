@@ -19,9 +19,9 @@
 	user-select: none;
 
 	color: var(--sub-color);
-	font-weight: 500;
+	font-weight: 450;
 	font-size: 14px;
-	line-height: 20px;
+	line-height: 21px;
 
 	outline: 8px solid transparent;
 }
