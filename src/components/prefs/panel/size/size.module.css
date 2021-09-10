@@ -43,5 +43,5 @@
 	position: absolute;
 	right: 16px;
 	top: 50%;
-    transform: translateY(-50%) rotate(180deg);
+	transform: translateY(-50%) rotate(180deg);
 }
