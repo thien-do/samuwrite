@@ -14,14 +14,32 @@ const verifyPermission = async (
 	return false;
 };
 
-const read = async (handle: FileHandle): Promise<string> => {
+const safeRead = async (handle: FileHandle): Promise<string> => {
 	const permission = await verifyPermission(handle, "read");
-	if (permission === false) throw Error("No permission");
+	if (permission === false)
+		throw Error("Cannot read file because permission is not granted");
 	const file = await handle.getFile();
 	const text = await file.text();
 	return text;
 };
 
+const optionTypes: FilePickerOptions["types"] = [
+	{
+		description: "Text files",
+		accept: {
+			"text/plain": [".txt", ".text"],
+			"text/markdown": [".md", ".mdx"],
+		},
+	},
+];
+
 export const fileSystem = {
-	read,
+	/**
+	 * Read a file, asking for permission if not granted
+	 */
+	safeRead,
+	/**
+	 * The "types" in open or save file dialog
+	 */
+	optionTypes,
 };

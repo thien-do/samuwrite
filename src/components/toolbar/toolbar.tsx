@@ -13,7 +13,7 @@ import s from "./toolbar.module.css";
 import { ToolbarVim } from "./vim";
 
 interface Props {
-	editor: Editor | null;
+	editor: Editor;
 	file: FileState;
 	prefs: PrefsState;
 	/** Always show the toolbar, not only on hover */
@@ -27,7 +27,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 	const body = (
 		<div className={s.body} style={{ maxWidth: getContentWidth({ size }) }}>
 			<TooltipSource singleton={source} delay={500} />
-			<ToolbarOpen singleton={target} file={props.file} />
+			<ToolbarOpen singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarPreview singleton={target} prefs={props.prefs} />
 			<ToolbarVim singleton={target} prefs={props.prefs} />

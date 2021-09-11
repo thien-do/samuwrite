@@ -1,28 +1,30 @@
 import { TippyProps } from "@tippyjs/react";
+import { get } from "idb-keyval";
+import { VscFolder } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
 import { FileHandle, FileState } from "~/src/components/file/state";
-import { get } from "idb-keyval";
-import { VscFolder } from "react-icons/vsc";
+import { Editor } from "../editor/state/state";
+import { openFileInEditor } from "../editor/utils/open";
+import { fileSystem } from "../file/system";
 
 interface Props {
 	singleton: TippyProps["singleton"];
 	file: FileState;
+	editor: Editor;
 }
 
-const setFile = async (props: Props, handle: FileHandle): Promise<void> => {
-	props.file.setFile(handle);
-};
-
-const openFile = async (props: Props): Promise<void> => {
-	const [handle] = await window.showOpenFilePicker();
-	await setFile(props, handle);
+const open = async (props: Props, handle: FileHandle | null): Promise<void> => {
+	props.file.setHandle(handle);
+	props.file.setDirty(false);
+	await openFileInEditor({ editor: props.editor, handle });
 };
 
 const recentItem = (props: Props): ButtonMoreMenuItem => ({
 	action: async () => {
 		const handle = await get("handle");
-		if (handle) setFile(props, handle);
+		if (handle === null) return;
+		await open(props, handle);
 	},
 	label: "Open last file",
 	shortcut: [
@@ -32,15 +34,22 @@ const recentItem = (props: Props): ButtonMoreMenuItem => ({
 	],
 });
 
-const newItem = (_props: Props): ButtonMoreMenuItem => ({
-	action: () => window.alert("Coming soon"),
+const newItem = (props: Props): ButtonMoreMenuItem => ({
+	action: async () => void open(props, null),
 	label: "New file",
 	shortcut: [{ type: "command-or-control" }, { type: "char", value: "N" }],
 });
 
 export const ToolbarOpen = (props: Props): JSX.Element => (
 	<Button
-		onClick={() => void openFile(props)}
+		onClick={async () => {
+			const [handle] = await window.showOpenFilePicker({
+				multiple: false,
+				types: fileSystem.optionTypes,
+				excludeAcceptAllOption: false,
+			});
+			await open(props, handle);
+		}}
 		Icon={VscFolder}
 		shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
 		tooltip="Open…"

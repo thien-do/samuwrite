@@ -7,15 +7,14 @@ interface Params {
 }
 
 interface AppToolbarState {
-	ref: RefObject<HTMLDivElement>;
 	mute: boolean;
 	show: boolean;
+	handlers: Pick<React.DOMAttributes<HTMLDivElement>, "onMouseOver">;
 }
 
 export const useToolbarAutohide = (params: Params): AppToolbarState => {
 	const editor = params.editor.value;
 
-	const ref = useRef<HTMLDivElement>(null);
 	const [mute, setMute] = useState(false);
 	const [show, setShow] = useState(true);
 
@@ -33,15 +32,6 @@ export const useToolbarAutohide = (params: Params): AppToolbarState => {
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
 
-	// Show toolbar on hover (note that we don't auto hide toolbar on mouse out)
-	useEffect(() => {
-		const toolbar = ref.current;
-		if (toolbar === null) throw Error("Toolbar ref is null");
-		const listener = () => void setShow(true);
-		toolbar.addEventListener("mouseover", listener);
-		return () => toolbar.removeEventListener("mouseover", listener);
-	}, []);
-
 	// Mute/cancel mouse events on toolbar while user is interacting with the
 	// editor with their mouse (e.g. drag to copy)
 	useEffect(() => {
@@ -53,5 +43,10 @@ export const useToolbarAutohide = (params: Params): AppToolbarState => {
 		return () => disposable.forEach((d) => d.dispose());
 	}, [editor]);
 
-	return { ref, mute, show };
+	const handlers: AppToolbarState["handlers"] = {
+		// Show toolbar on hover (note that we don't auto hide toolbar on mouse out)
+		onMouseOver: () => void setShow(true),
+	};
+
+	return { handlers, mute, show };
 };

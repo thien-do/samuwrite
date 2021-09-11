@@ -16,23 +16,28 @@ export const App = (): JSX.Element => {
 	const prefs = usePrefs();
 
 	const toolbar = useToolbarAutohide({ editor });
-	const drop = useAppDrop({ file });
+	const drop = useAppDrop({ editor, file });
 
 	return (
 		<div className={s.app} {...drop.handlers}>
 			<AppTitle file={file} />
 			<ThemeInject theme={prefs.theme} />
-			<div
-				className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
-				ref={toolbar.ref}
-			>
-				<Toolbar
-					show={toolbar.show}
-					editor={editor.value}
-					file={file}
-					prefs={prefs}
-				/>
-			</div>
+			{/* It is actually ok to render Toolbar when editor is null (not
+				initialized). However, most actions in Toolbar depends on the
+				editor so it's simpler to just check for null here once */}
+			{editor.value !== null && (
+				<div
+					className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
+					{...toolbar.handlers}
+				>
+					<Toolbar
+						show={toolbar.show}
+						editor={editor.value}
+						file={file}
+						prefs={prefs}
+					/>
+				</div>
+			)}
 			<div className={s.body}>
 				<Layout editor={editor} file={file} prefs={prefs} />
 			</div>
