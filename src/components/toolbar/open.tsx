@@ -1,11 +1,10 @@
 import { TippyProps } from "@tippyjs/react";
-import { get } from "idb-keyval";
 import { VscFolder } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
 import { FileHandle, FileState } from "~/src/components/file/state";
+import { openFile } from "~src/app/utils/open";
 import { Editor } from "../editor/state/state";
-import { openFileInEditor } from "../editor/utils/open";
 import { fileSystem } from "../file/system";
 
 interface Props {
@@ -14,19 +13,12 @@ interface Props {
 	editor: Editor;
 }
 
-const open = async (props: Props, handle: FileHandle | null): Promise<void> => {
-	props.file.setHandle(handle);
-	props.file.setDirty(false);
-	await openFileInEditor({ editor: props.editor, handle });
-};
-
-const recentItem = (props: Props): ButtonMoreMenuItem => ({
+const menuRecent = (props: Props, recent: FileHandle): ButtonMoreMenuItem => ({
 	action: async () => {
-		const handle = await get("handle");
-		if (handle === null) return;
-		await open(props, handle);
+		const { editor, file } = props;
+		await openFile({ editor, file, handle: recent });
 	},
-	label: "Open last file",
+	label: `Open "${recent.name}"`,
 	shortcut: [
 		{ type: "command-or-control" },
 		{ type: "shift" },
@@ -34,11 +26,23 @@ const recentItem = (props: Props): ButtonMoreMenuItem => ({
 	],
 });
 
-const newItem = (props: Props): ButtonMoreMenuItem => ({
-	action: async () => void open(props, null),
+const menuNew = (props: Props): ButtonMoreMenuItem => ({
+	action: async () => {
+		const { editor, file } = props;
+		await openFile({ editor, file, handle: null });
+	},
 	label: "New file",
 	shortcut: [{ type: "command-or-control" }, { type: "char", value: "N" }],
 });
+
+const getMoreMenu = (props: Props): ButtonMoreMenuItem[] => {
+	const menu = [];
+	menu.push(menuNew(props));
+	if (props.file.recent !== null) {
+		menu.push(menuRecent(props, props.file.recent));
+	}
+	return menu;
+};
 
 export const ToolbarOpen = (props: Props): JSX.Element => (
 	<Button
@@ -48,12 +52,13 @@ export const ToolbarOpen = (props: Props): JSX.Element => (
 				types: fileSystem.optionTypes,
 				excludeAcceptAllOption: false,
 			});
-			await open(props, handle);
+			const { editor, file } = props;
+			await openFile({ editor, file, handle });
 		}}
 		Icon={VscFolder}
 		shortcut={[{ type: "command-or-control" }, { type: "char", value: "O" }]}
 		tooltip="Open…"
 		tooltipSingleton={props.singleton}
-		more={[recentItem(props), newItem(props)]}
+		more={getMoreMenu(props)}
 	/>
 );

@@ -26,6 +26,7 @@ const getHandle = async (params: SaveParams): Promise<FileHandle> => {
 	}
 	// "Save as" or Save a new file
 	const handle = window.showSaveFilePicker({
+		suggestedName: "Untitled.md",
 		excludeAcceptAllOption: false,
 		types: fileSystem.optionTypes,
 	});

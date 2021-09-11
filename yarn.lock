@@ -1038,10 +1038,10 @@
   resolved "https://registry.yarnpkg.com/@types/web/-/web-0.0.12.tgz#5d0f47c421024715f4006ed9d20dcd36d6a3cadf"
   integrity sha512-uekjWUU5ray3PxVpVpMWdsoUIYYxjlFFZAmVVv3BhfB1i3p+uI0MfjQ+KcZudncOOdiac4orSuC87DUNz3Ti4Q==
 
-"@types/wicg-file-system-access@^2020.9.2":
-  version "2020.9.2"
-  resolved "https://registry.yarnpkg.com/@types/wicg-file-system-access/-/wicg-file-system-access-2020.9.2.tgz#6433e5a1d7cfdc58558e15f69276e4f0034088c6"
-  integrity sha512-8ni2EyWi01DBuVqekudo2I+RTfq4Jq93iHmlzq0+eKPkG1uebQA9OUxIDRzOevvw9wF922XYRo4bqP0a6DBF5g==
+"@types/wicg-file-system-access@^2020.9.3":
+  version "2020.9.3"
+  resolved "https://registry.yarnpkg.com/@types/wicg-file-system-access/-/wicg-file-system-access-2020.9.3.tgz#b0a089f28f6a2b475c1a5b13b3c53bf62da0b33d"
+  integrity sha512-wfgRTY1e7/iIl58LkxcnR5OMom5zMfasYFh7fQwNILduE81AZqSpQoFK4JlJ0qAqu45EcbGAZWY1CsbF/j/oDg==
 
 "@typescript-eslint/eslint-plugin@^4.30.0":
   version "4.30.0"
