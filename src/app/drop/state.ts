@@ -1,7 +1,8 @@
 import * as React from "react";
 import { EditorState } from "~src/components/editor/state/state";
-import { openFileInEditor } from "~src/components/editor/utils/open";
 import { FileState } from "~src/components/file/state";
+import { ERRORS } from "~src/utils/error";
+import { openFile } from "../utils/open";
 
 interface AppDropState {
 	dragging: boolean;
@@ -33,19 +34,16 @@ export const useAppDrop = (params: Params): AppDropState => {
 		setDragging(false);
 		counter.current = 0;
 
-		// Set the new handle
+		// Get the new handle
 		const { items } = event.dataTransfer;
 		const handle = await items[0].getAsFileSystemHandle();
-		if (handle === null) throw Error("Dropped content is not a file");
-		if (!(handle instanceof FileSystemFileHandle))
-			throw Error("Only support a single file");
-		params.file.setHandle(handle);
-		params.file.setDirty(false);
+		if (handle === null) throw ERRORS.dropType;
+		if (!(handle instanceof FileSystemFileHandle)) throw ERRORS.fileFolder;
 
 		// Load to editor
 		const editor = params.editor.value;
-		if (editor === null) throw Error("Editor is null");
-		openFileInEditor({ editor, handle });
+		const file = params.file;
+		openFile({ editor, file, handle });
 	};
 
 	const onDragOver = (event: React.DragEvent): void => {

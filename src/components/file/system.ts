@@ -27,8 +27,8 @@ const optionTypes: FilePickerOptions["types"] = [
 	{
 		description: "Text files",
 		accept: {
-			"text/plain": [".txt", ".text"],
 			"text/markdown": [".md", ".mdx"],
+			"text/plain": [".txt", ".text"],
 		},
 	},
 ];

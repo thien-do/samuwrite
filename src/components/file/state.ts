@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SetState } from "~src/utils/state/type";
-import { set } from "idb-keyval";
+import { get, set } from "idb-keyval";
 
 export type FileHandle = FileSystemFileHandle;
 
@@ -9,25 +9,29 @@ export interface FileState {
 	setHandle: SetState<FileHandle | null>;
 	dirty: boolean;
 	setDirty: SetState<boolean>;
-	setFile: (handle: FileHandle | null) => void;
+	recent: FileHandle | null;
+	setRecent: SetState<FileHandle | null>;
 }
-
-const useSaveHandle = (handle: FileHandle | null): void => {
-	useEffect(() => {
-		if (handle !== null) set("handle", handle);
-	}, [handle]);
-};
 
 export const useFile = (): FileState => {
 	const [handle, setHandle] = useState<FileHandle | null>(null);
 	const [dirty, setDirty] = useState(false);
+	// The one in "Open" > "Open Recent" menu
+	const [recent, setRecent] = useState<FileHandle | null>(null);
 
-	useSaveHandle(handle);
-
-	const setFile = useCallback((handle: FileHandle | null): void => {
-		setHandle(handle);
-		setDirty(false);
+	// Load the saved handle as "recent"
+	useEffect(() => {
+		get<FileHandle>("handle").then((handle) => {
+			if (handle) setRecent(handle);
+		});
 	}, []);
 
-	return { handle, setHandle, dirty, setDirty, setFile };
+	// Save the current handle as "recent"
+	useEffect(() => {
+		if (handle === null) return;
+		set("handle", handle);
+		setRecent(handle);
+	}, [handle]);
+
+	return { handle, setHandle, dirty, setDirty, recent, setRecent };
 };
