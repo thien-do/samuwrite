@@ -1,0 +1,40 @@
+.fill {
+	width: 100%;
+}
+
+.container {
+	position: relative;
+	color: var(--sub-color);
+	transition: color 0.1s;
+}
+
+.select {
+	appearance: none;
+	display: block;
+	cursor: pointer;
+	width: 100%;
+	padding: 8px 16px;
+	border-radius: 4px;
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+
+	color: var(--sub-color);
+	border: 1px solid var(--sub-color);
+	background-color: var(--bg-color);
+
+	transition: color 0.1s;
+}
+
+.container:hover,
+.container:focus-visible,
+.select:hover,
+.select:focus-visible {
+	color: var(--text-color);
+}
+
+.arrow {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+}

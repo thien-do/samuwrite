@@ -1,3 +1,4 @@
+import { Select } from "~src/components/select/select";
 import { SizeName, SIZE_NAMES } from "../../size/size";
 import { PrefsState } from "../../state";
 import s from "./size.module.css";
@@ -9,21 +10,20 @@ interface Props {
 export const SizePref = (props: Props): JSX.Element => {
 	return (
 		<div className={s.container}>
-			<div className={s.label}>Editor size</div>
-			<label className={s.select}>
-				<select
-					className={s.selectElement}
-					value={props.prefs.size}
-					onChange={(event) => {
-						props.prefs.setSize(event.target.value as SizeName);
-					}}
-				>
-					{SIZE_NAMES.map((size) => (
-						<option key={size} value={size}>
-							{size}
-						</option>
-					))}
-				</select>
+			<label className={s.label}>
+				<span className={s.labelText}>Editor size</span>
+				<div className={s.select}>
+					<Select<string>
+						value={props.prefs.size}
+						setValue={(value) => props.prefs.setSize(value as SizeName)}
+						options={SIZE_NAMES.map((size) => ({
+							id: size,
+							label: size,
+							value: size,
+						}))}
+						fill
+					/>
+				</div>
 			</label>
 		</div>
 	);

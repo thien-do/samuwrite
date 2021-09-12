@@ -3,45 +3,17 @@
 	align-items: center;
 	color: var(--sub-color);
 }
+
 .label {
-	margin-right: 8px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.labelText {
+	padding-right: 8px;
 }
 
 .select {
 	flex-grow: 1;
-	position: relative;
-	color: var(--sub-color);
-	transition: color 0.1s;
-}
-
-.selectElement {
-	appearance: none;
-	display: block;
-	cursor: pointer;
-	width: 100%;
-	padding: 8px 16px;
-	border-radius: 4px;
-	outline: 2px solid transparent;
-	outline-offset: 2px;
-
-	color: var(--sub-color);
-	border: 1px solid var(--sub-color);
-	background-color: var(--bg-color);
-
-	transition: color 0.1s;
-}
-
-.select:hover,
-.select:focus-visible,
-.selectElement:hover,
-.selectElement:focus-visible {
-	color: var(--text-color);
-}
-
-.select::before {
-	content: "⌃";
-	position: absolute;
-	right: 16px;
-	top: 50%;
-	transform: translateY(-50%) rotate(180deg);
 }
