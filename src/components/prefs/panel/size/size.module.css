@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	align-items: center;
+	color: var(--sub-color);
+}
+
+.label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.labelText {
+	padding-right: 8px;
+}
+
+.select {
+	flex-grow: 1;
+}
