@@ -26,7 +26,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 
 	const body = (
 		<div className={s.body} style={{ maxWidth: getContentWidth({ size }) }}>
-			<TooltipSource singleton={source} delay={500} />
+			<TooltipSource singleton={source} />
 			<ToolbarOpen singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarPreview singleton={target} prefs={props.prefs} />
