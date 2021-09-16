@@ -49,5 +49,5 @@ export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
 	"serika-light": colors.serikaLight,
 	"rose-pine-dawn": colors.rosePineDawn,
 	peach: colors.peach,
-	"zumidori": colors.zumidori,
+	zumidori: colors.zumidori,
 };
