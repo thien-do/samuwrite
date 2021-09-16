@@ -1,5 +1,8 @@
 import * as React from "react";
+import { EditorState } from "~src/components/editor/state/state";
 import { FileState } from "~src/components/file/state";
+import { ERRORS } from "~src/utils/error";
+import { openFile } from "../utils/open";
 
 interface AppDropState {
 	dragging: boolean;
@@ -11,6 +14,7 @@ interface AppDropState {
 
 interface Params {
 	file: FileState;
+	editor: EditorState;
 }
 
 export const useAppDrop = (params: Params): AppDropState => {
@@ -25,15 +29,21 @@ export const useAppDrop = (params: Params): AppDropState => {
 
 	const onDrop = async (event: React.DragEvent) => {
 		event.preventDefault();
+
+		// Set the UI
 		setDragging(false);
 		counter.current = 0;
 
+		// Get the new handle
 		const { items } = event.dataTransfer;
-		if (1 < items.length || items[0].kind !== "file")
-			throw Error("Only a single file upload is supported.");
+		const handle = await items[0].getAsFileSystemHandle();
+		if (handle === null) throw ERRORS.dropType;
+		if (!(handle instanceof FileSystemFileHandle)) throw ERRORS.fileFolder;
 
-		const file = await items[0].getAsFileSystemHandle();
-		if (file) params.file.setFile(file as FileSystemFileHandle);
+		// Load to editor
+		const editor = params.editor.value;
+		const file = params.file;
+		openFile({ editor, file, handle });
 	};
 
 	const onDragOver = (event: React.DragEvent): void => {
