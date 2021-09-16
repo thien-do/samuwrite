@@ -2,9 +2,9 @@ import Color from "color";
 import { ThemeDetail } from "../theme";
 
 export const serikaLight: ThemeDetail = {
-	name: "Serika Dark",
+	name: "Serika Light",
 	description: "",
-	scheme: "dark",
+	scheme: "light",
 	colors: {
 		bg: Color("#f2f2f2"),
 		main: Color("#ffcd04"),
