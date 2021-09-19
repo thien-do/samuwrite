@@ -47,18 +47,6 @@ suit our needs.
 	color: inherit;
 	text-decoration: none;
 }
-.container .absent {
-	color: var(--color-danger-fg);
-}
-.container .anchor {
-	float: left;
-	padding-right: 4px;
-	margin-left: -20px;
-	line-height: 1;
-}
-.container .anchor:focus {
-	outline: none;
-}
 .container p,
 .container blockquote,
 .container ul,
@@ -98,32 +86,6 @@ suit our needs.
 	margin-bottom: 16px;
 	font-weight: 600;
 	line-height: 1.25;
-}
-.container h1 .octicon-link,
-.container h2 .octicon-link,
-.container h3 .octicon-link,
-.container h4 .octicon-link,
-.container h5 .octicon-link,
-.container h6 .octicon-link {
-	color: var(--color-fg-default);
-	vertical-align: middle;
-	visibility: hidden;
-}
-.container h1:hover .anchor,
-.container h2:hover .anchor,
-.container h3:hover .anchor,
-.container h4:hover .anchor,
-.container h5:hover .anchor,
-.container h6:hover .anchor {
-	text-decoration: none;
-}
-.container h1:hover .anchor .octicon-link,
-.container h2:hover .anchor .octicon-link,
-.container h3:hover .anchor .octicon-link,
-.container h4:hover .anchor .octicon-link,
-.container h5:hover .anchor .octicon-link,
-.container h6:hover .anchor .octicon-link {
-	visibility: visible;
 }
 .container h1 tt,
 .container h1 code,
@@ -166,11 +128,6 @@ suit our needs.
 .container ul,
 .container ol {
 	padding-left: 2em;
-}
-.container ul.no-list,
-.container ol.no-list {
-	padding: 0;
-	list-style-type: none;
 }
 .container ol[type="1"] {
 	list-style-type: decimal;
@@ -247,85 +204,6 @@ suit our needs.
 .container img[align="left"] {
 	padding-right: 20px;
 }
-.container .emoji {
-	max-width: none;
-	vertical-align: text-top;
-	background-color: transparent;
-}
-.container span.frame {
-	display: block;
-	overflow: hidden;
-}
-.container span.frame > span {
-	display: block;
-	float: left;
-	width: auto;
-	padding: 7px;
-	margin: 13px 0 0;
-	overflow: hidden;
-	border: 1px solid var(--color-border-default);
-}
-.container span.frame span img {
-	display: block;
-	float: left;
-}
-.container span.frame span span {
-	display: block;
-	padding: 5px 0 0;
-	clear: both;
-	color: var(--color-fg-default);
-}
-.container span.align-center {
-	display: block;
-	overflow: hidden;
-	clear: both;
-}
-.container span.align-center > span {
-	display: block;
-	margin: 13px auto 0;
-	overflow: hidden;
-	text-align: center;
-}
-.container span.align-center span img {
-	margin: 0 auto;
-	text-align: center;
-}
-.container span.align-right {
-	display: block;
-	overflow: hidden;
-	clear: both;
-}
-.container span.align-right > span {
-	display: block;
-	margin: 13px 0 0;
-	overflow: hidden;
-	text-align: right;
-}
-.container span.align-right span img {
-	margin: 0;
-	text-align: right;
-}
-.container span.float-left {
-	display: block;
-	float: left;
-	margin-right: 13px;
-	overflow: hidden;
-}
-.container span.float-left span {
-	margin: 13px 0 0;
-}
-.container span.float-right {
-	display: block;
-	float: right;
-	margin-left: 13px;
-	overflow: hidden;
-}
-.container span.float-right > span {
-	display: block;
-	margin: 13px auto 0;
-	overflow: hidden;
-	text-align: right;
-}
 .container code,
 .container tt {
 	padding: 0.2em 0.4em;
@@ -355,14 +233,6 @@ suit our needs.
 	background: transparent;
 	border: 0;
 }
-.container .highlight {
-	margin-bottom: 16px;
-}
-.container .highlight pre {
-	margin-bottom: 0;
-	word-break: normal;
-}
-.container .highlight pre,
 .container pre {
 	padding: 16px;
 	overflow: auto;
@@ -382,27 +252,4 @@ suit our needs.
 	word-wrap: normal;
 	background-color: transparent;
 	border: 0;
-}
-.container .csv-data td,
-.container .csv-data th {
-	padding: 5px;
-	overflow: hidden;
-	font-size: 12px;
-	line-height: 1;
-	text-align: left;
-	white-space: nowrap;
-}
-.container .csv-data .blob-num {
-	padding: 10px 8px 9px;
-	text-align: right;
-	background: var(--color-canvas-default);
-	border: 0;
-}
-.container .csv-data tr {
-	border-top: 0;
-}
-.container .csv-data th {
-	font-weight: 600;
-	background: var(--color-canvas-subtle);
-	border-top: 0;
 }
