@@ -985,6 +985,11 @@
   resolved "https://registry.yarnpkg.com/@types/mdurl/-/mdurl-1.0.2.tgz#e2ce9d83a613bacf284c7be7d491945e39e1f8e9"
   integrity sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==
 
+"@types/mousetrap@^1.6.8":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@types/mousetrap/-/mousetrap-1.6.8.tgz#448929e6dc21126392830465fdb9d4a2cfc16a88"
+  integrity sha512-zTqjvgCUT5EoXqbqmd8iJMb4NJqyV/V7pK7AIKq7qcaAsJIpGlTVJS1HQM6YkdHCdnkNSbhcQI7MXYxFfE3iCA==
+
 "@types/ms@*":
   version "0.7.31"
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
@@ -4415,6 +4420,11 @@ monaco-vim@^0.1.18:
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/monaco-vim/-/monaco-vim-0.1.18.tgz#e3745af68440da22355833038a86a0ff954ed5e5"
   integrity sha512-n/jufIouFluCV1aCordNtiOoeK8uoOX7IZN/TDyiEdkQ0kZwkpgTbbBeb0fNhSVQPNqGmq4KYLNZIumze8FLyw==
+
+mousetrap@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.5.tgz#8a766d8c272b08393d5f56074e0b5ec183485bf9"
+  integrity sha512-QNo4kEepaIBwiT8CDhP98umTetp+JNfQYBWvC1pc6/OAibuXtRcxZ58Qz8skvEHYvURne/7R8T5VoOI7rDsEUA==
 
 ms@2.0.0:
   version "2.0.0"

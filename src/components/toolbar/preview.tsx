@@ -3,6 +3,8 @@ import { VscBook } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
 import { PrefsState } from "../prefs/state";
+import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
+import { useShortcut } from "~src/components/shortcut/use-shortcut";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -12,11 +14,7 @@ interface Props {
 const print = (_props: Props): ButtonMoreMenuItem => ({
 	action: () => window.alert("Coming soon"),
 	label: "Print…",
-	shortcut: [
-		{ type: "command-or-control" },
-		{ type: "shift" },
-		{ type: "char", value: "P" },
-	],
+	shortcut: SHORTCUTS.PRINT,
 });
 
 const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
@@ -26,14 +24,20 @@ const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 	return "split";
 };
 
-export const ToolbarPreview = (props: Props): JSX.Element => (
-	<Button
-		onClick={() => void props.prefs.setLayout(toggleLayout)}
-		Icon={VscBook}
-		shortcut={[{ type: "command-or-control" }, { type: "char", value: "P" }]}
-		tooltip="Toggle Preview"
-		tooltipSingleton={props.singleton}
-		more={[print(props)]}
-		selected={props.prefs.layout !== "editor"}
-	/>
-);
+export const ToolbarPreview = (props: Props): JSX.Element => {
+	const togglePreview = () => void props.prefs.setLayout(toggleLayout);
+
+	useShortcut(SHORTCUTS.PREVIEW, togglePreview);
+
+	return (
+		<Button
+			onClick={togglePreview}
+			Icon={VscBook}
+			shortcut={SHORTCUTS.PREVIEW}
+			tooltip="Toggle Preview"
+			tooltipSingleton={props.singleton}
+			more={[print(props)]}
+			selected={props.prefs.layout !== "editor"}
+		/>
+	);
+};

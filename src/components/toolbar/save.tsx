@@ -5,6 +5,8 @@ import { Button } from "~/src/components/button/button";
 import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
+import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
+import { useShortcut } from "~src/components/shortcut/use-shortcut";
 
 interface Props {
 	file: FileState;
@@ -53,20 +55,22 @@ const save = async (params: SaveParams): Promise<void> => {
 const saveAs = (props: Props): ButtonMoreMenuItem => ({
 	action: () => void save({ props, saveAs: true }),
 	label: "Save as…",
-	shortcut: [
-		{ type: "command-or-control" },
-		{ type: "shift" },
-		{ type: "char", value: "S" },
-	],
+	shortcut: SHORTCUTS.SAVE_AS,
 });
 
-export const ToolbarSave = (props: Props): JSX.Element => (
-	<Button
-		onClick={() => void save({ props, saveAs: false })}
-		Icon={VscSave}
-		shortcut={[{ type: "command-or-control" }, { type: "char", value: "S" }]}
-		tooltip="Save"
-		tooltipSingleton={props.singleton}
-		more={[saveAs(props)]}
-	/>
-);
+export const ToolbarSave = (props: Props): JSX.Element => {
+	const saveFile = () => void save({ props, saveAs: false });
+
+	useShortcut(SHORTCUTS.SAVE, saveFile);
+
+	return (
+		<Button
+			onClick={saveFile}
+			Icon={VscSave}
+			shortcut={SHORTCUTS.SAVE}
+			tooltip="Save"
+			tooltipSingleton={props.singleton}
+			more={[saveAs(props)]}
+		/>
+	);
+};
