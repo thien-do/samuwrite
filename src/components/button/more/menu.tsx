@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import { Shortcut, ShortcutKey } from "~/src/components/shortcut/shortcut";
+import { Shortcut } from "~/src/components/shortcut/shortcut";
 import s from "./menu.module.css";
 
 const container = document.getElementById("portal");
@@ -8,7 +8,7 @@ if (container === null) throw Error(`#portal is null`);
 export interface ButtonMoreMenuItem {
 	label: string;
 	action: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
-	shortcut: ShortcutKey[];
+	shortcut: string;
 }
 
 interface Props {

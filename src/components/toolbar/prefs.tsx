@@ -21,7 +21,7 @@ export const ToolbarPrefs = (props: Props): JSX.Element => {
 		[setVisible]
 	);
 
-	useShortcut(SHORTCUTS.PREFERENCES, togglePrefs);
+	useShortcut(SHORTCUTS.prefs, togglePrefs);
 
 	return (
 		<Popover
@@ -34,7 +34,7 @@ export const ToolbarPrefs = (props: Props): JSX.Element => {
 				Icon={VscSettings}
 				tooltip="Preferences"
 				tooltipSingleton={props.singleton}
-				shortcut={SHORTCUTS.PREFERENCES}
+				shortcut={SHORTCUTS.prefs}
 			/>
 		</Popover>
 	);

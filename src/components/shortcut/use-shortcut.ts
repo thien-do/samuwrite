@@ -1,19 +1,15 @@
 import { useEffect } from "react";
-import mousetrap, { ExtendedKeyboardEvent } from "mousetrap";
+import Mousetrap from "mousetrap";
 import "mousetrap/plugins/global-bind/mousetrap-global-bind";
-import { ShortcutKey, toMousetrapKey } from "~src/components/shortcut/shortcut";
 
-export const useShortcut = (
-	shortcut: ShortcutKey[],
-	callback: (e: ExtendedKeyboardEvent, combo: string) => void
-): void => {
-	const key = toMousetrapKey(shortcut);
-
+export const useShortcut = (keys: string, callback: () => void): void => {
 	useEffect(() => {
-		mousetrap.bindGlobal(key, (event, combo) => {
+		Mousetrap.bindGlobal(keys, (event) => {
 			event.preventDefault();
-			callback(event, combo);
+			callback();
 		});
-		return () => void mousetrap.unbind(key);
-	}, [key, callback]);
+		return () => {
+			Mousetrap.unbind(keys);
+		};
+	}, [keys, callback]);
 };

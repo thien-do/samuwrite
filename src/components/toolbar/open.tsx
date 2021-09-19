@@ -22,7 +22,7 @@ const menuRecent = (props: Props, recent: FileHandle): ButtonMoreMenuItem => ({
 		await openFile({ editor, file, handle: recent });
 	},
 	label: `Open "${recent.name}"`,
-	shortcut: SHORTCUTS.OPEN_RECENT,
+	shortcut: SHORTCUTS.recent,
 });
 
 const menuNew = (props: Props): ButtonMoreMenuItem => ({
@@ -31,7 +31,7 @@ const menuNew = (props: Props): ButtonMoreMenuItem => ({
 		await openFile({ editor, file, handle: null });
 	},
 	label: "New file",
-	shortcut: SHORTCUTS.NEW_FILE,
+	shortcut: SHORTCUTS.new,
 });
 
 const getMoreMenu = (props: Props): ButtonMoreMenuItem[] => {
@@ -61,13 +61,13 @@ export const ToolbarOpen = (props: Props): JSX.Element => {
 		props.editor.setModel,
 	]);
 
-	useShortcut(SHORTCUTS.OPEN, open);
+	useShortcut(SHORTCUTS.open, open);
 
 	return (
 		<Button
 			onClick={open}
 			Icon={VscFolder}
-			shortcut={SHORTCUTS.OPEN}
+			shortcut={SHORTCUTS.open}
 			tooltip="Open…"
 			tooltipSingleton={props.singleton}
 			more={getMoreMenu(props)}

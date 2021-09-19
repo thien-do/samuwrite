@@ -12,13 +12,13 @@ interface Props {
 export const ToolbarMenu = (props: Props): JSX.Element => {
 	const toggleMenu = useCallback(() => void window.alert("Coming soon"), []);
 
-	useShortcut(SHORTCUTS.MENU, toggleMenu);
+	useShortcut(SHORTCUTS.menu, toggleMenu);
 
 	return (
 		<Button
 			onClick={toggleMenu}
 			Icon={VscMenu}
-			shortcut={SHORTCUTS.MENU}
+			shortcut={SHORTCUTS.menu}
 			tooltip="Menu"
 			tooltipSingleton={props.singleton}
 		/>

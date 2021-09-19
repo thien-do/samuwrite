@@ -15,7 +15,7 @@ interface Props {
 const print = (_props: Props): ButtonMoreMenuItem => ({
 	action: () => window.alert("Coming soon"),
 	label: "Print…",
-	shortcut: SHORTCUTS.PRINT,
+	shortcut: SHORTCUTS.print,
 });
 
 const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
@@ -32,13 +32,13 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 		[props.prefs.setLayout, toggleLayout]
 	);
 
-	useShortcut(SHORTCUTS.PREVIEW, togglePreview);
+	useShortcut(SHORTCUTS.preview, togglePreview);
 
 	return (
 		<Button
 			onClick={togglePreview}
 			Icon={VscBook}
-			shortcut={SHORTCUTS.PREVIEW}
+			shortcut={SHORTCUTS.preview}
 			tooltip="Toggle Preview"
 			tooltipSingleton={props.singleton}
 			more={[print(props)]}

@@ -18,7 +18,7 @@ export const ToolbarVim = (props: Props): JSX.Element => {
 		[props.prefs.setVim]
 	);
 
-	useShortcut(SHORTCUTS.VIM_MODE, toggleVimMode);
+	useShortcut(SHORTCUTS.vim, toggleVimMode);
 
 	return (
 		<Button
@@ -27,7 +27,7 @@ export const ToolbarVim = (props: Props): JSX.Element => {
 			selected={props.prefs.vim}
 			tooltip="Toggle Vim mode"
 			tooltipSingleton={props.singleton}
-			shortcut={SHORTCUTS.VIM_MODE}
+			shortcut={SHORTCUTS.vim}
 		/>
 	);
 };

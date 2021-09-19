@@ -56,7 +56,7 @@ const save = async (params: SaveParams): Promise<void> => {
 const saveAs = (props: Props): ButtonMoreMenuItem => ({
 	action: () => void save({ props, saveAs: true }),
 	label: "Save as…",
-	shortcut: SHORTCUTS.SAVE_AS,
+	shortcut: SHORTCUTS.saveAs,
 });
 
 export const ToolbarSave = (props: Props): JSX.Element => {
@@ -71,13 +71,13 @@ export const ToolbarSave = (props: Props): JSX.Element => {
 		]
 	);
 
-	useShortcut(SHORTCUTS.SAVE, saveFile);
+	useShortcut(SHORTCUTS.save, saveFile);
 
 	return (
 		<Button
 			onClick={saveFile}
 			Icon={VscSave}
-			shortcut={SHORTCUTS.SAVE}
+			shortcut={SHORTCUTS.save}
 			tooltip="Save"
 			tooltipSingleton={props.singleton}
 			more={[saveAs(props)]}
