@@ -26,7 +26,7 @@ export const useEditorVim = (params: Params): VimModeState => {
 
 		const disposable = initVimMode(editor, status);
 		return () => disposable.dispose();
-	}, [editor, vim]);
+	}, [editor, vim, statusRef]);
 
 	return { statusRef };
 };
