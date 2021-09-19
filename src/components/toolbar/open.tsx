@@ -44,22 +44,16 @@ const getMoreMenu = (props: Props): ButtonMoreMenuItem[] => {
 };
 
 export const ToolbarOpen = (props: Props): JSX.Element => {
+	const { editor, file } = props;
+
 	const open = useCallback(async () => {
 		const [handle] = await window.showOpenFilePicker({
 			multiple: false,
 			types: fileSystem.optionTypes,
 			excludeAcceptAllOption: false,
 		});
-		const { editor, file } = props;
 		await openFile({ editor, file, handle });
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		props.file.dirty,
-		props.file.setDirty,
-		props.file.setHandle,
-		props.editor.getModel,
-		props.editor.setModel,
-	]);
+	}, [editor, file]);
 
 	useShortcut(SHORTCUTS.open, open);
 

@@ -18,7 +18,7 @@ const print = (_props: Props): ButtonMoreMenuItem => ({
 	shortcut: SHORTCUTS.print,
 });
 
-const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
+const updater = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 	if (layout !== "editor") return "editor";
 	// return "preview";
 	// return window.innerWidth < 1000 ? "preview" : "split";
@@ -26,17 +26,15 @@ const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 };
 
 export const ToolbarPreview = (props: Props): JSX.Element => {
-	const togglePreview = useCallback(
-		() => void props.prefs.setLayout(toggleLayout),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[props.prefs.setLayout, toggleLayout]
-	);
+	const { setLayout } = props.prefs;
 
-	useShortcut(SHORTCUTS.preview, togglePreview);
+	const toggle = useCallback(() => setLayout(updater), [setLayout]);
+
+	useShortcut(SHORTCUTS.preview, toggle);
 
 	return (
 		<Button
-			onClick={togglePreview}
+			onClick={toggle}
 			Icon={VscBook}
 			shortcut={SHORTCUTS.preview}
 			tooltip="Toggle Preview"

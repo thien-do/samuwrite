@@ -16,21 +16,18 @@ interface Props {
 export const ToolbarPrefs = (props: Props): JSX.Element => {
 	const [visible, setVisible] = useState(false);
 
-	const togglePrefs = useCallback(
-		() => void setVisible((v) => !v),
-		[setVisible]
-	);
+	const toggle = useCallback(() => setVisible((v) => !v), [setVisible]);
 
-	useShortcut(SHORTCUTS.prefs, togglePrefs);
+	useShortcut(SHORTCUTS.prefs, toggle);
 
 	return (
 		<Popover
 			visible={visible}
-			onClickOutside={togglePrefs}
+			onClickOutside={toggle}
 			content={<PrefsPanel prefs={props.prefs} />}
 		>
 			<Button
-				onClick={togglePrefs}
+				onClick={toggle}
 				Icon={VscSettings}
 				tooltip="Preferences"
 				tooltipSingleton={props.singleton}

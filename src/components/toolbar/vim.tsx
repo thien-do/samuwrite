@@ -12,17 +12,14 @@ interface Props {
 }
 
 export const ToolbarVim = (props: Props): JSX.Element => {
-	const toggleVimMode = useCallback(
-		() => props.prefs.setVim((v) => !v),
-		// eslint-disable-next-line
-		[props.prefs.setVim]
-	);
+	const { setVim } = props.prefs;
+	const toggle = useCallback(() => setVim((v) => !v), [setVim]);
 
-	useShortcut(SHORTCUTS.vim, toggleVimMode);
+	useShortcut(SHORTCUTS.vim, toggle);
 
 	return (
 		<Button
-			onClick={toggleVimMode}
+			onClick={toggle}
 			Icon={DiVim}
 			selected={props.prefs.vim}
 			tooltip="Toggle Vim mode"
