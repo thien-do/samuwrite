@@ -1,0 +1,262 @@
+/*
+This markdown styling comes from GitHub's design system and is modified to
+suit our needs.
+- Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
+- Rename "markdown-body" to "container" 
+- Point color variables to ours. Loosely:
+	- canvas-* => bg
+	- fg-default => text
+	- fg-muted => sub
+	- border-* => sub
+	- neutral-muted => bg
+- Remove class-based selectors
+- Add color for links
+*/
+.container {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-size: 16px;
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+.container a {
+	color: var(--main-color);
+}
+.container kbd {
+	display: inline-block;
+	padding: 3px 5px;
+	font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+		Liberation Mono, monospace;
+	line-height: 10px;
+	color: var(--text-color);
+	vertical-align: middle;
+	background-color: var(--bg-color);
+	border: solid 1px var(--sub-color);
+	border-radius: 6px;
+	box-shadow: inset 0 -1px 0 var(--sub-color);
+}
+.container::before {
+	display: table;
+	content: "";
+}
+.container::after {
+	display: table;
+	clear: both;
+	content: "";
+}
+.container > *:first-child {
+	margin-top: 0 !important;
+}
+.container > *:last-child {
+	margin-bottom: 0 !important;
+}
+.container a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+.container p,
+.container blockquote,
+.container ul,
+.container ol,
+.container dl,
+.container table,
+.container pre,
+.container details {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+.container hr {
+	height: 0.25em;
+	padding: 0;
+	margin: 24px 0;
+	background-color: var(--sub-color);
+	border: 0;
+}
+.container blockquote {
+	padding: 0 1em;
+	color: var(--sub-color);
+	border-left: 0.25em solid var(--sub-color);
+}
+.container blockquote > :first-child {
+	margin-top: 0;
+}
+.container blockquote > :last-child {
+	margin-bottom: 0;
+}
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+.container h1 tt,
+.container h1 code,
+.container h2 tt,
+.container h2 code,
+.container h3 tt,
+.container h3 code,
+.container h4 tt,
+.container h4 code,
+.container h5 tt,
+.container h5 code,
+.container h6 tt,
+.container h6 code {
+	padding: 0 0.2em;
+	font-size: inherit;
+}
+.container h1 {
+	padding-bottom: 0.3em;
+	font-size: 2em;
+	border-bottom: 1px solid var(--sub-color);
+}
+.container h2 {
+	padding-bottom: 0.3em;
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--sub-color);
+}
+.container h3 {
+	font-size: 1.25em;
+}
+.container h4 {
+	font-size: 1em;
+}
+.container h5 {
+	font-size: 0.875em;
+}
+.container h6 {
+	font-size: 0.85em;
+	color: var(--sub-color);
+}
+.container ul,
+.container ol {
+	padding-left: 2em;
+}
+.container ol[type="1"] {
+	list-style-type: decimal;
+}
+.container ol[type="a"] {
+	list-style-type: lower-alpha;
+}
+.container ol[type="i"] {
+	list-style-type: lower-roman;
+}
+.container div > ol:not([type]) {
+	list-style-type: decimal;
+}
+.container ul ul,
+.container ul ol,
+.container ol ol,
+.container ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.container li > p {
+	margin-top: 16px;
+}
+.container li + li {
+	margin-top: 0.25em;
+}
+.container dl {
+	padding: 0;
+}
+.container dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: 600;
+}
+.container dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+.container table {
+	display: block;
+	width: 100%;
+	width: max-content;
+	max-width: 100%;
+	overflow: auto;
+}
+.container table th {
+	font-weight: 600;
+}
+.container table th,
+.container table td {
+	padding: 6px 13px;
+	border: 1px solid var(--sub-color);
+}
+.container table tr {
+	background-color: var(--bg-color);
+	border-top: 1px solid var(--sub-color);
+}
+.container table tr:nth-child(2n) {
+	background-color: var(--bg-color);
+}
+.container table img {
+	background-color: transparent;
+}
+.container img {
+	max-width: 100%;
+	box-sizing: content-box;
+	background-color: var(--bg-color);
+}
+.container img[align="right"] {
+	padding-left: 20px;
+}
+.container img[align="left"] {
+	padding-right: 20px;
+}
+.container code,
+.container tt {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	font-size: 85%;
+	background-color: var(--bg-color);
+	border-radius: 6px;
+}
+.container code br,
+.container tt br {
+	display: none;
+}
+.container del code {
+	text-decoration: inherit;
+}
+.container pre {
+	word-wrap: normal;
+}
+.container pre code {
+	font-size: 100%;
+}
+.container pre > code {
+	padding: 0;
+	margin: 0;
+	word-break: normal;
+	white-space: pre;
+	background: transparent;
+	border: 0;
+}
+.container pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	background-color: var(--bg-color);
+	border-radius: 6px;
+}
+.container pre code,
+.container pre tt {
+	display: inline;
+	max-width: auto;
+	padding: 0;
+	margin: 0;
+	overflow: visible;
+	line-height: inherit;
+	word-wrap: normal;
+	background-color: transparent;
+	border: 0;
+}
