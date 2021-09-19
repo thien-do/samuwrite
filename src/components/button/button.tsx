@@ -1,7 +1,7 @@
 import { TippyProps } from "@tippyjs/react";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { IconType } from "react-icons";
-import { Shortcut, ShortcutKey } from "../shortcut/shortcut";
+import { Shortcut } from "../shortcut/shortcut";
 import { Tooltip } from "../tooltip/tooltip";
 import s from "./button.module.css";
 import { ButtonMoreButton } from "./more/button";
@@ -10,7 +10,7 @@ import { ButtonMoreMenuItem } from "./more/menu";
 interface Props {
 	Icon: IconType;
 	onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
-	shortcut: ShortcutKey[];
+	shortcut: string;
 	more?: ButtonMoreMenuItem[];
 	tooltip: string;
 	tooltipSingleton?: TippyProps["singleton"];

@@ -1,31 +1,23 @@
 import { isApple } from "~/src/utils/platform";
 
-export type ShortcutKey =
-	| { type: "char"; value: string }
-	| { type: "command" }
-	| { type: "control" }
-	| { type: "shift" }
-	| { type: "option" }
-	| { type: "command-or-control" };
-
 interface Props {
-	keys: ShortcutKey[];
+	keys: string;
 }
 
-const getText = (key: ShortcutKey): string => {
-	switch (key.type) {
+const getText = (key: string): string => {
+	switch (key) {
 		case "command":
 			return "⌘";
-		case "control":
+		case "ctrl":
 			return "⌃";
-		case "option":
+		case "alt":
 			return "⌥";
 		case "shift":
 			return "⇧";
-		case "command-or-control":
+		case "mod":
 			return isApple() ? "⌘" : "⌃";
 		default:
-			return key.value;
+			return key.toUpperCase();
 	}
 };
 
@@ -33,5 +25,5 @@ const getText = (key: ShortcutKey): string => {
 const HAIR_SPACE = "\u{200A}";
 
 export const Shortcut = (props: Props): JSX.Element => (
-	<span>{props.keys.map(getText).join(HAIR_SPACE)}</span>
+	<span>{props.keys.split("+").map(getText).join(HAIR_SPACE)}</span>
 );

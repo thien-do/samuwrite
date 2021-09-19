@@ -16,7 +16,7 @@ export const Popover = forwardRef<Element, Props>(
 			appendTo={container}
 			ref={ref}
 			delay={0}
-			trigger="click"
+			trigger={props.visible === undefined ? "click" : undefined}
 			interactive
 			className="tippy-no-padding"
 			{...props}
