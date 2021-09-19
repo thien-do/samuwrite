@@ -3,10 +3,15 @@ This markdown styling comes from GitHub's design system and is modified to
 suit our needs.
 - Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
 - Rename "markdown-body" to "container" 
-- Point color variables to ours
+- Point color variables to ours. Loosely:
+	- canvas-* => bg
+	- fg-default => text
+	- fg-muted => sub
+	- border-* => sub
+	- neutral-muted => bg
 - Remove class-based selectors
+- Add color for links
 */
-
 .container {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
 		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -14,19 +19,21 @@ suit our needs.
 	line-height: 1.5;
 	word-wrap: break-word;
 }
+.container a {
+	color: var(--main-color);
+}
 .container kbd {
 	display: inline-block;
 	padding: 3px 5px;
 	font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
 		Liberation Mono, monospace;
 	line-height: 10px;
-	color: var(--color-fg-default);
+	color: var(--text-color);
 	vertical-align: middle;
-	background-color: var(--color-canvas-subtle);
-	border: solid 1px var(--color-neutral-muted);
-	border-bottom-color: var(--color-neutral-muted);
+	background-color: var(--bg-color);
+	border: solid 1px var(--sub-color);
 	border-radius: 6px;
-	box-shadow: inset 0 -1px 0 var(--color-neutral-muted);
+	box-shadow: inset 0 -1px 0 var(--sub-color);
 }
 .container::before {
 	display: table;
@@ -62,13 +69,13 @@ suit our needs.
 	height: 0.25em;
 	padding: 0;
 	margin: 24px 0;
-	background-color: var(--color-border-default);
+	background-color: var(--sub-color);
 	border: 0;
 }
 .container blockquote {
 	padding: 0 1em;
-	color: var(--color-fg-muted);
-	border-left: 0.25em solid var(--color-border-default);
+	color: var(--sub-color);
+	border-left: 0.25em solid var(--sub-color);
 }
 .container blockquote > :first-child {
 	margin-top: 0;
@@ -105,12 +112,12 @@ suit our needs.
 .container h1 {
 	padding-bottom: 0.3em;
 	font-size: 2em;
-	border-bottom: 1px solid var(--color-border-muted);
+	border-bottom: 1px solid var(--sub-color);
 }
 .container h2 {
 	padding-bottom: 0.3em;
 	font-size: 1.5em;
-	border-bottom: 1px solid var(--color-border-muted);
+	border-bottom: 1px solid var(--sub-color);
 }
 .container h3 {
 	font-size: 1.25em;
@@ -123,7 +130,7 @@ suit our needs.
 }
 .container h6 {
 	font-size: 0.85em;
-	color: var(--color-fg-muted);
+	color: var(--sub-color);
 }
 .container ul,
 .container ol {
@@ -181,14 +188,14 @@ suit our needs.
 .container table th,
 .container table td {
 	padding: 6px 13px;
-	border: 1px solid var(--color-border-default);
+	border: 1px solid var(--sub-color);
 }
 .container table tr {
-	background-color: var(--color-canvas-default);
-	border-top: 1px solid var(--color-border-muted);
+	background-color: var(--bg-color);
+	border-top: 1px solid var(--sub-color);
 }
 .container table tr:nth-child(2n) {
-	background-color: var(--color-canvas-subtle);
+	background-color: var(--bg-color);
 }
 .container table img {
 	background-color: transparent;
@@ -196,7 +203,7 @@ suit our needs.
 .container img {
 	max-width: 100%;
 	box-sizing: content-box;
-	background-color: var(--color-canvas-default);
+	background-color: var(--bg-color);
 }
 .container img[align="right"] {
 	padding-left: 20px;
@@ -209,7 +216,7 @@ suit our needs.
 	padding: 0.2em 0.4em;
 	margin: 0;
 	font-size: 85%;
-	background-color: var(--color-neutral-muted);
+	background-color: var(--bg-color);
 	border-radius: 6px;
 }
 .container code br,
@@ -238,7 +245,7 @@ suit our needs.
 	overflow: auto;
 	font-size: 85%;
 	line-height: 1.45;
-	background-color: var(--color-canvas-subtle);
+	background-color: var(--bg-color);
 	border-radius: 6px;
 }
 .container pre code,

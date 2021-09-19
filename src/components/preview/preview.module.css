@@ -24,13 +24,13 @@
 .paper {
 	--scroll-bg: transparent;
 	--scroll-fg: var(--sub-color);
+	max-width: 80ch;
+
+	scrollbar-width: thin;
+	scrollbar-color: var(--scroll-bg) var(--scroll-fg);
 }
 .paper::-webkit-scrollbar {
 	width: 16px;
-}
-.paper {
-	scrollbar-width: thin;
-	scrollbar-color: var(--scroll-bg) var(--scroll-fg);
 }
 .paper::-webkit-scrollbar-track {
 	background: var(--scroll-bg);
