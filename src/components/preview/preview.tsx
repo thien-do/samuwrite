@@ -4,7 +4,7 @@ import { PrefsState } from "../prefs/state";
 import { THEME_DETAILS } from "../theme/theme";
 import s from "./preview.module.css";
 import { usePreviewHtml } from "./state/html";
-import "./theme/tailwind.css";
+import sGitHub from "./theme/github.module.css";
 
 interface Props {
 	editor: Editor | null;
@@ -26,10 +26,7 @@ export const Preview = (props: Props): JSX.Element => {
 		<div className={s.container}>
 			<div className={[s.paper].join(" ")} style={getPaperStyle(props)}>
 				<div
-					className={[
-						s.content,
-						"prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto",
-					].join(" ")}
+					className={[s.content, sGitHub.container].join(" ")}
 					dangerouslySetInnerHTML={{ __html }}
 				/>
 			</div>
