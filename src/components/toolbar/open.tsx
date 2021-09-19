@@ -8,6 +8,7 @@ import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
+import { useCallback } from "react";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -43,7 +44,7 @@ const getMoreMenu = (props: Props): ButtonMoreMenuItem[] => {
 };
 
 export const ToolbarOpen = (props: Props): JSX.Element => {
-	const open = async () => {
+	const open = useCallback(async () => {
 		const [handle] = await window.showOpenFilePicker({
 			multiple: false,
 			types: fileSystem.optionTypes,
@@ -51,7 +52,14 @@ export const ToolbarOpen = (props: Props): JSX.Element => {
 		});
 		const { editor, file } = props;
 		await openFile({ editor, file, handle });
-	};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [
+		props.file.dirty,
+		props.file.setDirty,
+		props.file.setHandle,
+		props.editor.getModel,
+		props.editor.setModel,
+	]);
 
 	useShortcut(SHORTCUTS.OPEN, open);
 

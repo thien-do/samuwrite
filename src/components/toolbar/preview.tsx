@@ -5,6 +5,7 @@ import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
 import { PrefsState } from "../prefs/state";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
+import { useCallback } from "react";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -25,7 +26,11 @@ const toggleLayout = (layout: PrefsState["layout"]): PrefsState["layout"] => {
 };
 
 export const ToolbarPreview = (props: Props): JSX.Element => {
-	const togglePreview = () => void props.prefs.setLayout(toggleLayout);
+	const togglePreview = useCallback(
+		() => void props.prefs.setLayout(toggleLayout),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[props.prefs.setLayout, toggleLayout]
+	);
 
 	useShortcut(SHORTCUTS.PREVIEW, togglePreview);
 

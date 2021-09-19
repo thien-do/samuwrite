@@ -4,7 +4,7 @@ import { Button } from "~/src/components/button/button";
 import { Popover } from "../popover/popover";
 import { PrefsPanel } from "../prefs/panel/panel";
 import { PrefsState } from "../prefs/state";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
 
@@ -16,7 +16,10 @@ interface Props {
 export const ToolbarPrefs = (props: Props): JSX.Element => {
 	const [visible, setVisible] = useState(false);
 
-	const togglePrefs = () => void setVisible((v) => !v);
+	const togglePrefs = useCallback(
+		() => void setVisible((v) => !v),
+		[setVisible]
+	);
 
 	useShortcut(SHORTCUTS.PREFERENCES, togglePrefs);
 

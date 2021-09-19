@@ -4,6 +4,7 @@ import { Button } from "~/src/components/button/button";
 import { PrefsState } from "~src/components/prefs/state";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
+import { useCallback } from "react";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -11,7 +12,11 @@ interface Props {
 }
 
 export const ToolbarVim = (props: Props): JSX.Element => {
-	const toggleVimMode = () => props.prefs.setVim((v) => !v);
+	const toggleVimMode = useCallback(
+		() => props.prefs.setVim((v) => !v),
+		// eslint-disable-next-line
+		[props.prefs.setVim]
+	);
 
 	useShortcut(SHORTCUTS.VIM_MODE, toggleVimMode);
 

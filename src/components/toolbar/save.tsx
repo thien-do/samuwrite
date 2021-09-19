@@ -7,6 +7,7 @@ import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
+import { useCallback } from "react";
 
 interface Props {
 	file: FileState;
@@ -59,7 +60,16 @@ const saveAs = (props: Props): ButtonMoreMenuItem => ({
 });
 
 export const ToolbarSave = (props: Props): JSX.Element => {
-	const saveFile = () => void save({ props, saveAs: false });
+	const saveFile = useCallback(
+		() => void save({ props, saveAs: false }),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[
+			props.editor.getValue,
+			props.file.handle,
+			props.file.setHandle,
+			props.file.setDirty,
+		]
+	);
 
 	useShortcut(SHORTCUTS.SAVE, saveFile);
 
