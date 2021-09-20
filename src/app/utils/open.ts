@@ -6,8 +6,22 @@ import { ERRORS } from "~src/utils/error";
 
 interface Params {
 	editor: Editor | null;
-	file: FileState;
-	handle: FileHandle | null;
+	/**
+	 * The current file dirty
+	 */
+	fileDirty: FileState["dirty"];
+	setFileDirty: FileState["setDirty"];
+	/**
+	 * The handle to open a file. Note that "openFile" does not specify a way
+	 * to obtain a handle (e.g. open the file picker). It only "read" the file
+	 * content from a handle.
+	 *
+	 * Note that this is a new handle to be opened, not the handle of the
+	 * current file. This is why the type is intentionally explicit, and not
+	 * `FileState["handle"]`.
+	 */
+	fileHandle: FileHandle | null;
+	setFileHandle: FileState["setHandle"];
 }
 
 const confirmUnsaved = async (): Promise<boolean> => {
@@ -21,10 +35,10 @@ const confirmUnsaved = async (): Promise<boolean> => {
 };
 
 const updateEditor = async (params: Params): Promise<void> => {
-	const { editor, handle } = params;
+	const { editor, fileHandle } = params;
 	if (editor === null) throw ERRORS.editorNull;
 	editor.getModel()?.dispose();
-	const text = handle === null ? "" : await fileSystem.safeRead(handle);
+	const text = fileHandle === null ? "" : await fileSystem.safeRead(fileHandle);
 	const model = monaco.editor.createModel(text, "markdown");
 	editor.setModel(model);
 };
@@ -35,14 +49,14 @@ const updateEditor = async (params: Params): Promise<void> => {
  */
 export const openFile = async (params: Params): Promise<void> => {
 	// Warn if there are unsaved changes
-	if (params.file.dirty === true) {
+	if (params.fileDirty === true) {
 		const confirmed = await confirmUnsaved();
 		if (confirmed === false) return;
 	}
 
 	// Set the state
-	params.file.setHandle(params.handle);
-	params.file.setDirty(false);
+	params.setFileHandle(params.fileHandle);
+	params.setFileDirty(false);
 
 	// Update editor
 	await updateEditor(params);

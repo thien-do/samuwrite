@@ -21,27 +21,36 @@ interface Props {
  * Memoized our callbacks so they can be used safely in effects
  */
 const useOpenCallbacks = (props: Props) => {
-	const { editor, file } = props;
+	const editor = props.editor;
+	const fileDirty = props.file.dirty;
+	const setFileDirty = props.file.setDirty;
+	const fileRecent = props.file.recent;
+	const setFileHandle = props.file.setHandle;
+
 	const callbacks = useMemo(() => {
+		const params = { editor, fileDirty, setFileDirty, setFileHandle };
+
 		const open = async () => {
-			const [handle] = await window.showOpenFilePicker({
+			const [fileHandle] = await window.showOpenFilePicker({
 				multiple: false,
 				types: fileSystem.optionTypes,
 				excludeAcceptAllOption: false,
 			});
-			await openFile({ editor, file, handle });
+			await openFile({ ...params, fileHandle });
 		};
+
 		const openNew = async () => {
-			console.log("ahihi");
-			await openFile({ editor, file, handle: null });
+			await openFile({ ...params, fileHandle: null });
 		};
+
 		const openRecent = async () => {
-			const recent = file.recent;
-			if (recent === null) throw ERRORS.recentNull;
-			await openFile({ editor, file, handle: recent });
+			if (fileRecent === null) throw ERRORS.recentNull;
+			await openFile({ ...params, fileHandle: fileRecent });
 		};
+
 		return { open, openNew, openRecent };
-	}, [editor, file]);
+	}, [editor, fileDirty, setFileDirty, fileRecent, setFileHandle]);
+
 	return callbacks;
 };
 

@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import { SetState } from "~src/utils/state/type";
 import { get, set } from "idb-keyval";
+import { useEffect, useState } from "react";
+import { SetState } from "~src/utils/state/type";
 
 export type FileHandle = FileSystemFileHandle;
 
@@ -33,10 +33,5 @@ export const useFile = (): FileState => {
 		setRecent(handle);
 	}, [handle]);
 
-	const state = useMemo(
-		() => ({ handle, setHandle, dirty, setDirty, recent, setRecent }),
-		[handle, dirty, recent]
-	);
-
-	return state;
+	return { handle, setHandle, dirty, setDirty, recent, setRecent };
 };
