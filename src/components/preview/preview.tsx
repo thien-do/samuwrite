@@ -5,6 +5,7 @@ import { THEME_DETAILS } from "../theme/theme";
 import s from "./preview.module.css";
 import { usePreviewHtml } from "./state/html";
 import sGitHub from "./theme/github.module.css";
+// import sSerif from "./theme/serif/serif";
 
 interface Props {
 	editor: Editor | null;

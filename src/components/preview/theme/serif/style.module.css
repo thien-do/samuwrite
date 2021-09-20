@@ -1,0 +1,156 @@
+@font-face {
+	font-family: "STIX2Text";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("./STIXTwoText.woff2") format("woff2");
+}
+@font-face {
+	font-family: "STIX2Text";
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("./STIXTwoText-Italic.woff2") format("woff2");
+}
+.container {
+	font-family: "STIX2Text", "Georgia", Keyboard, Times, "Hiragino Mincho ProN",
+		"ヒラギノ明朝 ProN", serif;
+	font-size: 16px;
+	line-height: calc(31 / 19);
+	text-align: justify;
+	hyphens: auto;
+}
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6,
+.container strong,
+.container blockquote em {
+	font-weight: 600;
+}
+.container h1 {
+	margin-top: calc((62 / 23) * 1em);
+	margin-bottom: calc((62 / 23) * 1em);
+	font-size: calc((23 / 19) * 1em);
+	line-height: calc(31 / 23);
+	letter-spacing: 0.5px;
+}
+.container h2 {
+	margin-top: calc((62 / 21) * 1em);
+	margin-bottom: calc((31 / 21) * 1em);
+	font-size: calc((21 / 19) * 1em);
+	line-height: calc(31 / 21);
+}
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+	margin-top: calc((31 / 19) * 1em);
+	font-size: 1em;
+}
+.container h3,
+.container h4,
+.container h5 {
+	margin-bottom: 0;
+}
+.container h3,
+.container h4 {
+	line-height: calc(31 / 19);
+}
+.container h4 {
+	font-style: italic;
+}
+.container h5,
+.container h6 {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.container h6 {
+	position: relative;
+	top: calc((0.55 / 16.4673) * 1em);
+	margin-bottom: calc((0.65 / 16.4673) * -1em);
+}
+.container h1 + :-webkit-any(h1, h2) {
+	margin-top: calc((46 / 19) * -1em);
+}
+.container h2 + :-webkit-any(h1, h2) {
+	margin-top: calc((15 / 19) * -1em);
+}
+.container :-webkit-any(h1, h2, h3, h4, h5, h6) + :-webkit-any(h3, h4, h5, h6),
+.container .container > h6:first-child {
+	margin-top: 0;
+}
+.container p,
+.container ol,
+.container ul,
+.container dl,
+.container figure,
+.container blockquote,
+.container pre,
+.container table {
+	margin: calc((31 / 19) * 1em) auto 0;
+}
+.container
+	:-webkit-any(h3, h4, h5)
+	+ :-webkit-any(p, ol, ul, dl, figure, blockquote, pre, table),
+.container :-webkit-any(h1, h2, h3, h4, h5) + h6 + *,
+.container hr + h6 {
+	margin-top: 0;
+}
+.container ul,
+.container ol {
+	padding-left: calc((40 / 19) * 1em);
+}
+.container ul {
+	list-style: none;
+}
+.container ul > li:before {
+	content: "• ";
+	float: left;
+	margin-left: calc((21 / 19) * -1em);
+}
+.container blockquote ol,
+.container blockquote ul {
+	margin-left: calc((31 / 19) * -1em);
+}
+.container blockquote {
+	margin-left: calc((16 / 19) * -1em);
+	margin-right: calc((16 / 19) * -1em);
+	padding-left: calc((40 / 19) * 1em);
+	padding-right: calc((40 / 19) * 1em);
+	font-style: italic;
+}
+.container blockquote em strong,
+.container blockquote strong em {
+	font-weight: 700;
+}
+.container hr {
+	margin-top: calc((31 / 19) * 1em);
+	margin-bottom: calc((30 / 19) * 1em);
+}
+.container table {
+	font-size: calc((16 / 19) * 1em);
+	line-height: calc(25 / 16);
+}
+.container th {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.container h1 :-webkit-any(code, samp, kbd, strong) {
+	font-weight: 700;
+}
+.container :-webkit-any(h2, h4, h5, h6) :-webkit-any(code, samp, kbd) {
+	font-weight: 600;
+}
+.container hr,
+.container caption,
+.container tbody th,
+.container td {
+	border-bottom-color: var(--sub-color);
+}
+.container tbody th,
+.container td {
+	border-top-color: var(--sub-color);
+}
