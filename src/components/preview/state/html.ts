@@ -35,10 +35,12 @@ export const usePreviewHtml = (params: Params): string => {
 		getHtml(editor).then((text) => setHtml(text));
 
 		// Listen for changes
-		const listener = editor.onDidChangeModelContent(async () => {
-			setHtml(await getHtml(editor));
-		});
-		return () => listener.dispose();
+		const handler = async () => void setHtml(await getHtml(editor));
+		const listeners = [
+			editor.onDidChangeModelContent(handler),
+			editor.onDidChangeModel(handler), // Open new file
+		];
+		return () => listeners.forEach((l) => l.dispose());
 	}, [editor]);
 
 	return html;
