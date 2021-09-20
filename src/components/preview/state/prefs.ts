@@ -1,7 +1,7 @@
 import { useStorageState } from "~src/utils/state/storage";
 import { SetState } from "~src/utils/state/type";
 
-export interface PreviewState {
+export interface PreviewPrefsState {
 	/**
 	 * Whether the preview panel is visible or not. It can be full or split
 	 * with the editor (see "previewSplit").
@@ -16,7 +16,7 @@ export interface PreviewState {
 	setPreviewSplit: SetState<boolean>;
 }
 
-export const usePrefsPreview = (): PreviewState => {
+export const usePreviewPrefs = (): PreviewPrefsState => {
 	const [previewVisible, setPreviewVisible] = useStorageState<boolean>({
 		defaultValue: false,
 		storageKey: "preview-visible",
