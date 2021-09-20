@@ -7,10 +7,12 @@ interface Props {
 const getText = (key: string): string => {
 	switch (key) {
 		case "command":
+		case "meta":
 			return "⌘";
 		case "ctrl":
 			return "⌃";
 		case "alt":
+		case "option":
 			return "⌥";
 		case "shift":
 			return "⇧";
