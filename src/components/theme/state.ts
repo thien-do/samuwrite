@@ -7,7 +7,7 @@ export interface ThemeState {
 	setTheme: SetState<ThemeName>;
 }
 
-export const useThemeState = (): ThemeState => {
+export const usePrefsTheme = (): ThemeState => {
 	const [theme, setTheme] = useStorageState<ThemeName>({
 		storageKey: "theme",
 		defaultValue: "bushido",

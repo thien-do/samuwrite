@@ -19,17 +19,12 @@ const print = (_props: Props): ButtonMoreItem => ({
 	shortcut: SHORTCUTS.print,
 });
 
-const updater = (layout: PrefsState["layout"]): PrefsState["layout"] => {
-	if (layout !== "editor") return "editor";
-	// return "preview";
-	// return window.innerWidth < 1000 ? "preview" : "split";
-	return "split";
-};
-
 export const ToolbarPreview = (props: Props): JSX.Element => {
-	const { setLayout } = props.prefs;
+	const { setPreviewVisible } = props.prefs;
 
-	const toggle = useCallback(() => setLayout(updater), [setLayout]);
+	const toggle = useCallback(() => {
+		setPreviewVisible((visible) => !visible);
+	}, [setPreviewVisible]);
 
 	useShortcut(SHORTCUTS.preview, toggle);
 
@@ -41,7 +36,7 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 			tooltip="Toggle Preview"
 			tooltipSingleton={props.singleton}
 			more={[print(props)]}
-			selected={props.prefs.layout !== "editor"}
+			selected={props.prefs.previewVisible}
 		/>
 	);
 };
