@@ -5,19 +5,27 @@ import { ButtonMoreItem } from "~/src/components/button/more/menu";
 import { PrefsState } from "../prefs/state";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { vote } from "~src/utils/vote";
+import { PreviewLayoutSplit } from "../preview/layout/split/split";
 
 interface Props {
 	singleton: TippyProps["singleton"];
 	prefs: PrefsState;
 }
 
-const print = (_props: Props): ButtonMoreItem => ({
-	action: () => vote(86),
-	label: "Print…",
-	shortcut: SHORTCUTS.print,
-});
+const getMoreMenu = (props: Props): ButtonMoreItem[] => [
+	{
+		type: "custom",
+		content: <PreviewLayoutSplit prefs={props.prefs} />,
+	},
+	{
+		type: "action",
+		action: () => vote(86),
+		label: "Print…",
+		shortcut: SHORTCUTS.print,
+	},
+];
 
 export const ToolbarPreview = (props: Props): JSX.Element => {
 	const { setPreviewVisible } = props.prefs;
@@ -35,7 +43,7 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 			shortcut={SHORTCUTS.preview}
 			tooltip="Toggle Preview"
 			tooltipSingleton={props.singleton}
-			more={[print(props)]}
+			more={getMoreMenu(props)}
 			selected={props.prefs.previewVisible}
 		/>
 	);

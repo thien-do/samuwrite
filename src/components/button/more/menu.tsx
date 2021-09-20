@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, Fragment } from "react";
 import { Shortcut } from "~/src/components/shortcut/shortcut";
 import s from "./menu.module.css";
 
@@ -11,7 +11,10 @@ interface ButtonMoreAction {
 	shortcut?: string;
 }
 
-export type ButtonMoreItem = ButtonMoreAction | "divider";
+export type ButtonMoreItem =
+	| { type: "divider" }
+	| ({ type: "action" } & ButtonMoreAction)
+	| { type: "custom"; content: JSX.Element };
 
 interface Props {
 	items: ButtonMoreItem[];
@@ -20,13 +23,15 @@ interface Props {
 export const ButtonMoreMenu = (props: Props): JSX.Element => (
 	<div className={s.menu}>
 		{props.items.map((item, index) =>
-			item === "divider" ? (
+			item.type === "divider" ? (
 				<hr key={index} className={s.hr} />
-			) : (
+			) : item.type === "action" ? (
 				<button className={s.item} key={item.label} onClick={item.action}>
 					<span className={s.label}>{item.label}</span>
 					{item.shortcut && <Shortcut keys={item.shortcut} />}
 				</button>
+			) : (
+				<Fragment key={index}>{item.content}</Fragment>
 			)
 		)}
 	</div>

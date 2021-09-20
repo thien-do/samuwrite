@@ -97,6 +97,7 @@ export const ToolbarSave = (props: Props): JSX.Element => {
 			tooltipSingleton={props.singleton}
 			more={[
 				{
+					type: "action",
 					action: callbacks.saveAs,
 					label: "Save as…",
 					shortcut: SHORTCUTS.saveAs,

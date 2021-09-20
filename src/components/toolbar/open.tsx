@@ -60,21 +60,23 @@ type Callbacks = ReturnType<typeof useOpenCallbacks>;
 const getMoreMenu = (props: Props, callbacks: Callbacks): ButtonMoreItem[] => {
 	const menu: ButtonMoreItem[] = [];
 	menu.push({
+		type: "action",
 		action: callbacks.openNew,
 		label: "New file",
 		shortcut: SHORTCUTS.openNew,
 	});
 	if (props.file.recent !== null) {
 		menu.push({
+			type: "action",
 			action: callbacks.openRecent,
 			label: `Open "${props.file.recent.name}"`,
 			shortcut: SHORTCUTS.openRecent,
 		});
 	}
 	menu.push(
-		"divider",
-		{ action: () => vote(84), label: "Connect to GitHub…" },
-		{ action: () => vote(85), label: "Connect to Dropbox…" }
+		{ type: "divider" },
+		{ type: "action", action: () => vote(84), label: "Connect to GitHub…" },
+		{ type: "action", action: () => vote(85), label: "Connect to Dropbox…" }
 	);
 	return menu;
 };
