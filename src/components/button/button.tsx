@@ -5,13 +5,13 @@ import { Shortcut } from "../shortcut/shortcut";
 import { Tooltip } from "../tooltip/tooltip";
 import s from "./button.module.css";
 import { ButtonMoreButton } from "./more/button";
-import { ButtonMoreMenuItem } from "./more/menu";
+import { ButtonMoreItem } from "./more/menu";
 
 interface Props {
 	Icon: IconType;
 	onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 	shortcut: string;
-	more?: ButtonMoreMenuItem[];
+	more?: ButtonMoreItem[];
 	tooltip: string;
 	tooltipSingleton?: TippyProps["singleton"];
 	selected?: boolean;

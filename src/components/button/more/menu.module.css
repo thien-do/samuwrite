@@ -44,3 +44,9 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+.hr {
+	margin: 8px 16px;
+	border: none;
+	border-top: solid 1px var(--sub-color);
+}

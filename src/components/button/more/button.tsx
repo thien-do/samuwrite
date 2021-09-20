@@ -3,11 +3,11 @@ import { VscChevronDown } from "react-icons/vsc";
 import { Popover } from "~/src/components/popover/popover";
 import { Tooltip } from "~/src/components/tooltip/tooltip";
 import s from "../button.module.css";
-import { ButtonMoreMenu, ButtonMoreMenuItem } from "./menu";
+import { ButtonMoreMenu, ButtonMoreItem } from "./menu";
 
 interface Props {
 	tooltipSingleton: TippyProps["singleton"];
-	items: ButtonMoreMenuItem[];
+	items: ButtonMoreItem[];
 }
 
 export const ButtonMoreButton = (props: Props): JSX.Element => (

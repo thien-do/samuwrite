@@ -11,7 +11,7 @@ export const Popover = forwardRef<Element, Props>(
 	(props, ref): JSX.Element => (
 		<LazyTippy
 			arrow={false}
-			duration={100}
+			duration={[0, 100]}
 			offset={[0, 8]}
 			appendTo={container}
 			ref={ref}
