@@ -4,7 +4,7 @@ import { Button } from "~/src/components/button/button";
 import { Popover } from "../popover/popover";
 import { PrefsPanel } from "../prefs/panel/panel";
 import { PrefsState } from "../prefs/state";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
 
@@ -14,15 +14,17 @@ interface Props {
 }
 
 export const ToolbarPrefs = (props: Props): JSX.Element => {
-	const [visible, setVisible] = useState(false);
+	const { setPrefsVisible } = props.prefs;
 
-	const toggle = useCallback(() => setVisible((v) => !v), [setVisible]);
+	const toggle = useCallback(() => {
+		setPrefsVisible((visible) => !visible);
+	}, [setPrefsVisible]);
 
 	useShortcut(SHORTCUTS.prefs, toggle);
 
 	return (
 		<Popover
-			visible={visible}
+			visible={props.prefs.prefsVisible}
 			onClickOutside={toggle}
 			content={<PrefsPanel prefs={props.prefs} />}
 		>
