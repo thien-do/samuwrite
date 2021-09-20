@@ -1,12 +1,12 @@
 import { TippyProps } from "@tippyjs/react";
+import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreItem } from "~/src/components/button/more/menu";
-import { PrefsState } from "../prefs/state";
-import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
-import { useCallback, useEffect } from "react";
+import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { vote } from "~src/utils/vote";
+import { PrefsState } from "../prefs/state";
 import { PreviewLayoutSplit } from "../preview/layout/split/split";
 
 interface Props {
