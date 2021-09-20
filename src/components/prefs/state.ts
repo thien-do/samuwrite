@@ -1,21 +1,21 @@
-import { LayoutState, usePrefsLayout } from "./layout";
-import { SizeState, usePrefsSize } from "./size/state";
-import { ThemeState, useThemeState } from "../theme/state";
-import { VimState, usePrefsVim } from "./vim";
+import { PreviewLayoutState, usePreviewLayout } from "../preview/layout/state";
+import { ThemePrefsState, useThemePrefs } from "../theme/state";
 import { PrefsVisibleState, usePrefsVisibleState } from "./prefs-visible";
+import { SizeState, usePrefsSize } from "./size/state";
+import { usePrefsVim, VimState } from "./vim";
 
 export interface PrefsState
-	extends ThemeState,
+	extends ThemePrefsState,
+		PreviewLayoutState,
 		VimState,
-		LayoutState,
-		PrefsVisibleState,
-		SizeState {}
+		SizeState,
+		PrefsVisibleState {}
 
-export const usePrefs = (): PrefsState => {
-	const theme = useThemeState();
-	const vim = usePrefsVim();
-	const layout = usePrefsLayout();
-	const size = usePrefsSize();
-	const prefsVisible = usePrefsVisibleState();
-	return { ...theme, ...vim, ...layout, ...prefsVisible, ...size };
-};
+export const usePrefs = (): PrefsState => ({
+	...useThemePrefs(),
+	...usePreviewLayout(),
+
+	...usePrefsVim(),
+	...usePrefsSize(),
+	...usePrefsVisibleState(),
+});

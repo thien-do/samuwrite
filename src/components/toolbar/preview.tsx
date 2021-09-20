@@ -1,35 +1,38 @@
 import { TippyProps } from "@tippyjs/react";
+import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
 import { ButtonMoreItem } from "~/src/components/button/more/menu";
-import { PrefsState } from "../prefs/state";
-import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
-import { useCallback } from "react";
+import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { vote } from "~src/utils/vote";
+import { PrefsState } from "../prefs/state";
+import { PreviewLayoutSplit } from "../preview/layout/split/split";
 
 interface Props {
 	singleton: TippyProps["singleton"];
 	prefs: PrefsState;
 }
 
-const print = (_props: Props): ButtonMoreItem => ({
-	action: () => vote(86),
-	label: "Print…",
-	shortcut: SHORTCUTS.print,
-});
-
-const updater = (layout: PrefsState["layout"]): PrefsState["layout"] => {
-	if (layout !== "editor") return "editor";
-	// return "preview";
-	// return window.innerWidth < 1000 ? "preview" : "split";
-	return "split";
-};
+const getMoreMenu = (props: Props): ButtonMoreItem[] => [
+	{
+		type: "custom",
+		content: <PreviewLayoutSplit prefs={props.prefs} />,
+	},
+	{
+		type: "action",
+		action: () => vote(86),
+		label: "Print…",
+		shortcut: SHORTCUTS.print,
+	},
+];
 
 export const ToolbarPreview = (props: Props): JSX.Element => {
-	const { setLayout } = props.prefs;
+	const { setPreviewVisible } = props.prefs;
 
-	const toggle = useCallback(() => setLayout(updater), [setLayout]);
+	const toggle = useCallback(() => {
+		setPreviewVisible((visible) => !visible);
+	}, [setPreviewVisible]);
 
 	useShortcut(SHORTCUTS.preview, toggle);
 
@@ -40,8 +43,8 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 			shortcut={SHORTCUTS.preview}
 			tooltip="Toggle Preview"
 			tooltipSingleton={props.singleton}
-			more={[print(props)]}
-			selected={props.prefs.layout !== "editor"}
+			more={getMoreMenu(props)}
+			selected={props.prefs.previewVisible}
 		/>
 	);
 };

@@ -11,14 +11,14 @@ interface Props {
 	prefs: PrefsState;
 }
 
-const layoutClass: Record<PrefsState["layout"], string> = {
-	editor: s.editorView,
-	preview: s.previewView,
-	split: s.splitView,
+const getLayoutClass = (props: Props): string => {
+	const { previewVisible, previewSplit } = props.prefs;
+	if (previewVisible === false) return s.editorView;
+	return previewSplit ? s.splitView : s.previewView;
 };
 
 export const Layout = (props: Props): JSX.Element => (
-	<div className={[s.layout, layoutClass[props.prefs.layout]].join(" ")}>
+	<div className={[s.layout, getLayoutClass(props)].join(" ")}>
 		{/* Always render Editor to avoid losing content state */}
 		<div className={s.editor}>
 			<EditorComponent
@@ -28,7 +28,7 @@ export const Layout = (props: Props): JSX.Element => (
 			/>
 		</div>
 		{/* Only render Preview when necessary to avoid re-calculating the HTML */}
-		{props.prefs.layout !== "editor" && (
+		{props.prefs.previewVisible && (
 			<div className={s.preview}>
 				<Preview editor={props.editor.value} prefs={props.prefs} />
 			</div>
