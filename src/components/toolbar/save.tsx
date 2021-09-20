@@ -1,13 +1,12 @@
 import { TippyProps } from "@tippyjs/react";
-import { FileHandle, FileState } from "~/src/components/file/state";
+import { useMemo } from "react";
 import { VscSave } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
-import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
+import { FileHandle, FileState } from "~/src/components/file/state";
+import { useShortcut } from "~src/components/shortcut/use-shortcut";
+import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
-import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
-import { useShortcut } from "~src/components/shortcut/use-shortcut";
-import { useCallback } from "react";
 
 interface Props {
 	file: FileState;
@@ -16,34 +15,39 @@ interface Props {
 }
 
 const getHandle = async (params: {
-	file: FileState;
+	fileHandle: FileState["handle"];
 	saveAs: boolean;
 }): Promise<FileHandle> => {
-	const { file, saveAs } = params;
+	const { fileHandle, saveAs } = params;
 
 	// Save existed file
-	if (file.handle !== null && saveAs === false) {
-		return file.handle;
+	if (fileHandle !== null && saveAs === false) {
+		return fileHandle;
 	}
+
 	// "Save as" or Save a new file
 	const handle = window.showSaveFilePicker({
 		suggestedName: "Untitled.md",
 		excludeAcceptAllOption: false,
 		types: fileSystem.optionTypes,
 	});
+
 	return handle;
 };
 
-const save = async (params: {
-	file: FileState;
+const saveFile = async (params: {
+	fileHandle: FileState["handle"];
+	setFileHandle: FileState["setHandle"];
+	setFileDirty: FileState["setDirty"];
 	editor: Editor;
 	saveAs: boolean;
 }): Promise<void> => {
-	const { file, editor, saveAs } = params;
+	const { fileHandle, setFileHandle, setFileDirty } = params;
+	const { editor, saveAs } = params;
 
 	// Prepare handle
-	const handle = await getHandle({ file, saveAs });
-	if (handle !== file.handle) file.setHandle(handle);
+	const handle = await getHandle({ fileHandle, saveAs });
+	if (handle !== fileHandle) setFileHandle(handle);
 
 	// Write
 	const writable = await handle.createWritable();
@@ -51,37 +55,53 @@ const save = async (params: {
 	writable.write(text);
 
 	// Done
-	file.setDirty(false);
+	setFileDirty(false);
 	await writable.close();
 };
 
-const saveAs = (props: Props): ButtonMoreMenuItem => {
-	const { file, editor } = props;
-	return {
-		action: () => void save({ file, editor, saveAs: true }),
-		label: "Save as…",
-		shortcut: SHORTCUTS.saveAs,
-	};
+/**
+ * Memoized our callbacks so they can be used safely in effects
+ */
+const useCallbacks = (props: Props) => {
+	const editor = props.editor;
+	const fileHandle = props.file.handle;
+	const setFileHandle = props.file.setHandle;
+	const setFileDirty = props.file.setDirty;
+
+	const callbacks = useMemo(() => {
+		const params = { fileHandle, setFileDirty, setFileHandle, editor };
+		const save = async () => {
+			saveFile({ ...params, saveAs: false });
+		};
+		const saveAs = async () => {
+			saveFile({ ...params, saveAs: true });
+		};
+		return { save, saveAs };
+	}, [editor, fileHandle, setFileHandle, setFileDirty]);
+
+	return callbacks;
 };
 
 export const ToolbarSave = (props: Props): JSX.Element => {
-	const { file, editor } = props;
+	const callbacks = useCallbacks(props);
 
-	const saveFile = useCallback(
-		() => void save({ file, editor, saveAs: false }),
-		[file, editor]
-	);
-
-	useShortcut(SHORTCUTS.save, saveFile);
+	useShortcut(SHORTCUTS.save, callbacks.save);
+	useShortcut(SHORTCUTS.saveAs, callbacks.saveAs);
 
 	return (
 		<Button
-			onClick={saveFile}
+			onClick={callbacks.save}
 			Icon={VscSave}
 			shortcut={SHORTCUTS.save}
 			tooltip="Save"
 			tooltipSingleton={props.singleton}
-			more={[saveAs(props)]}
+			more={[
+				{
+					action: callbacks.saveAs,
+					label: "Save as…",
+					shortcut: SHORTCUTS.saveAs,
+				},
+			]}
 		/>
 	);
 };

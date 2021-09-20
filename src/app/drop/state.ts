@@ -36,14 +36,18 @@ export const useAppDrop = (params: Params): AppDropState => {
 
 		// Get the new handle
 		const { items } = event.dataTransfer;
-		const handle = await items[0].getAsFileSystemHandle();
-		if (handle === null) throw ERRORS.dropType;
-		if (!(handle instanceof FileSystemFileHandle)) throw ERRORS.fileFolder;
+		const fileHandle = await items[0].getAsFileSystemHandle();
+		if (fileHandle === null) throw ERRORS.dropType;
+		if (!(fileHandle instanceof FileSystemFileHandle)) throw ERRORS.fileFolder;
 
 		// Load to editor
-		const editor = params.editor.value;
-		const file = params.file;
-		openFile({ editor, file, handle });
+		openFile({
+			editor: params.editor.value,
+			fileDirty: params.file.dirty,
+			setFileDirty: params.file.setDirty,
+			fileHandle,
+			setFileHandle: params.file.setHandle,
+		});
 	};
 
 	const onDragOver = (event: React.DragEvent): void => {

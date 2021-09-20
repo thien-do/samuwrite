@@ -4,8 +4,8 @@
  */
 export const SHORTCUTS = {
 	open: "mod+o",
-	new: "mod+n",
-	recent: "mod+shift+o",
+	openNew: "mod+shift+alt+n",
+	openRecent: "mod+shift+o",
 	menu: "mod+/",
 	prefs: "mod+,",
 	preview: "mod+p",

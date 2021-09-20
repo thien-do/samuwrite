@@ -1,5 +1,5 @@
 import * as monaco from "monaco-editor";
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export type Editor = monaco.editor.IStandaloneCodeEditor;
 
@@ -18,8 +18,5 @@ export interface EditorState {
  */
 export const useEditor = (): EditorState => {
 	const [value, set] = useState<Editor | null>(null);
-
-	const state = useMemo(() => ({ value, set }), [value]);
-
-	return state;
+	return { value, set };
 };
