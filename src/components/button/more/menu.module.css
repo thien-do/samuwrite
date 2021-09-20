@@ -1,5 +1,5 @@
 .menu {
-	width: 200px;
+	width: 240px;
 	padding: 8px 0;
 }
 
@@ -22,6 +22,7 @@
 	font-weight: 450;
 	font-size: 14px;
 	line-height: 21px;
+	text-align: left;
 
 	outline: 8px solid transparent;
 }
@@ -34,4 +35,12 @@
 .item:focus-visible {
 	outline-width: 2px;
 	outline-color: var(--main-color);
+}
+
+.label {
+	margin-right: 16px;
+	flex: 1 1 0px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

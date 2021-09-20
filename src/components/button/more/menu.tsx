@@ -19,7 +19,7 @@ export const ButtonMoreMenu = (props: Props): JSX.Element => (
 	<div className={s.menu}>
 		{props.items.map((item) => (
 			<button className={s.item} key={item.label} onClick={item.action}>
-				{item.label}
+				<span className={s.label}>{item.label}</span>
 				<Shortcut keys={item.shortcut} />
 			</button>
 		))}
