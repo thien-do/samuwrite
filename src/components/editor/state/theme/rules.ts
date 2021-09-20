@@ -38,6 +38,7 @@ export const getEditorThemeRules = (
 	// Mute markdown coloring
 	rules.push(
 		{ token: "comment.md", foreground: theme.sub.hex() },
+		{ token: "comment.content.md", foreground: theme.sub.hex() },
 		{ token: "keyword.md", foreground: theme.text.hex(), fontStyle: "bold" },
 		{ token: "keyword.table.header.md", foreground: theme.text.hex() },
 		{ token: "keyword.table.middle.md", foreground: theme.text.hex() },
