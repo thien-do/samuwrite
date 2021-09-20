@@ -2,12 +2,13 @@ import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscFolder } from "react-icons/vsc";
 import { Button } from "~/src/components/button/button";
-import { ButtonMoreMenuItem } from "~/src/components/button/more/menu";
+import { ButtonMoreItem } from "~/src/components/button/more/menu";
 import { FileState } from "~/src/components/file/state";
 import { openFile } from "~src/app/utils/open";
 import { useShortcut } from "~src/components/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/components/toolbar/shortcuts";
 import { ERRORS } from "~src/utils/error";
+import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 
@@ -56,11 +57,8 @@ const useOpenCallbacks = (props: Props) => {
 
 type Callbacks = ReturnType<typeof useOpenCallbacks>;
 
-const getMoreMenu = (
-	props: Props,
-	callbacks: Callbacks
-): ButtonMoreMenuItem[] => {
-	const menu: ButtonMoreMenuItem[] = [];
+const getMoreMenu = (props: Props, callbacks: Callbacks): ButtonMoreItem[] => {
+	const menu: ButtonMoreItem[] = [];
 	menu.push({
 		action: callbacks.openNew,
 		label: "New file",
@@ -73,6 +71,11 @@ const getMoreMenu = (
 			shortcut: SHORTCUTS.openRecent,
 		});
 	}
+	menu.push(
+		"divider",
+		{ action: () => vote(84), label: "Connect to GitHub…" },
+		{ action: () => vote(85), label: "Connect to Dropbox…" }
+	);
 	return menu;
 };
 
