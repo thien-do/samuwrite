@@ -1,17 +1,10 @@
 /*
 This markdown styling comes from GitHub's design system and is modified to
 suit our needs.
-- Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
-- Rename "markdown-body" to "container" 
-- Point color variables to ours. Loosely:
-	- canvas-* => bg
-	- fg-default => text
-	- fg-muted => sub
-	- border-* => sub
-	- neutral-muted => bg
-- Remove class-based selectors
-- Add color for links
+
+Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
 */
+
 .container {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
 		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
