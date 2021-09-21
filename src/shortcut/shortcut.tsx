@@ -1,4 +1,5 @@
 import { isApple } from "~/src/utils/platform";
+import { HAIR_SPACE } from "~src/utils/typography";
 
 interface Props {
 	keys: string;
@@ -22,9 +23,6 @@ const getText = (key: string): string => {
 			return key.toUpperCase();
 	}
 };
-
-// const THIN_SPACE = "\u{2009}";
-const HAIR_SPACE = "\u{200A}";
 
 export const Shortcut = (props: Props): JSX.Element => (
 	<span>{props.keys.split("+").map(getText).join(HAIR_SPACE)}</span>

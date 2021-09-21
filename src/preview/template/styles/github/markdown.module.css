@@ -1,10 +1,3 @@
-/*
-This markdown styling comes from GitHub's design system and is modified to
-suit our needs.
-
-Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
-*/
-
 .container {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
 		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -184,7 +177,6 @@ Source: https://unpkg.com/@primer/css@17.11.0/dist/markdown.css
 	border: 1px solid var(--sub-color);
 }
 .container table tr {
-	background-color: var(--bg-color);
 	border-top: 1px solid var(--sub-color);
 }
 .container table tr:nth-child(2n) {

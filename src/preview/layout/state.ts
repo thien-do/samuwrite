@@ -16,7 +16,7 @@ export interface PreviewLayoutState {
 	setPreviewSplit: SetState<boolean>;
 }
 
-export const usePreviewLayout = (): PreviewLayoutState => {
+export const usePreviewLayoutState = (): PreviewLayoutState => {
 	const [previewVisible, setPreviewVisible] = useStorageState<boolean>({
 		defaultValue: false,
 		storageKey: "preview-visible",
