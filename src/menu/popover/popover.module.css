@@ -8,18 +8,28 @@
 	padding: 8px 0;
 }
 
-.enter {
+.enter,
+.leave {
 	transition-property: transform opacity;
-	transition-duration: 2000ms;
 	transform-origin: bottom;
+	/* https://easings.net/#easeOutQuint */
+	transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.enterFrom {
+.enter {
+	transition-duration: 100ms;
+}
+
+.leave {
+	transition-duration: 300ms;
+}
+
+.hide {
 	opacity: 0;
 	transform: rotateX(10deg);
 }
 
-.enterTo {
+.show {
 	opacity: 1;
 	transform: rotateX(0deg);
 }
