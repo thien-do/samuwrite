@@ -1,0 +1,115 @@
+.container blockquote,
+.container dl,
+.container dd,
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6,
+.container hr,
+.container figure,
+.container p,
+.container pre {
+	margin: 0;
+}
+.container button {
+	background-color: transparent;
+	background-image: none;
+}
+.container fieldset {
+	margin: 0;
+	padding: 0;
+}
+.container ol,
+.container ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.container *,
+.container ::before,
+.container ::after {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+	border-color: currentColor;
+}
+.container hr {
+	border-top-width: 1px;
+}
+.container img {
+	border-style: solid;
+}
+.container textarea {
+	resize: vertical;
+}
+.container input::placeholder,
+.container textarea::placeholder {
+	opacity: 1;
+	color: #9ca3af;
+}
+.container button,
+.container [role="button"] {
+	cursor: pointer;
+}
+.container :-moz-focusring {
+	outline: auto;
+}
+.container table {
+	border-collapse: collapse;
+}
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+	font-size: inherit;
+	font-weight: inherit;
+}
+.container a {
+	color: inherit;
+	text-decoration: inherit;
+}
+.container button,
+.container input,
+.container optgroup,
+.container select,
+.container textarea {
+	padding: 0;
+	line-height: inherit;
+	color: inherit;
+}
+.container pre,
+.container code,
+.container kbd,
+.container samp {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+}
+.container img,
+.container svg,
+.container video,
+.container canvas,
+.container audio,
+.container iframe,
+.container embed,
+.container object {
+	display: block;
+	vertical-align: middle;
+}
+.container img,
+.container video {
+	max-width: 100%;
+	height: auto;
+}
+.container [hidden] {
+	display: none;
+}
+.container *,
+.container ::before,
+.container ::after {
+	--tw-border-opacity: 1;
+	border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+}

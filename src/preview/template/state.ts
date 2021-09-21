@@ -2,7 +2,7 @@ import { useStorageState } from "~src/utils/state/storage";
 import { SetState } from "~src/utils/state/type";
 import serif from "./styles/serif/serif";
 import github from "./styles/github.module.css";
-import tailwind from "./styles/tailwind.module.css";
+import tailwind from "./styles/tailwind/tailwind";
 import { EN_DASH } from "~src/utils/typography";
 
 export const PREVIEW_TEMPLATE_NAMES = ["tailwind", "github", "serif"] as const;
