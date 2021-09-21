@@ -30,11 +30,16 @@ export const Menu = (props: Props): JSX.Element => {
 					<HLMenu.Button
 						ref={setButton}
 						as={Button}
-						selected={true}
+						selected={open}
 						{...props.button}
 					/>
 					<Portal>
-						<div ref={menuRef} style={styles.popper} {...attributes.popper}>
+						<div
+							ref={menuRef}
+							style={styles.popper}
+							{...attributes.popper}
+							className={s.popper}
+						>
 							<Transition
 								show={open}
 								enter={s.enter}

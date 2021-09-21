@@ -1,22 +1,25 @@
+.popper {
+	z-index: 1;
+	perspective: 240px;
+}
+
 .menu {
 	min-width: 240px;
 	padding: 8px 0;
-
-	z-index: 1;
-	position: relative;
 }
 
 .enter {
 	transition-property: transform opacity;
-	transition-duration: 10s;
+	transition-duration: 2000ms;
+	transform-origin: bottom;
 }
 
 .enterFrom {
 	opacity: 0;
-	transform: scale(0.5);
+	transform: rotateX(10deg);
 }
 
 .enterTo {
 	opacity: 1;
-	transform: scale(1);
+	transform: rotateX(0deg);
 }
