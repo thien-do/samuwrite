@@ -1,0 +1,8 @@
+/* Higher specificity than popover */
+.menu:not(.x) {
+	min-width: 240px;
+	padding: 8px 0;
+
+	z-index: 1;
+	position: relative;
+}
