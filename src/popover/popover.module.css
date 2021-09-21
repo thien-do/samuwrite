@@ -1,11 +1,6 @@
 .container {
 	border-radius: 4px;
 	outline: 0;
-	transition-property: transform, visibility, opacity;
-	padding: 16px;
-
-	font-size: 14px;
-	line-height: 20px;
 
 	color: var(--text-color);
 	border: solid 1px var(--sub-color);

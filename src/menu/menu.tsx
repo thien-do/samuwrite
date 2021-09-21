@@ -1,6 +1,6 @@
-import { Menu as HLMenu, Portal } from "@headlessui/react";
+import { Menu as HLMenu, Portal, Transition } from "@headlessui/react";
 import { TippyProps } from "@tippyjs/react";
-import { useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { usePopper } from "react-popper";
 import { Button, ButtonProps } from "~src/button/button";
 import { MenuItem, MenuItemComponent } from "./item/item";
@@ -15,7 +15,12 @@ interface Props {
 
 export const Menu = (props: Props): JSX.Element => {
 	const [button, setButton] = useState<HTMLButtonElement | null>(null);
+
+	// Transition + Portal + Popper is quite complicated. See:
+	// https://github.com/tailwindlabs/headlessui/issues/154#issuecomment-742085996
+	const menuRef = useRef<HTMLDivElement | null>(null);
 	const [menu, setMenu] = useState<HTMLDivElement | null>(null);
+
 	const { styles, attributes } = usePopper(button, menu, { placement: "top" });
 
 	return (
@@ -23,22 +28,35 @@ export const Menu = (props: Props): JSX.Element => {
 			{({ open }) => (
 				<>
 					<HLMenu.Button
-						as={Button}
 						ref={setButton}
-						selected={open}
+						as={Button}
+						selected={true}
 						{...props.button}
 					/>
 					<Portal>
-						<HLMenu.Items
-							ref={setMenu}
-							style={styles.popper}
-							className={[sPopover.container, s.menu].join(" ")}
-							{...attributes.popper}
-						>
-							{props.items.map((item, index) => (
-								<MenuItemComponent key={index} item={item} />
-							))}
-						</HLMenu.Items>
+						<div ref={menuRef} style={styles.popper} {...attributes.popper}>
+							<Transition
+								show={open}
+								enter={s.enter}
+								enterFrom={s.enterFrom}
+								enterTo={s.enterTo}
+								leave={s.enter}
+								leaveFrom={s.enterTo}
+								leaveTo={s.enterFrom}
+								as={Fragment}
+								beforeEnter={() => setMenu(menuRef.current)}
+								afterLeave={() => setMenu(null)}
+							>
+								<HLMenu.Items
+									static
+									className={[sPopover.container, s.menu].join(" ")}
+								>
+									{props.items.map((item, index) => (
+										<MenuItemComponent key={index} item={item} />
+									))}
+								</HLMenu.Items>
+							</Transition>
+						</div>
 					</Portal>
 				</>
 			)}

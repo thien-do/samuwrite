@@ -1,8 +1,22 @@
-/* Higher specificity than popover */
-.menu:not(.x) {
+.menu {
 	min-width: 240px;
 	padding: 8px 0;
 
 	z-index: 1;
 	position: relative;
+}
+
+.enter {
+	transition-property: transform opacity;
+	transition-duration: 10s;
+}
+
+.enterFrom {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.enterTo {
+	opacity: 1;
+	transform: scale(1);
 }
