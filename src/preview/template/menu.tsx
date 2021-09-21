@@ -17,10 +17,7 @@ const toMenuItem =
 		};
 	};
 
-export const getPreviewTemplateMenu = (prefs: PrefsState): MenuItem[] => {
-	const menu: MenuItem[] = [
-		{ type: "heading", text: "Preview Template" },
-		...PREVIEW_TEMPLATE_NAMES.map(toMenuItem(prefs)),
-	];
-	return menu;
-};
+export const getPreviewTemplateMenu = (prefs: PrefsState): MenuItem[] => [
+	{ type: "heading", text: "Preview Template" },
+	...PREVIEW_TEMPLATE_NAMES.map(toMenuItem(prefs)),
+];

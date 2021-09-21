@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~src/button/button";
 import { MenuItem } from "~src/menu/item/item";
+import { getPreviewSplitMenu } from "~src/preview/layout/split";
 import { getPreviewTemplateMenu } from "~src/preview/template/menu";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
@@ -15,14 +16,8 @@ interface Props {
 }
 
 const getMoreMenu = (props: Props): MenuItem[] => [
-	// {
-	// 	type: "custom",
-	// 	content: <PreviewLayoutSplit prefs={props.prefs} />,
-	// },
-	// {
-	// 	type: "custom",
-	// 	content: <PreviewTemplateSelect prefs={props.prefs} />,
-	// },
+	...getPreviewSplitMenu(props.prefs),
+	{ type: "divider" },
 	...getPreviewTemplateMenu(props.prefs),
 	{ type: "divider" },
 	{
