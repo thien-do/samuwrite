@@ -6,7 +6,7 @@ interface Props {
 }
 
 const getOthers = ({ scheme }: ThemeDetail): string => `
---shadow-opacity: ${scheme === "light" ? "0.05" : "0.3"};
+--shadow-opacity: ${scheme === "light" ? "0.05" : "0.2"};
 --border-inset: 0 0 0 1px ${scheme === "light" ? "white inset" : "black"};
 `;
 

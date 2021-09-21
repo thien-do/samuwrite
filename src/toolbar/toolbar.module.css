@@ -8,13 +8,16 @@
 	/* The opacity and backdrop-filter must be defined on the same element to
 	avoid laggy transition */
 	opacity: 0;
-	transition: opacity 300ms ease-out;
+	transition-property: opacity;
+	transition-timing-function: var(--ease-out-quint);
+	transition-duration: 1000ms;
 
 	padding: 8px 48px;
 }
 
 .buffer.show .container {
 	opacity: 1;
+	transition-duration: 200ms;
 }
 
 @supports (backdrop-filter: blur(20px)) {

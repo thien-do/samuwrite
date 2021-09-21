@@ -8,18 +8,27 @@
 	padding: 8px 0;
 }
 
-.enter {
+.enter,
+.leave {
 	transition-property: transform opacity;
-	transition-duration: 2000ms;
 	transform-origin: bottom;
+	transition-timing-function: var(--ease-out-quint);
 }
 
-.enterFrom {
+.enter {
+	transition-duration: 150ms;
+}
+
+.leave {
+	transition-duration: 450ms;
+}
+
+.hide {
 	opacity: 0;
 	transform: rotateX(10deg);
 }
 
-.enterTo {
+.show {
 	opacity: 1;
 	transform: rotateX(0deg);
 }

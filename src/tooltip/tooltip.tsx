@@ -9,8 +9,8 @@ if (container === null) throw Error(`#portal is null`);
 
 // https://www.nngroup.com/articles/timing-exposing-content/
 const timing: TippyProps = {
-	delay: [500, 300],
-	duration: [100, 100],
+	delay: [500, 500],
+	duration: [100, 300],
 };
 
 export const TooltipSource = (
@@ -19,7 +19,7 @@ export const TooltipSource = (
 	<Tippy
 		{...timing}
 		appendTo={container}
-		moveTransition="transform 300ms ease-out"
+		moveTransition="transform 500ms var(--ease-out-quint)"
 		{...props}
 	/>
 );

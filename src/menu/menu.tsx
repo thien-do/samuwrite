@@ -1,12 +1,10 @@
 import { Menu as HLMenu } from "@headlessui/react";
-import { TippyProps } from "@tippyjs/react";
 import { useState } from "react";
 import { Button, ButtonProps } from "~src/button/button";
 import { MenuItem } from "./item/item";
 import { MenuPopover } from "./popover/popover";
 
 interface Props {
-	tooltipSingleton: TippyProps["singleton"];
 	items: MenuItem[];
 	button: ButtonProps;
 }

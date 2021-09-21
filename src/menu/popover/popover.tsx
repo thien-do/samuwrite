@@ -39,11 +39,11 @@ export const MenuPopover = (props: Props): JSX.Element => {
 				<Transition
 					show={props.open}
 					enter={s.enter}
-					enterFrom={s.enterFrom}
-					enterTo={s.enterTo}
-					leave={s.enter}
-					leaveFrom={s.enterTo}
-					leaveTo={s.enterFrom}
+					enterFrom={s.hide}
+					enterTo={s.show}
+					leave={s.leave}
+					leaveFrom={s.show}
+					leaveTo={s.hide}
 					as={Fragment}
 					beforeEnter={() => setContainer(containerRef.current)}
 					afterLeave={() => setContainer(null)}

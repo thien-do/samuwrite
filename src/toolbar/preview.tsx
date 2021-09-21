@@ -3,27 +3,23 @@ import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~src/button/button";
 import { MenuItem } from "~src/menu/item/item";
-// import { PreviewTemplateSelect } from "~src/preview/template/select/select";
+import { getPreviewSplitMenu } from "~src/preview/layout/split";
+import { getPreviewTemplateMenu } from "~src/preview/template/menu";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { vote } from "~src/utils/vote";
 import { PrefsState } from "../prefs/state";
-// import { PreviewLayoutSplit } from "../preview/layout/split/split";
 
 interface Props {
 	singleton: TippyProps["singleton"];
 	prefs: PrefsState;
 }
 
-const getMoreMenu = (_props: Props): MenuItem[] => [
-	// {
-	// 	type: "custom",
-	// 	content: <PreviewLayoutSplit prefs={props.prefs} />,
-	// },
-	// {
-	// 	type: "custom",
-	// 	content: <PreviewTemplateSelect prefs={props.prefs} />,
-	// },
+const getMoreMenu = (props: Props): MenuItem[] => [
+	...getPreviewSplitMenu(props.prefs),
+	{ type: "divider" },
+	...getPreviewTemplateMenu(props.prefs),
+	{ type: "divider" },
 	{
 		type: "action",
 		action: () => vote(86),

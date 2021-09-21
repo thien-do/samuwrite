@@ -9,7 +9,10 @@ interface MenuAction {
 	shortcut?: string;
 }
 
-export type MenuItem = { type: "divider" } | ({ type: "action" } & MenuAction);
+export type MenuItem =
+	| { type: "divider" }
+	| { type: "heading"; text: string }
+	| ({ type: "action" } & MenuAction);
 
 interface Props {
 	item: MenuItem;
@@ -33,6 +36,8 @@ export const MenuItemComponent = (props: Props): JSX.Element => {
 	switch (item.type) {
 		case "divider":
 			return <hr className={s.hr} />;
+		case "heading":
+			return <div className={s.heading}>{item.text}</div>;
 		case "action":
 			return <Menu.Item>{actionRender(item)}</Menu.Item>;
 	}
