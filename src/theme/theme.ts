@@ -1,5 +1,5 @@
 import Color from "color";
-import * as colors from "./colors/colors";
+import * as details from "./details/details";
 
 export const THEME_NAMES = [
 	"bushido",
@@ -39,15 +39,15 @@ export interface ThemeDetail {
 
 // This may change over time
 export const THEME_DETAILS: Record<ThemeName, ThemeDetail> = {
-	bushido: colors.bushido,
-	"serika-dark": colors.serikaDark,
-	dracula: colors.dracula,
-	nord: colors.nord,
-	"high-contrast": colors.highContrast,
+	bushido: details.bushido,
+	"serika-dark": details.serikaDark,
+	dracula: details.dracula,
+	nord: details.nord,
+	"high-contrast": details.highContrast,
 
-	paper: colors.paper,
-	"serika-light": colors.serikaLight,
-	"rose-pine-dawn": colors.rosePineDawn,
-	peach: colors.peach,
-	zumidori: colors.zumidori,
+	paper: details.paper,
+	"serika-light": details.serikaLight,
+	"rose-pine-dawn": details.rosePineDawn,
+	peach: details.peach,
+	zumidori: details.zumidori,
 };

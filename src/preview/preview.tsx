@@ -4,8 +4,7 @@ import { PrefsState } from "../prefs/state";
 import { THEME_DETAILS } from "../theme/theme";
 import s from "./preview.module.css";
 import { usePreviewHtml } from "./state/html";
-import sGitHub from "./theme/github.module.css";
-// import sSerif from "./theme/serif/serif";
+import { PREVIEW_TEMPLATE_DETAILS } from "./template/state";
 
 interface Props {
 	editor: Editor | null;
@@ -23,11 +22,12 @@ const getPaperStyle = (props: Props): CSSProperties => {
 export const Preview = (props: Props): JSX.Element => {
 	const { editor } = props;
 	const __html = usePreviewHtml({ editor });
+	const template = PREVIEW_TEMPLATE_DETAILS[props.prefs.previewTemplate];
 	return (
 		<div className={s.container}>
 			<div className={[s.paper].join(" ")} style={getPaperStyle(props)}>
 				<div
-					className={[s.content, sGitHub.container].join(" ")}
+					className={[s.content, template.className].join(" ")}
 					dangerouslySetInnerHTML={{ __html }}
 				/>
 			</div>

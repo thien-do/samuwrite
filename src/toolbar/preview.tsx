@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~src/button/button";
 import { ButtonMoreItem } from "~src/button/more/menu";
+import { PreviewTemplateSelect } from "~src/preview/template/select/select";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { vote } from "~src/utils/vote";
@@ -18,6 +19,10 @@ const getMoreMenu = (props: Props): ButtonMoreItem[] => [
 	{
 		type: "custom",
 		content: <PreviewLayoutSplit prefs={props.prefs} />,
+	},
+	{
+		type: "custom",
+		content: <PreviewTemplateSelect prefs={props.prefs} />,
 	},
 	{
 		type: "action",
