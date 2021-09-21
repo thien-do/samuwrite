@@ -1,9 +1,4 @@
-.menu {
-	width: 240px;
-	padding: 8px 0;
-}
-
-.item {
+.button {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -27,12 +22,13 @@
 	outline: 8px solid transparent;
 }
 
-.item:hover,
-.item:focus-visible {
+.button.active,
+.button:hover,
+.button:focus-visible {
 	color: var(--text-color);
 }
 
-.item:focus-visible {
+.button:focus-visible {
 	outline-width: 2px;
 	outline-color: var(--main-color);
 }

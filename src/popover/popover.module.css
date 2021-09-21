@@ -1,0 +1,22 @@
+.container {
+	border-radius: 4px;
+	outline: 0;
+
+	color: var(--text-color);
+	border: solid 1px var(--sub-color);
+	box-shadow: var(--border-inset),
+		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
+}
+
+@supports (backdrop-filter: blur(20px)) {
+	.container {
+		background-color: rgba(var(--bg-color-rgb), 0.5);
+		backdrop-filter: blur(20px);
+	}
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+	.container {
+		background-color: rgba(var(--bg-color-rgb), 0.95);
+	}
+}

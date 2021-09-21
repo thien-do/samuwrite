@@ -2,7 +2,6 @@ import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscFolder } from "react-icons/vsc";
 import { Button } from "~src/button/button";
-import { ButtonMoreItem } from "~src/button/more/menu";
 import { FileState } from "~src/file/state";
 import { openFile } from "~src/app/utils/open";
 import { useShortcut } from "~src/shortcut/use-shortcut";
@@ -11,6 +10,7 @@ import { ERRORS } from "~src/utils/error";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
+import { MenuItem } from "~src/menu/item/item";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -57,8 +57,8 @@ const useOpenCallbacks = (props: Props) => {
 
 type Callbacks = ReturnType<typeof useOpenCallbacks>;
 
-const getMoreMenu = (props: Props, callbacks: Callbacks): ButtonMoreItem[] => {
-	const menu: ButtonMoreItem[] = [];
+const getMoreMenu = (props: Props, callbacks: Callbacks): MenuItem[] => {
+	const menu: MenuItem[] = [];
 	menu.push({
 		type: "action",
 		action: callbacks.openNew,

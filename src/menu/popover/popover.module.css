@@ -1,0 +1,25 @@
+.container {
+	z-index: 1;
+	perspective: 240px;
+}
+
+.list {
+	min-width: 240px;
+	padding: 8px 0;
+}
+
+.enter {
+	transition-property: transform opacity;
+	transition-duration: 2000ms;
+	transform-origin: bottom;
+}
+
+.enterFrom {
+	opacity: 0;
+	transform: rotateX(10deg);
+}
+
+.enterTo {
+	opacity: 1;
+	transform: rotateX(0deg);
+}
