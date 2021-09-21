@@ -21,7 +21,11 @@ export interface ButtonProps {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 	(props, ref): JSX.Element => (
 		<div className={[s.container].join(" ")}>
-			<Tooltip content={props.tooltip} singleton={props.tooltipSingleton}>
+			<Tooltip
+				disabled={props.tooltip === undefined}
+				content={props.tooltip}
+				singleton={props.tooltipSingleton}
+			>
 				<button
 					className={[
 						s.button,
@@ -37,15 +41,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			</Tooltip>
 			{props.more && (
 				<div className={s.more}>
-					<Menu
-						items={props.more}
-						tooltipSingleton={props.tooltipSingleton}
-						button={{
-							Icon: VscChevronDown,
-							tooltip: "More",
-							tooltipSingleton: props.tooltipSingleton,
-						}}
-					/>
+					{/* @TODO: Try to show Tooltip in an unobstructive way */}
+					<Menu items={props.more} button={{ Icon: VscChevronDown }} />
 				</div>
 			)}
 		</div>
