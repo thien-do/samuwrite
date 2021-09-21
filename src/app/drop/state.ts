@@ -1,6 +1,6 @@
 import * as React from "react";
-import { EditorState } from "~src/components/editor/state/state";
-import { FileState } from "~src/components/file/state";
+import { EditorState } from "~src/editor/state/state";
+import { FileState } from "~src/file/state";
 import { ERRORS } from "~src/utils/error";
 import { openFile } from "../utils/open";
 
