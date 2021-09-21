@@ -1,7 +1,7 @@
 import * as monaco from "monaco-editor";
-import { Editor } from "~src/components/editor/state/state";
-import { FileHandle, FileState } from "~src/components/file/state";
-import { fileSystem } from "~src/components/file/system";
+import { Editor } from "~src/editor/state/state";
+import { FileHandle, FileState } from "~src/file/state";
+import { fileSystem } from "~src/file/system";
 import { ERRORS } from "~src/utils/error";
 
 interface Params {

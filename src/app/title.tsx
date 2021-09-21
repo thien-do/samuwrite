@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { FileState } from "~src/components/file/state";
+import { FileState } from "~src/file/state";
 
 interface Props {
 	file: FileState;
