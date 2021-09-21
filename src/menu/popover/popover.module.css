@@ -1,9 +1,9 @@
-.popper {
+.container {
 	z-index: 1;
 	perspective: 240px;
 }
 
-.menu {
+.list {
 	min-width: 240px;
 	padding: 8px 0;
 }
