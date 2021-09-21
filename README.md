@@ -18,14 +18,14 @@ See `package.json/scripts` for other scripts (`lint`, `clean`, etc.)
 - Bundled with [Parcel] and [Yarn]
 - Used icons from [Codicons] and [Freepik]
 
-[Yarn]: https://yarnpkg.com/
-[Monaco]: https://microsoft.github.io/monaco-editor/
-[Freepik]: https://www.freepik.com/
-[Codicons]: https://github.com/microsoft/vscode-codicons
-[TypeScript]: https://www.typescriptlang.org/
-[CSS Modules]: https://github.com/css-modules/css-modules
-[React]: https://reactjs.org/
-[Parcel]: https://parceljs.org/
+[yarn]: https://yarnpkg.com/
+[monaco]: https://microsoft.github.io/monaco-editor/
+[freepik]: https://www.freepik.com/
+[codicons]: https://github.com/microsoft/vscode-codicons
+[typescript]: https://www.typescriptlang.org/
+[css modules]: https://github.com/css-modules/css-modules
+[react]: https://reactjs.org/
+[parcel]: https://parceljs.org/
 
 ### Structure:
 
