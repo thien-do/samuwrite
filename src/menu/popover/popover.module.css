@@ -12,16 +12,15 @@
 .leave {
 	transition-property: transform opacity;
 	transform-origin: bottom;
-	/* https://easings.net/#easeOutQuint */
-	transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+	transition-timing-function: var(--ease-out-quint);
 }
 
 .enter {
-	transition-duration: 100ms;
+	transition-duration: 150ms;
 }
 
 .leave {
-	transition-duration: 300ms;
+	transition-duration: 450ms;
 }
 
 .hide {

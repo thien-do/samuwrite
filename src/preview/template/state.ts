@@ -1,7 +1,6 @@
 import { useStorageState } from "~src/utils/state/storage";
 import { SetState } from "~src/utils/state/type";
 import * as styles from "./styles/styles";
-import { EN_DASH } from "~src/utils/typography";
 
 export const PREVIEW_TEMPLATE_NAMES = ["tailwind", "github", "serif"] as const;
 
@@ -22,11 +21,11 @@ export const PREVIEW_TEMPLATE_DETAILS: Record<
 	PreviewTemplateDetail
 > = {
 	github: {
-		name: `Sans ${EN_DASH} GitHub`,
+		name: `GitHub`,
 		className: styles.github.container,
 	},
 	tailwind: {
-		name: `Sans ${EN_DASH} Tailwind`,
+		name: `Tailwind`,
 		className: styles.tailwind.container,
 	},
 	serif: {
