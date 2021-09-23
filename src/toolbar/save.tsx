@@ -5,6 +5,7 @@ import { Button } from "~src/button/button";
 import { FileHandle, FileState } from "~src/file/state";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
+import { Tooltip } from "~src/tooltip/tooltip";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 
@@ -89,20 +90,20 @@ export const ToolbarSave = (props: Props): JSX.Element => {
 	useShortcut(SHORTCUTS.saveAs, callbacks.saveAs);
 
 	return (
-		<Button
-			onClick={callbacks.save}
-			Icon={VscSave}
-			shortcut={SHORTCUTS.save}
-			tooltip="Save"
-			tooltipSingleton={props.singleton}
-			more={[
-				{
-					type: "action",
-					action: callbacks.saveAs,
-					label: "Save as…",
-					shortcut: SHORTCUTS.saveAs,
-				},
-			]}
-		/>
+		<Tooltip content="Save" singleton={props.singleton}>
+			<Button
+				onClick={callbacks.save}
+				Icon={VscSave}
+				shortcut={SHORTCUTS.save}
+				more={[
+					{
+						type: "action",
+						action: callbacks.saveAs,
+						label: "Save as…",
+						shortcut: SHORTCUTS.saveAs,
+					},
+				]}
+			/>
+		</Tooltip>
 	);
 };

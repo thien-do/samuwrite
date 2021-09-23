@@ -1,5 +1,4 @@
 import Tippy, { TippyProps } from "@tippyjs/react";
-import { forwardRef } from "react";
 import "./tooltip.css";
 
 type Props = TippyProps;
@@ -7,32 +6,22 @@ type Props = TippyProps;
 const container = document.getElementById("portal");
 if (container === null) throw Error(`#portal is null`);
 
-// https://www.nngroup.com/articles/timing-exposing-content/
-const timing: TippyProps = {
+const common: TippyProps = {
+	// https://www.nngroup.com/articles/timing-exposing-content/
 	delay: [500, 500],
 	duration: [100, 300],
+	moveTransition: "transform 500ms var(--ease-out-quint)",
+
+	appendTo: container,
+	trigger: "mouseenter focus focusin",
+	arrow: false,
+	offset: [0, 8],
 };
 
 export const TooltipSource = (
 	props: Pick<TippyProps, "singleton">
-): JSX.Element => (
-	<Tippy
-		{...timing}
-		appendTo={container}
-		moveTransition="transform 500ms var(--ease-out-quint)"
-		{...props}
-	/>
-);
+): JSX.Element => <Tippy {...common} {...props} />;
 
-export const Tooltip = forwardRef<Element, Props>(
-	(props, ref): JSX.Element => (
-		<Tippy
-			{...timing}
-			arrow={false}
-			offset={[0, 8]}
-			appendTo={container}
-			ref={ref}
-			{...props}
-		/>
-	)
+export const Tooltip = (props: Props): JSX.Element => (
+	<Tippy {...common} {...props} />
 );

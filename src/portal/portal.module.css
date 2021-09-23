@@ -3,11 +3,6 @@
 	perspective: 240px;
 }
 
-.list {
-	min-width: 240px;
-	padding: 8px 0;
-}
-
 .enter,
 .leave {
 	transition-property: transform opacity;

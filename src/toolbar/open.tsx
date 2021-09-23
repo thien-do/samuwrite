@@ -11,6 +11,7 @@ import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 import { MenuItem } from "~src/menu/item/interface";
+import { Tooltip } from "~src/tooltip/tooltip";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -89,13 +90,13 @@ export const ToolbarOpen = (props: Props): JSX.Element => {
 	useShortcut(SHORTCUTS.openRecent, callbacks.openRecent);
 
 	return (
-		<Button
-			onClick={callbacks.open}
-			Icon={VscFolder}
-			shortcut={SHORTCUTS.open}
-			tooltip="Open…"
-			tooltipSingleton={props.singleton}
-			more={getMoreMenu(props, callbacks)}
-		/>
+		<Tooltip content="Open…" singleton={props.singleton}>
+			<Button
+				onClick={callbacks.open}
+				Icon={VscFolder}
+				shortcut={SHORTCUTS.open}
+				more={getMoreMenu(props, callbacks)}
+			/>
+		</Tooltip>
 	);
 };

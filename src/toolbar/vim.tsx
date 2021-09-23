@@ -5,6 +5,7 @@ import { PrefsState } from "~src/prefs/state";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { useCallback } from "react";
+import { Tooltip } from "~src/tooltip/tooltip";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -18,13 +19,13 @@ export const ToolbarVim = (props: Props): JSX.Element => {
 	useShortcut(SHORTCUTS.vim, toggle);
 
 	return (
-		<Button
-			onClick={toggle}
-			Icon={DiVim}
-			selected={props.prefs.vim}
-			tooltip="Toggle Vim mode"
-			tooltipSingleton={props.singleton}
-			shortcut={SHORTCUTS.vim}
-		/>
+		<Tooltip content="Toggle Vim mode" singleton={props.singleton}>
+			<Button
+				onClick={toggle}
+				Icon={DiVim}
+				selected={props.prefs.vim}
+				shortcut={SHORTCUTS.vim}
+			/>
+		</Tooltip>
 	);
 };
