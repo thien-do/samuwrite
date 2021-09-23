@@ -24,7 +24,7 @@ export const Menu = (props: Props): JSX.Element => {
 						selected={open}
 						{...props.button}
 					/>
-					<Portal open={open} referenceElement={button}>
+					<Portal open={open} reference={button}>
 						<HLMenu.Items
 							static
 							className={[sPopover.container, s.list].join(" ")}

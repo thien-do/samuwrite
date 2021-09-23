@@ -5,7 +5,7 @@ import s from "./portal.module.css";
 
 interface Props {
 	open: boolean;
-	referenceElement: HTMLButtonElement | null;
+	reference: HTMLElement | null;
 	children: ReactNode;
 }
 
@@ -14,7 +14,7 @@ export const Portal = (props: Props): JSX.Element => {
 	// https://github.com/tailwindlabs/headlessui/issues/154#issuecomment-742085996
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const [container, setContainer] = useState<HTMLDivElement | null>(null);
-	const { styles, attributes } = usePopper(props.referenceElement, container, {
+	const { styles, attributes } = usePopper(props.reference, container, {
 		placement: "top",
 	});
 

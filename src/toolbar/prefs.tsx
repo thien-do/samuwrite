@@ -23,25 +23,17 @@ export const ToolbarPrefs = (props: Props): JSX.Element => {
 	useShortcut(SHORTCUTS.prefs, toggle);
 
 	return (
-		<Tooltip
-			content="Preferences…"
-			singleton={props.singleton}
-			// Because we can't ref to the button directly
-			trigger="mouseenter focus focusin"
-		>
-			{/* Because Popover cannot have ref */}
-			<div>
-				<Popover
-					open={props.prefs.prefsVisible}
-					button={{
-						// onClick: toggle,
-						Icon: VscSettings,
-						shortcut: SHORTCUTS.prefs,
-					}}
-				>
-					<PrefsPanel prefs={props.prefs} />
-				</Popover>
-			</div>
+		<Tooltip content="Preferences…" singleton={props.singleton}>
+			<Popover
+				open={props.prefs.prefsVisible}
+				button={{
+					// onClick: toggle,
+					Icon: VscSettings,
+					shortcut: SHORTCUTS.prefs,
+				}}
+			>
+				<PrefsPanel prefs={props.prefs} />
+			</Popover>
 		</Tooltip>
 	);
 };
