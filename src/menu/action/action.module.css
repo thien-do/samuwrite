@@ -18,6 +18,7 @@
 	font-size: 14px;
 	line-height: 21px;
 	text-align: left;
+	text-decoration: none; /* Link uses this too */
 
 	outline: 8px solid transparent;
 }
@@ -44,5 +45,5 @@
 }
 
 .shortcut {
-	margin-left: 16px;
+	margin-left: 32px;
 }

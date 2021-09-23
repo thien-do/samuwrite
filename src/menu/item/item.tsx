@@ -3,6 +3,7 @@ import { MenuDivider } from "../divider/divider";
 import { MenuGroup } from "../group/group";
 import { MenuHeading } from "../heading/heading";
 import { MenuHelp } from "../help/help";
+import { MenuLink } from "../link/link";
 import { MenuItem as MenuItemType } from "./interface";
 
 interface Props {
@@ -19,6 +20,8 @@ export const MenuItem = ({ item }: Props): JSX.Element => {
 			return <MenuHelp help={item} />;
 		case "action":
 			return <MenuAction action={item} />;
+		case "link":
+			return <MenuLink link={item} />;
 		case "group":
 			return <MenuGroup group={item} />;
 	}

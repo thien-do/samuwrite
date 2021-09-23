@@ -33,7 +33,7 @@ const useToolbarShorcut = (bodyRef: RefObject<HTMLDivElement>): void => {
 		button.focus();
 	}, [bodyRef]);
 
-	useShortcut(SHORTCUTS.toolbar, callback);
+	useShortcut({ keys: SHORTCUTS.toolbar, callback });
 };
 
 export const Toolbar = (props: Props): JSX.Element => {

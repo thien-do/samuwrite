@@ -1,17 +1,17 @@
 import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscFolder } from "react-icons/vsc";
+import { openFile } from "~src/app/utils/open";
 import { Button } from "~src/button/button";
 import { FileState } from "~src/file/state";
-import { openFile } from "~src/app/utils/open";
+import { MenuItem } from "~src/menu/item/interface";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
+import { Tooltip } from "~src/tooltip/tooltip";
 import { ERRORS } from "~src/utils/error";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
-import { MenuItem } from "~src/menu/item/interface";
-import { Tooltip } from "~src/tooltip/tooltip";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -85,9 +85,9 @@ const getMoreMenu = (props: Props, callbacks: Callbacks): MenuItem[] => {
 export const ToolbarOpen = (props: Props): JSX.Element => {
 	const callbacks: Callbacks = useOpenCallbacks(props);
 
-	useShortcut(SHORTCUTS.open, callbacks.open);
-	useShortcut(SHORTCUTS.openNew, callbacks.openNew);
-	useShortcut(SHORTCUTS.openRecent, callbacks.openRecent);
+	useShortcut({ keys: SHORTCUTS.open, callback: callbacks.open });
+	useShortcut({ keys: SHORTCUTS.openNew, callback: callbacks.openNew });
+	useShortcut({ keys: SHORTCUTS.openRecent, callback: callbacks.openRecent });
 
 	return (
 		<Tooltip content="Open…" singleton={props.singleton}>

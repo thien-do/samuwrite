@@ -21,7 +21,10 @@ export const PopoverShortcut = (props: Props): null => {
 		button.click();
 	}, [reference]);
 
-	useShortcut(props.keys, callback);
+	useShortcut({
+		keys: props.keys,
+		callback: callback,
+	});
 
 	return null;
 };
