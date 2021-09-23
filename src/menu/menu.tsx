@@ -1,7 +1,7 @@
 import { Menu as HLMenu } from "@headlessui/react";
 import { useState } from "react";
 import { Button, ButtonProps } from "~src/button/button";
-import { Portal } from "~src/portal/portal";
+import { PopoverPortal } from "~src/popover/portal/portal";
 import { MenuItem as MenuItemType } from "./item/interface";
 import { MenuItem as MenuItemComponent } from "./item/item";
 import sPopover from "~src/popover/popover.module.css";
@@ -22,12 +22,14 @@ const Help = (): JSX.Element => (
 		<Key>↓</Key>
 		<span> to navigate, </span>
 		<Key>↵</Key>
-		<span> to select</span>
+		<span> to select, </span>
+		<Key>esc</Key>
+		<span> to close</span>
 	</div>
 );
 
 export const Menu = (props: Props): JSX.Element => {
-	const [button, setButton] = useState<HTMLButtonElement | null>(null);
+	const [reference, setReference] = useState<HTMLElement | null>(null);
 
 	const items = (
 		<HLMenu.Items static className={[sPopover.container, s.list].join(" ")}>
@@ -43,15 +45,12 @@ export const Menu = (props: Props): JSX.Element => {
 		<HLMenu>
 			{({ open }) => (
 				<>
-					<HLMenu.Button
-						ref={setButton}
-						as={Button}
-						selected={open}
-						{...props.button}
-					/>
-					<Portal open={open} reference={button}>
+					<div ref={setReference}>
+						<HLMenu.Button as={Button} selected={open} {...props.button} />
+					</div>
+					<PopoverPortal open={open} reference={reference}>
 						{items}
-					</Portal>
+					</PopoverPortal>
 				</>
 			)}
 		</HLMenu>

@@ -1,7 +1,8 @@
 import { useSingleton } from "@tippyjs/react";
-import { useEffect, useState } from "react";
+import { RefObject, useCallback, useRef } from "react";
 import { Editor } from "~src/editor/state/state";
 import { FileState } from "~src/file/state";
+import { useShortcut } from "~src/shortcut/use-shortcut";
 import { TooltipSource } from "~src/tooltip/tooltip";
 import { getContentWidth } from "../prefs/size/size";
 import { PrefsState } from "../prefs/state";
@@ -10,6 +11,7 @@ import { ToolbarOpen } from "./open";
 import { ToolbarPrefs } from "./prefs";
 import { ToolbarPreview } from "./preview";
 import { ToolbarSave } from "./save";
+import { SHORTCUTS } from "./shortcuts";
 import s from "./toolbar.module.css";
 import { ToolbarVim } from "./vim";
 
@@ -21,29 +23,38 @@ interface Props {
 	show: boolean;
 }
 
-const useToolbarMaxWidth = (props: Props): number => {
-	const { prefsVisible, size } = props.prefs;
+/** Assign shortcut to focus on toolbar */
+const useToolbarShorcut = (bodyRef: RefObject<HTMLDivElement>): void => {
+	const callback = useCallback(() => {
+		const body = bodyRef.current;
+		if (body === null) throw Error("Toolbar ref is not attached");
+		const button = body.querySelector("button");
+		if (button === null) throw Error("Toolbar doesn't have any button");
+		button.focus();
+	}, [bodyRef]);
 
-	const [width, setWidth] = useState(1000);
-
-	useEffect(() => {
-		getContentWidth({ size });
-		// Don't update toolbar's width if prefs panel is visible, to avoid
-		// the laggy experience when the user changes the editor size via the
-		// slider
-		if (prefsVisible) return;
-		setWidth(getContentWidth({ size }));
-	}, [prefsVisible, size]);
-
-	return width;
+	useShortcut(SHORTCUTS.toolbar, callback);
 };
 
 export const Toolbar = (props: Props): JSX.Element => {
+	const bodyRef = useRef<HTMLDivElement>(null);
 	const [source, target] = useSingleton();
-	const maxWidth = useToolbarMaxWidth(props);
+	const { size } = props.prefs;
+
+	useToolbarShorcut(bodyRef);
 
 	const body = (
-		<div className={s.body} style={{ maxWidth }}>
+		<div
+			className={s.body}
+			style={{ maxWidth: getContentWidth({ size }) }}
+			ref={bodyRef}
+			onKeyDown={(event) => {
+				if (event.key === "Escape") {
+					props.editor.focus();
+					event.stopPropagation();
+				}
+			}}
+		>
 			<TooltipSource singleton={source} />
 			<ToolbarOpen singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
@@ -54,6 +65,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 			<ToolbarMenu singleton={target} />
 		</div>
 	);
+
 	return (
 		// The "buffer" contains the top padding as a buffer to show the
 		// toolbar when the mouse is near

@@ -1,12 +1,11 @@
 import { TippyProps } from "@tippyjs/react";
+import { useRef } from "react";
 import { VscSettings } from "react-icons/vsc";
+import { SHORTCUTS } from "~src/toolbar/shortcuts";
+import { Tooltip } from "~src/tooltip/tooltip";
 import { Popover } from "../popover/popover";
 import { PrefsPanel } from "../prefs/panel/panel";
 import { PrefsState } from "../prefs/state";
-import { useCallback } from "react";
-import { SHORTCUTS } from "~src/toolbar/shortcuts";
-import { useShortcut } from "~src/shortcut/use-shortcut";
-import { Tooltip } from "~src/tooltip/tooltip";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -14,25 +13,23 @@ interface Props {
 }
 
 export const ToolbarPrefs = (props: Props): JSX.Element => {
-	const { setPrefsVisible } = props.prefs;
-
-	const toggle = useCallback(() => {
-		setPrefsVisible((visible) => !visible);
-	}, [setPrefsVisible]);
-
-	useShortcut(SHORTCUTS.prefs, toggle);
+	// Use this instead of "autoFocus" in order for the "enter" transition at
+	// PopoverPortal to work
+	const focusRef = useRef<HTMLDivElement>(null);
+	const focus = () => {
+		const element = focusRef.current;
+		if (element === null) throw Error("No element to focus");
+		element.focus();
+	};
 
 	return (
 		<Tooltip content="Preferences…" singleton={props.singleton}>
 			<Popover
-				open={props.prefs.prefsVisible}
-				button={{
-					onClick: toggle,
-					Icon: VscSettings,
-					shortcut: SHORTCUTS.prefs,
-				}}
+				button={{ Icon: VscSettings, shortcut: SHORTCUTS.prefs }}
+				afterEnter={focus}
+				shortcut={SHORTCUTS.prefs}
 			>
-				<PrefsPanel prefs={props.prefs} />
+				<PrefsPanel prefs={props.prefs} focusRef={focusRef} />
 			</Popover>
 		</Tooltip>
 	);

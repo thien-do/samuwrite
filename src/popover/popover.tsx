@@ -4,13 +4,15 @@ import { Button, ButtonProps } from "~src/button/button";
 import { Key } from "~src/key/key";
 import { MenuDivider } from "~src/menu/divider/divider";
 import { MenuHelp } from "~src/menu/help/help";
-import { Portal } from "~src/portal/portal";
 import s from "./popover.module.css";
+import { PopoverPortal } from "./portal/portal";
+import { PopoverShortcut } from "./shortcut";
 
 interface Props {
-	open: boolean;
 	children: ReactNode;
 	button: ButtonProps;
+	shortcut?: string;
+	afterEnter?: () => void;
 }
 
 const Help = (): JSX.Element => (
@@ -18,27 +20,54 @@ const Help = (): JSX.Element => (
 		<Key>⇥</Key>
 		<span> to navigate, </span>
 		<Key>↵</Key>
-		<span> to select</span>
+		<span> to select, </span>
+		<Key>esc</Key>
+		<span> to close</span>
 	</div>
 );
 
 export const Popover = forwardRef<HTMLButtonElement, Props>(
 	(props, ref): JSX.Element => {
 		const [reference, setReference] = useState<HTMLElement | null>(null);
+
+		const button = (open: boolean) => (
+			<div ref={setReference}>
+				{props.shortcut !== undefined && (
+					<PopoverShortcut keys={props.shortcut} reference={reference} />
+				)}
+				<HLPopover.Button
+					ref={ref}
+					as={Button}
+					selected={open}
+					{...props.button}
+				/>
+			</div>
+		);
+
+		const panel = (open: boolean) => (
+			<PopoverPortal
+				open={open}
+				reference={reference}
+				afterEnter={props.afterEnter}
+			>
+				<HLPopover.Panel className={s.container}>
+					{props.children}
+					<div className={s.help}>
+						<MenuDivider />
+						<MenuHelp help={{ content: <Help /> }} />
+					</div>
+				</HLPopover.Panel>
+			</PopoverPortal>
+		);
+
 		return (
 			<HLPopover>
-				<div ref={setReference}>
-					<Button ref={ref} selected={props.open} {...props.button} />
-				</div>
-				<Portal open={props.open} reference={reference}>
-					<HLPopover.Panel static className={s.container}>
-						{props.children}
-						<div className={s.help}>
-							<MenuDivider />
-							<MenuHelp help={{ content: <Help /> }} />
-						</div>
-					</HLPopover.Panel>
-				</Portal>
+				{({ open }) => (
+					<>
+						{button(open)}
+						{panel(open)}
+					</>
+				)}
 			</HLPopover>
 		);
 	}

@@ -7,7 +7,6 @@ import {
 	usePreviewLayoutState,
 } from "../preview/layout/state";
 import { ThemePrefsState, useThemePrefs } from "../theme/state";
-import { PrefsVisibleState, usePrefsVisibleState } from "./prefs-visible";
 import { SizeState, usePrefsSize } from "./size/state";
 import { usePrefsVim, VimState } from "./vim";
 
@@ -16,8 +15,7 @@ export interface PrefsState
 		PreviewLayoutState,
 		PreviewTemplateState,
 		VimState,
-		SizeState,
-		PrefsVisibleState {}
+		SizeState {}
 
 export const usePrefs = (): PrefsState => ({
 	...useThemePrefs(),
@@ -26,5 +24,4 @@ export const usePrefs = (): PrefsState => ({
 
 	...usePrefsVim(),
 	...usePrefsSize(),
-	...usePrefsVisibleState(),
 });

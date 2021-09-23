@@ -8,7 +8,6 @@ import { getPreviewTemplateMenu } from "~src/preview/template/menu";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { Tooltip } from "~src/tooltip/tooltip";
-import { vote } from "~src/utils/vote";
 import { PrefsState } from "../prefs/state";
 
 interface Props {
@@ -19,13 +18,6 @@ interface Props {
 const getMoreMenu = (props: Props): MenuItem[] => [
 	...getPreviewSplitMenu(props.prefs),
 	...getPreviewTemplateMenu(props.prefs),
-	{ type: "divider" },
-	{
-		type: "action",
-		action: () => vote(86),
-		label: "Print…",
-		shortcut: SHORTCUTS.print,
-	},
 ];
 
 export const ToolbarPreview = (props: Props): JSX.Element => {

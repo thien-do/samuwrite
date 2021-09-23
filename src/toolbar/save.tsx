@@ -3,9 +3,11 @@ import { useMemo } from "react";
 import { VscSave } from "react-icons/vsc";
 import { Button } from "~src/button/button";
 import { FileHandle, FileState } from "~src/file/state";
+import { MenuItem } from "~src/menu/item/interface";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { Tooltip } from "~src/tooltip/tooltip";
+import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
 
@@ -77,7 +79,10 @@ const useCallbacks = (props: Props) => {
 		const saveAs = async () => {
 			saveFile({ ...params, saveAs: true });
 		};
-		return { save, saveAs };
+		const print = () => {
+			vote(86);
+		};
+		return { save, saveAs, print };
 	}, [editor, fileHandle, setFileHandle, setFileDirty]);
 
 	return callbacks;
@@ -88,6 +93,22 @@ export const ToolbarSave = (props: Props): JSX.Element => {
 
 	useShortcut(SHORTCUTS.save, callbacks.save);
 	useShortcut(SHORTCUTS.saveAs, callbacks.saveAs);
+	useShortcut(SHORTCUTS.print, callbacks.print);
+
+	const menu: MenuItem[] = [
+		{
+			type: "action",
+			action: callbacks.print,
+			label: "Print…",
+			shortcut: SHORTCUTS.print,
+		},
+		{
+			type: "action",
+			action: callbacks.saveAs,
+			label: "Save as…",
+			shortcut: SHORTCUTS.saveAs,
+		},
+	];
 
 	return (
 		<Tooltip content="Save" singleton={props.singleton}>
@@ -95,14 +116,7 @@ export const ToolbarSave = (props: Props): JSX.Element => {
 				onClick={callbacks.save}
 				Icon={VscSave}
 				shortcut={SHORTCUTS.save}
-				more={[
-					{
-						type: "action",
-						action: callbacks.saveAs,
-						label: "Save as…",
-						shortcut: SHORTCUTS.saveAs,
-					},
-				]}
+				more={menu}
 			/>
 		</Tooltip>
 	);
