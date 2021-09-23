@@ -2,39 +2,38 @@
 	opacity: 0;
 }
 
+/*
+This is the moving element in a Tooltip group (singleton) so backdrop
+must be applied here
+*/
 [data-tippy-root] {
 	max-width: calc(100vw - 10px);
-}
 
-.tippy-box {
-	position: relative;
 	border-radius: 4px;
-	font-size: 14px;
-	line-height: 20px;
-	outline: 0;
-	transition-property: transform, visibility, opacity;
-
 	color: var(--text-color);
 	border: solid 1px var(--sub-color);
 	box-shadow: var(--border-inset),
 		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
 }
 
+.tippy-box {
+	position: relative;
+	font-size: 14px;
+	line-height: 20px;
+	outline: 0;
+}
+
 @supports (backdrop-filter: blur(20px)) {
-	.tippy-box {
+	[data-tippy-root] {
 		background-color: rgba(var(--bg-color-rgb), 0.5);
 		backdrop-filter: blur(20px);
 	}
 }
 
 @supports not (backdrop-filter: blur(20px)) {
-	.tippy-box {
+	[data-tippy-root] {
 		background-color: rgba(var(--bg-color-rgb), 0.95);
 	}
-}
-
-.tippy-box[data-inertia][data-state="visible"] {
-	transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
 }
 
 .tippy-content {

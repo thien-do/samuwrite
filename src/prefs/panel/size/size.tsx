@@ -22,6 +22,7 @@ export const SizePref = (props: Props): JSX.Element => {
 							value: size,
 						}))}
 						fill
+						autoFocus
 					/>
 				</div>
 			</label>

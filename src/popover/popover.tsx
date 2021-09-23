@@ -15,23 +15,14 @@ export const Popover = forwardRef<HTMLButtonElement, Props>(
 		const [reference, setReference] = useState<HTMLElement | null>(null);
 		return (
 			<HLPopover>
-				{({ open }) => (
-					<>
-						<div ref={setReference}>
-							<HLPopover.Button
-								ref={ref}
-								as={Button}
-								selected={open}
-								{...props.button}
-							/>
-						</div>
-						<Portal open={open} reference={reference}>
-							<HLPopover.Panel className={s.container}>
-								{props.children}
-							</HLPopover.Panel>
-						</Portal>
-					</>
-				)}
+				<div ref={setReference}>
+					<Button ref={ref} selected={props.open} {...props.button} />
+				</div>
+				<Portal open={props.open} reference={reference}>
+					<HLPopover.Panel static className={s.container}>
+						{props.children}
+					</HLPopover.Panel>
+				</Portal>
 			</HLPopover>
 		);
 	}
