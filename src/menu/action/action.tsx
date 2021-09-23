@@ -11,9 +11,11 @@ export const MenuAction = ({ action }: Props): JSX.Element => (
 	<Menu.Item>
 		{({ active }) => (
 			<button
-				className={[s.button, active || action.active ? s.active : ""].join(
-					" "
-				)}
+				className={[
+					s.button,
+					active ? s.focus : "",
+					action.active ? s.active : "",
+				].join(" ")}
 				onClick={action.action}
 			>
 				<span className={s.label}>{action.label}</span>

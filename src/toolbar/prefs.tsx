@@ -27,7 +27,7 @@ export const ToolbarPrefs = (props: Props): JSX.Element => {
 			<Popover
 				open={props.prefs.prefsVisible}
 				button={{
-					// onClick: toggle,
+					onClick: toggle,
 					Icon: VscSettings,
 					shortcut: SHORTCUTS.prefs,
 				}}

@@ -22,7 +22,10 @@
 	outline: 8px solid transparent;
 }
 
+/* @TODO: Separate ".focus" keyboard and mouse */
+
 .button.active,
+.button.focus,
 .button:hover,
 .button:focus-visible {
 	color: var(--text-color);
