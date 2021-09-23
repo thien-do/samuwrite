@@ -13,4 +13,5 @@ export const SHORTCUTS = {
 	save: "mod+s",
 	saveAs: "mod+shift+s",
 	vim: "mod+m",
+	toolbar: "mod+\\",
 };

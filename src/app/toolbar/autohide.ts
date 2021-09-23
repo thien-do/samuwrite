@@ -9,7 +9,10 @@ interface Params {
 interface AppToolbarState {
 	mute: boolean;
 	show: boolean;
-	handlers: Pick<React.DOMAttributes<HTMLDivElement>, "onMouseOver">;
+	handlers: Pick<
+		React.DOMAttributes<HTMLDivElement>,
+		"onMouseOver" | "onFocus"
+	>;
 }
 
 export const useToolbarAutohide = (params: Params): AppToolbarState => {
@@ -46,6 +49,7 @@ export const useToolbarAutohide = (params: Params): AppToolbarState => {
 	const handlers: AppToolbarState["handlers"] = {
 		// Show toolbar on hover (note that we don't auto hide toolbar on mouse out)
 		onMouseOver: () => void setShow(true),
+		onFocus: () => void setShow(true),
 	};
 
 	return { handlers, mute, show };
