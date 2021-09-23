@@ -2,7 +2,7 @@ import { TippyProps } from "@tippyjs/react";
 import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
 import { Button } from "~src/button/button";
-import { MenuItem } from "~src/menu/item/item";
+import { MenuItem } from "~src/menu/item/interface";
 import { getPreviewSplitMenu } from "~src/preview/layout/split";
 import { getPreviewTemplateMenu } from "~src/preview/template/menu";
 import { useShortcut } from "~src/shortcut/use-shortcut";
@@ -17,7 +17,6 @@ interface Props {
 
 const getMoreMenu = (props: Props): MenuItem[] => [
 	...getPreviewSplitMenu(props.prefs),
-	{ type: "divider" },
 	...getPreviewTemplateMenu(props.prefs),
 	{ type: "divider" },
 	{

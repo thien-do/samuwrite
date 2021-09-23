@@ -2,13 +2,14 @@ import { Menu as HLMenu, Portal, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
 import { usePopper } from "react-popper";
 import sPopover from "~src/popover/popover.module.css";
-import { MenuItem, MenuItemComponent } from "../item/item";
+import { MenuItem as MenuItemType } from "../item/interface";
+import { MenuItem as MenuItemComponent } from "../item/item";
 import s from "./popover.module.css";
 
 interface Props {
 	open: boolean;
 	button: HTMLButtonElement | null;
-	items: MenuItem[];
+	items: MenuItemType[];
 }
 
 export const MenuPopover = (props: Props): JSX.Element => {

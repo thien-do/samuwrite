@@ -2,7 +2,7 @@ import { TippyProps } from "@tippyjs/react";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { IconType } from "react-icons";
 import { VscChevronDown } from "react-icons/vsc";
-import { MenuItem } from "~src/menu/item/item";
+import { MenuItem } from "~src/menu/item/interface";
 import { Menu } from "~src/menu/menu";
 import { Shortcut } from "../shortcut/shortcut";
 import { Tooltip } from "../tooltip/tooltip";
