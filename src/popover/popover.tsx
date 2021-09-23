@@ -1,25 +1,38 @@
-import { TippyProps } from "@tippyjs/react";
-import { forwardRef } from "react";
-import { LazyTippy } from "./lazy";
+import { Popover as HLPopover } from "@headlessui/react";
+import { forwardRef, ReactNode, useState } from "react";
+import { Button, ButtonProps } from "~src/button/button";
+import { Portal } from "~src/portal/portal";
+import s from "./popover.module.css";
 
-type Props = TippyProps;
+interface Props {
+	open: boolean;
+	children: ReactNode;
+	button: ButtonProps;
+}
 
-const container = document.getElementById("portal");
-if (container === null) throw Error(`#portal is null`);
-
-export const Popover = forwardRef<Element, Props>(
-	(props, ref): JSX.Element => (
-		<LazyTippy
-			arrow={false}
-			duration={[0, 100]}
-			offset={[0, 8]}
-			appendTo={container}
-			ref={ref}
-			delay={0}
-			trigger={props.visible === undefined ? "click" : undefined}
-			interactive
-			className="tippy-no-padding"
-			{...props}
-		/>
-	)
+export const Popover = forwardRef<HTMLButtonElement, Props>(
+	(props, ref): JSX.Element => {
+		const [reference, setReference] = useState<HTMLElement | null>(null);
+		return (
+			<HLPopover>
+				{({ open }) => (
+					<>
+						<div ref={setReference}>
+							<HLPopover.Button
+								ref={ref}
+								as={Button}
+								selected={open}
+								{...props.button}
+							/>
+						</div>
+						<Portal open={open} reference={reference}>
+							<HLPopover.Panel className={s.container}>
+								{props.children}
+							</HLPopover.Panel>
+						</Portal>
+					</>
+				)}
+			</HLPopover>
+		);
+	}
 );

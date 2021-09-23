@@ -11,6 +11,7 @@ interface Option<T> {
 
 interface Props<T> {
 	options: Option<T>[];
+	autoFocus?: boolean;
 	defaultValue?: T;
 	forwardedRef?: ForwardedRef<HTMLSelectElement>;
 	value?: T;
@@ -42,6 +43,7 @@ export const Select = <T,>(props: Props<T>): JSX.Element => {
 			<select
 				className={s.select}
 				disabled={props.disabled}
+				autoFocus={props.autoFocus}
 				// Uncontrolled
 				defaultValue={defaultValue}
 				ref={props.forwardedRef}

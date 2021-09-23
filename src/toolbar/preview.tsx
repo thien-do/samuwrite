@@ -7,6 +7,7 @@ import { getPreviewSplitMenu } from "~src/preview/layout/split";
 import { getPreviewTemplateMenu } from "~src/preview/template/menu";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
+import { Tooltip } from "~src/tooltip/tooltip";
 import { vote } from "~src/utils/vote";
 import { PrefsState } from "../prefs/state";
 
@@ -37,14 +38,14 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 	useShortcut(SHORTCUTS.preview, toggle);
 
 	return (
-		<Button
-			onClick={toggle}
-			Icon={VscBook}
-			shortcut={SHORTCUTS.preview}
-			tooltip="Toggle Preview"
-			tooltipSingleton={props.singleton}
-			more={getMoreMenu(props)}
-			selected={props.prefs.previewVisible}
-		/>
+		<Tooltip content="Toggle Preview" singleton={props.singleton}>
+			<Button
+				onClick={toggle}
+				Icon={VscBook}
+				shortcut={SHORTCUTS.preview}
+				more={getMoreMenu(props)}
+				selected={props.prefs.previewVisible}
+			/>
+		</Tooltip>
 	);
 };
