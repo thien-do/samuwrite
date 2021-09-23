@@ -4,13 +4,13 @@ import { Button, ButtonProps } from "~src/button/button";
 import { Key } from "~src/key/key";
 import { MenuDivider } from "~src/menu/divider/divider";
 import { MenuHelp } from "~src/menu/help/help";
-import { Portal } from "~src/portal/portal";
+import { PopoverPortal } from "./portal/portal";
 import s from "./popover.module.css";
 
 interface Props {
-	open: boolean;
 	children: ReactNode;
 	button: ButtonProps;
+	afterEnter?: () => void;
 }
 
 const Help = (): JSX.Element => (
@@ -18,7 +18,9 @@ const Help = (): JSX.Element => (
 		<Key>⇥</Key>
 		<span> to navigate, </span>
 		<Key>↵</Key>
-		<span> to select</span>
+		<span> to select, </span>
+		<Key>esc</Key>
+		<span> to close</span>
 	</div>
 );
 
@@ -27,18 +29,31 @@ export const Popover = forwardRef<HTMLButtonElement, Props>(
 		const [reference, setReference] = useState<HTMLElement | null>(null);
 		return (
 			<HLPopover>
-				<div ref={setReference}>
-					<Button ref={ref} selected={props.open} {...props.button} />
-				</div>
-				<Portal open={props.open} reference={reference}>
-					<HLPopover.Panel static className={s.container}>
-						{props.children}
-						<div className={s.help}>
-							<MenuDivider />
-							<MenuHelp help={{ content: <Help /> }} />
+				{({ open }) => (
+					<>
+						<div ref={setReference}>
+							<HLPopover.Button
+								ref={ref}
+								as={Button}
+								selected={open}
+								{...props.button}
+							/>
 						</div>
-					</HLPopover.Panel>
-				</Portal>
+						<PopoverPortal
+							open={open}
+							reference={reference}
+							afterEnter={props.afterEnter}
+						>
+							<HLPopover.Panel className={s.container}>
+								{props.children}
+								<div className={s.help}>
+									<MenuDivider />
+									<MenuHelp help={{ content: <Help /> }} />
+								</div>
+							</HLPopover.Panel>
+						</PopoverPortal>
+					</>
+				)}
 			</HLPopover>
 		);
 	}

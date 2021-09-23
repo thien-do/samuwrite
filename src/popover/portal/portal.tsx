@@ -7,9 +7,10 @@ interface Props {
 	open: boolean;
 	reference: HTMLElement | null;
 	children: ReactNode;
+	afterEnter?: () => void;
 }
 
-export const Portal = (props: Props): JSX.Element => {
+export const PopoverPortal = (props: Props): JSX.Element => {
 	// Transition + Portal + Popper is quite complicated. See:
 	// https://github.com/tailwindlabs/headlessui/issues/154#issuecomment-742085996
 	const containerRef = useRef<HTMLDivElement | null>(null);
@@ -36,6 +37,7 @@ export const Portal = (props: Props): JSX.Element => {
 					leaveTo={s.hide}
 					as={Fragment}
 					beforeEnter={() => setContainer(containerRef.current)}
+					afterEnter={props.afterEnter}
 					afterLeave={() => setContainer(null)}
 				>
 					{props.children}

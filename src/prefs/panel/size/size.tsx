@@ -19,7 +19,9 @@ export const SizePref = (props: Props): JSX.Element => {
 					value: size,
 				}))}
 				fill
-				autoFocus
+				// Don't use auto focus here as it will prevent the "enter"
+				// transition of prefs panel. Instead, set the focus in
+				// "afterEnter"
 			/>
 			<input
 				type="range"
