@@ -24,6 +24,6 @@ const getText = (key: string): string => {
 	}
 };
 
-export const Shortcut = (props: Props): JSX.Element => (
+export const ShortcutText = (props: Props): JSX.Element => (
 	<span>{props.keys.split("+").map(getText).join(HAIR_SPACE)}</span>
 );

@@ -1,4 +1,4 @@
-import { Shortcut } from "~src/shortcut/shortcut";
+import { ShortcutText } from "~src/shortcut/shortcut";
 import { MenuAction as MenuActionType } from "../item/interface";
 import { Menu } from "@headlessui/react";
 import s from "./action.module.css";
@@ -21,7 +21,7 @@ export const MenuAction = ({ action }: Props): JSX.Element => (
 				<span className={s.label}>{action.label}</span>
 				{action.shortcut && (
 					<span className={s.shortcut}>
-						<Shortcut keys={action.shortcut} />
+						<ShortcutText keys={action.shortcut} />
 					</span>
 				)}
 			</button>

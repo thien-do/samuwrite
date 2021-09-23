@@ -27,7 +27,7 @@ export const ToolbarPreview = (props: Props): JSX.Element => {
 		setPreviewVisible((visible) => !visible);
 	}, [setPreviewVisible]);
 
-	useShortcut(SHORTCUTS.preview, toggle);
+	useShortcut({ keys: SHORTCUTS.preview, callback: toggle });
 
 	return (
 		<Tooltip content="Toggle Preview" singleton={props.singleton}>

@@ -7,6 +7,12 @@ export interface MenuAction {
 	active?: boolean;
 }
 
+export interface MenuLink {
+	label: string;
+	url: string;
+	target: string;
+}
+
 export interface MenuHeading {
 	text: string;
 }
@@ -25,4 +31,5 @@ export type MenuItem =
 	| ({ type: "heading" } & MenuHeading)
 	| ({ type: "help" } & MenuHelp)
 	| ({ type: "group" } & MenuGroup)
+	| ({ type: "link" } & MenuLink)
 	| ({ type: "action" } & MenuAction);

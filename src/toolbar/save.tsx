@@ -91,9 +91,9 @@ const useCallbacks = (props: Props) => {
 export const ToolbarSave = (props: Props): JSX.Element => {
 	const callbacks = useCallbacks(props);
 
-	useShortcut(SHORTCUTS.save, callbacks.save);
-	useShortcut(SHORTCUTS.saveAs, callbacks.saveAs);
-	useShortcut(SHORTCUTS.print, callbacks.print);
+	useShortcut({ keys: SHORTCUTS.save, callback: callbacks.save });
+	useShortcut({ keys: SHORTCUTS.saveAs, callback: callbacks.saveAs });
+	useShortcut({ keys: SHORTCUTS.print, callback: callbacks.print });
 
 	const menu: MenuItem[] = [
 		{
