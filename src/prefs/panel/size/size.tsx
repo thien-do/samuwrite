@@ -24,7 +24,7 @@ export const SizePref = (props: Props): JSX.Element => {
 			<input
 				type="range"
 				min={0}
-				max={SIZE_NAMES.length}
+				max={SIZE_NAMES.length - 1}
 				value={SIZE_NAMES.indexOf(props.prefs.size)}
 				onChange={(event) => {
 					const size = SIZE_NAMES[event.target.valueAsNumber];

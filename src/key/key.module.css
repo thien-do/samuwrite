@@ -1,0 +1,8 @@
+.key {
+	border: solid 1px var(--sub-color);
+	border-bottom-width: 2px;
+
+	padding: 1px 2px;
+	border-radius: 4px;
+	font-weight: 700;
+}

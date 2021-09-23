@@ -20,3 +20,8 @@
 		background-color: rgba(var(--bg-color-rgb), 0.95);
 	}
 }
+
+.help {
+	margin-top: -8px;
+	padding-bottom: 8px;
+}
