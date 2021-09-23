@@ -10,7 +10,7 @@ import { ERRORS } from "~src/utils/error";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
-import { MenuItem } from "~src/menu/item/item";
+import { MenuItem } from "~src/menu/item/interface";
 
 interface Props {
 	singleton: TippyProps["singleton"];

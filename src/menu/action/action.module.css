@@ -1,0 +1,45 @@
+.button {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 8px 16px;
+
+	cursor: pointer;
+	transition: color 0.1s, outline 0.2s ease-out;
+	user-select: none;
+
+	color: var(--sub-color);
+	font-weight: 450;
+	font-size: 14px;
+	line-height: 21px;
+	text-align: left;
+
+	outline: 8px solid transparent;
+}
+
+.button.active,
+.button:hover,
+.button:focus-visible {
+	color: var(--text-color);
+}
+
+.button:focus-visible {
+	outline-width: 2px;
+	outline-color: var(--main-color);
+}
+
+.label {
+	flex: 1 1 0px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.shortcut {
+	margin-left: 16px;
+}

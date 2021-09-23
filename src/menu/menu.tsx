@@ -1,7 +1,7 @@
 import { Menu as HLMenu } from "@headlessui/react";
 import { useState } from "react";
 import { Button, ButtonProps } from "~src/button/button";
-import { MenuItem } from "./item/item";
+import { MenuItem } from "./item/interface";
 import { MenuPopover } from "./popover/popover";
 
 interface Props {

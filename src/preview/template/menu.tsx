@@ -1,4 +1,4 @@
-import { MenuItem } from "~src/menu/item/item";
+import { MenuAction, MenuItem } from "~src/menu/item/interface";
 import { PrefsState } from "~src/prefs/state";
 import {
 	PreviewTemplateName,
@@ -8,16 +8,19 @@ import {
 
 const toMenuItem =
 	(prefs: PrefsState) =>
-	(name: PreviewTemplateName): MenuItem => {
+	(name: PreviewTemplateName): MenuAction => {
 		const detail = PREVIEW_TEMPLATE_DETAILS[name];
 		return {
-			type: "action",
 			action: () => void prefs.setPreviewTemplate(name),
 			label: detail.name,
+			active: prefs.previewTemplate === name,
 		};
 	};
 
 export const getPreviewTemplateMenu = (prefs: PrefsState): MenuItem[] => [
-	{ type: "heading", text: "Preview Template" },
-	...PREVIEW_TEMPLATE_NAMES.map(toMenuItem(prefs)),
+	{
+		type: "group",
+		heading: { text: "Preview Template" },
+		actions: PREVIEW_TEMPLATE_NAMES.map(toMenuItem(prefs)),
+	},
 ];

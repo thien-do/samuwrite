@@ -1,16 +1,21 @@
-import { MenuItem } from "~src/menu/item/item";
+import { MenuItem } from "~src/menu/item/interface";
 import { PrefsState } from "~src/prefs/state";
 
 export const getPreviewSplitMenu = (prefs: PrefsState): MenuItem[] => [
-	{ type: "heading", text: "Preview Layout" },
 	{
-		type: "action",
-		action: () => void prefs.setPreviewSplit(true),
-		label: "Split view",
-	},
-	{
-		type: "action",
-		action: () => void prefs.setPreviewSplit(false),
-		label: "Full view",
+		type: "group",
+		heading: { text: "Preview Layout" },
+		actions: [
+			{
+				action: () => prefs.setPreviewSplit(true),
+				label: "Split",
+				active: prefs.previewSplit === true,
+			},
+			{
+				action: () => prefs.setPreviewSplit(false),
+				label: "Full",
+				active: prefs.previewSplit === false,
+			},
+		],
 	},
 ];
