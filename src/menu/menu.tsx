@@ -9,6 +9,7 @@ import s from "./menu.module.css";
 import { Key } from "~src/key/key";
 import { MenuDivider } from "./divider/divider";
 import { MenuHelp } from "./help/help";
+import { EM_SPACE } from "~src/utils/typography";
 
 interface Props {
 	items: MenuItemType[];

@@ -1,8 +1,6 @@
 .help {
 	padding: 8px 16px;
 	font-size: 11px;
-	line-height: 21px; /* same with button */
-	/* font-weight: 400; */
-	/* letter-spacing: 0.1em; */
+	line-height: 16px;
 	color: var(--sub-color);
 }
