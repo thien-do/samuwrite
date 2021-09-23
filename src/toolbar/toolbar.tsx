@@ -1,5 +1,4 @@
 import { useSingleton } from "@tippyjs/react";
-import { useEffect, useState } from "react";
 import { Editor } from "~src/editor/state/state";
 import { FileState } from "~src/file/state";
 import { TooltipSource } from "~src/tooltip/tooltip";
@@ -21,29 +20,12 @@ interface Props {
 	show: boolean;
 }
 
-const useToolbarMaxWidth = (props: Props): number => {
-	const { prefsVisible, size } = props.prefs;
-
-	const [width, setWidth] = useState(1000);
-
-	useEffect(() => {
-		getContentWidth({ size });
-		// Don't update toolbar's width if prefs panel is visible, to avoid
-		// the laggy experience when the user changes the editor size via the
-		// slider
-		if (prefsVisible) return;
-		setWidth(getContentWidth({ size }));
-	}, [prefsVisible, size]);
-
-	return width;
-};
-
 export const Toolbar = (props: Props): JSX.Element => {
 	const [source, target] = useSingleton();
-	const maxWidth = useToolbarMaxWidth(props);
+	const { size } = props.prefs;
 
 	const body = (
-		<div className={s.body} style={{ maxWidth }}>
+		<div className={s.body} style={{ maxWidth: getContentWidth({ size }) }}>
 			<TooltipSource singleton={source} />
 			<ToolbarOpen singleton={target} file={props.file} editor={props.editor} />
 			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />

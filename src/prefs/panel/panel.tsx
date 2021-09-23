@@ -11,8 +11,7 @@ interface Props {
 
 export const PrefsPanel = (props: Props): JSX.Element => (
 	<div className={s.container}>
-		{/* This is simpler than trying to focus on the first focusable
-		child */}
+		{/* @TODO: Pass this to a real focusable element */}
 		<div
 			tabIndex={0}
 			ref={props.focusRef}

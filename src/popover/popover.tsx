@@ -4,12 +4,14 @@ import { Button, ButtonProps } from "~src/button/button";
 import { Key } from "~src/key/key";
 import { MenuDivider } from "~src/menu/divider/divider";
 import { MenuHelp } from "~src/menu/help/help";
-import { PopoverPortal } from "./portal/portal";
 import s from "./popover.module.css";
+import { PopoverPortal } from "./portal/portal";
+import { PopoverShortcut } from "./shortcut";
 
 interface Props {
 	children: ReactNode;
 	button: ButtonProps;
+	shortcut?: string;
 	afterEnter?: () => void;
 }
 
@@ -27,31 +29,43 @@ const Help = (): JSX.Element => (
 export const Popover = forwardRef<HTMLButtonElement, Props>(
 	(props, ref): JSX.Element => {
 		const [reference, setReference] = useState<HTMLElement | null>(null);
+
+		const button = (open: boolean) => (
+			<div ref={setReference}>
+				{props.shortcut !== undefined && (
+					<PopoverShortcut keys={props.shortcut} reference={reference} />
+				)}
+				<HLPopover.Button
+					ref={ref}
+					as={Button}
+					selected={open}
+					{...props.button}
+				/>
+			</div>
+		);
+
+		const panel = (open: boolean) => (
+			<PopoverPortal
+				open={open}
+				reference={reference}
+				afterEnter={props.afterEnter}
+			>
+				<HLPopover.Panel className={s.container}>
+					{props.children}
+					<div className={s.help}>
+						<MenuDivider />
+						<MenuHelp help={{ content: <Help /> }} />
+					</div>
+				</HLPopover.Panel>
+			</PopoverPortal>
+		);
+
 		return (
 			<HLPopover>
 				{({ open }) => (
 					<>
-						<div ref={setReference}>
-							<HLPopover.Button
-								ref={ref}
-								as={Button}
-								selected={open}
-								{...props.button}
-							/>
-						</div>
-						<PopoverPortal
-							open={open}
-							reference={reference}
-							afterEnter={props.afterEnter}
-						>
-							<HLPopover.Panel className={s.container}>
-								{props.children}
-								<div className={s.help}>
-									<MenuDivider />
-									<MenuHelp help={{ content: <Help /> }} />
-								</div>
-							</HLPopover.Panel>
-						</PopoverPortal>
+						{button(open)}
+						{panel(open)}
 					</>
 				)}
 			</HLPopover>

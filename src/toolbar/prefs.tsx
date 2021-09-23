@@ -27,6 +27,7 @@ export const ToolbarPrefs = (props: Props): JSX.Element => {
 			<Popover
 				button={{ Icon: VscSettings, shortcut: SHORTCUTS.prefs }}
 				afterEnter={focus}
+				shortcut={SHORTCUTS.prefs}
 			>
 				<PrefsPanel prefs={props.prefs} focusRef={focusRef} />
 			</Popover>
