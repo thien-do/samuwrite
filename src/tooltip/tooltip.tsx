@@ -13,7 +13,7 @@ const common: TippyProps = {
 	moveTransition: "transform 500ms var(--ease-out-quint)",
 
 	appendTo: container,
-	trigger: "mouseenter focus focusin",
+	trigger: "mouseenter focus",
 	arrow: false,
 	offset: [0, 8],
 };
