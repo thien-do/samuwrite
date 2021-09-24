@@ -10,11 +10,31 @@ interface Props {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-	{ type: "link", label: "Version 1.0", url: "#", target: "_blank" },
+	{
+		type: "link",
+		label: "Version 1.0",
+		url: "https://github.com/thien-do/samuwrite/releases/tag/v1.0",
+		target: "_blank",
+	},
 	{ type: "divider" },
-	{ type: "link", label: "Support", url: "#", target: "_blank" },
-	{ type: "link", label: "GitHub", url: "#", target: "_blank" },
-	{ type: "link", label: "Twitter", url: "#", target: "_blank" },
+	{
+		type: "link",
+		label: "Support",
+		url: "https://github.com/thien-do/samuwrite/issues/new",
+		target: "_blank",
+	},
+	{
+		type: "link",
+		label: "GitHub",
+		url: "https://github.com/thien-do/samuwrite",
+		target: "_blank",
+	},
+	{
+		type: "link",
+		label: "Twitter",
+		url: "https://twitter.com/_thiendo",
+		target: "_blank",
+	},
 	{ type: "divider" },
 	{ type: "link", label: "About Us", url: "#", target: "_blank" },
 	{ type: "link", label: "Privacy Policy", url: "#", target: "_blank" },

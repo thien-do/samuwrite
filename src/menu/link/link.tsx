@@ -12,6 +12,7 @@ export const MenuLink = ({ link }: Props): JSX.Element => (
 			<a
 				href={link.url}
 				className={[s.button, active ? s.focus : ""].join(" ")}
+				target={link.target}
 			>
 				<span className={s.label}>{link.label}</span>
 			</a>
