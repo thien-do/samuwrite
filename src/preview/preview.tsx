@@ -22,13 +22,14 @@ const getPaperStyle = (props: Props): CSSProperties => {
 
 export const Preview = (props: Props): JSX.Element => {
 	const { editor } = props;
-	usePreviewScroll({ editor });
+	const contentRef = usePreviewScroll({ editor });
 	const __html = usePreviewHtml({ editor });
 	const template = PREVIEW_TEMPLATE_DETAILS[props.prefs.previewTemplate];
 	return (
 		<div className={s.container}>
 			<div className={[s.paper].join(" ")} style={getPaperStyle(props)}>
 				<div
+					ref={contentRef}
 					className={[s.content, template.className].join(" ")}
 					dangerouslySetInnerHTML={{ __html }}
 				/>
