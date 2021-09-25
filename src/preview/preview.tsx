@@ -4,6 +4,7 @@ import { PrefsState } from "../prefs/state";
 import { THEME_DETAILS } from "../theme/theme";
 import s from "./preview.module.css";
 import { usePreviewHtml } from "./state/html";
+import { usePreviewScroll } from "./state/scroll";
 import { PREVIEW_TEMPLATE_DETAILS } from "./template/state";
 
 interface Props {
@@ -21,6 +22,7 @@ const getPaperStyle = (props: Props): CSSProperties => {
 
 export const Preview = (props: Props): JSX.Element => {
 	const { editor } = props;
+	usePreviewScroll({ editor });
 	const __html = usePreviewHtml({ editor });
 	const template = PREVIEW_TEMPLATE_DETAILS[props.prefs.previewTemplate];
 	return (
