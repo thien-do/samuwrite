@@ -2,6 +2,7 @@ import * as React from "react";
 import { EditorState } from "~src/editor/state/state";
 import { FileState } from "~src/file/state";
 import { ERRORS } from "~src/utils/error";
+import { toFileWithHandle } from "~src/utils/file";
 import { openFile } from "../utils/open";
 
 interface AppDropState {
@@ -41,11 +42,12 @@ export const useAppDrop = (params: Params): AppDropState => {
 		if (!(fileHandle instanceof FileSystemFileHandle)) throw ERRORS.fileFolder;
 
 		// Load to editor
+		const handle = await toFileWithHandle(fileHandle);
 		openFile({
 			editor: params.editor.value,
 			fileDirty: params.file.dirty,
 			setFileDirty: params.file.setDirty,
-			fileHandle,
+			fileHandle: handle,
 			setFileHandle: params.file.setHandle,
 		});
 	};

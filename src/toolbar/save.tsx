@@ -2,14 +2,20 @@ import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscSave } from "react-icons/vsc";
 import { Button } from "~src/button/button";
-import { FileHandle, FileState } from "~src/file/state";
+import { FileState } from "~src/file/state";
 import { MenuItem } from "~src/menu/item/interface";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { Tooltip } from "~src/tooltip/tooltip";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
-import { fileSystem } from "../file/system";
+import {
+	fileSave,
+	FileSystemHandle,
+	FirstFileSaveOptions,
+} from "browser-fs-access";
+import { toFileWithHandle } from "~src/utils/file";
+import { fileSystem } from "~src/file/system";
 
 interface Props {
 	file: FileState;
@@ -20,22 +26,29 @@ interface Props {
 const getHandle = async (params: {
 	fileHandle: FileState["handle"];
 	saveAs: boolean;
-}): Promise<FileHandle> => {
+}): Promise<FileSystemHandle | null> => {
 	const { fileHandle, saveAs } = params;
 
 	// Save existed file
 	if (fileHandle !== null && saveAs === false) {
-		return fileHandle;
+		return fileHandle.handle ?? null;
 	}
 
-	// "Save as" or Save a new file
-	const handle = window.showSaveFilePicker({
-		suggestedName: "Untitled.md",
-		excludeAcceptAllOption: false,
-		types: fileSystem.optionTypes,
-	});
+	return null;
+};
 
-	return handle;
+const getFileSaveOptions = (params: {
+	fileHandle: FileState["handle"];
+	saveAs: boolean;
+}): FirstFileSaveOptions | undefined => {
+	const { fileHandle, saveAs } = params;
+	if (!saveAs && fileHandle?.handle) return undefined;
+	return {
+		fileName: fileHandle?.name ?? "Untitled.md",
+		excludeAcceptAllOption: false,
+		mimeTypes: fileSystem.optionTypes[0].mimeTypes,
+		extensions: fileSystem.optionTypes[0].extensions,
+	};
 };
 
 const saveFile = async (params: {
@@ -48,18 +61,20 @@ const saveFile = async (params: {
 	const { fileHandle, setFileHandle, setFileDirty } = params;
 	const { editor, saveAs } = params;
 
-	// Prepare handle
+	// Prepare handle and saveOptions
 	const handle = await getHandle({ fileHandle, saveAs });
-	if (handle !== fileHandle) setFileHandle(handle);
+	const saveOptions = getFileSaveOptions({ fileHandle, saveAs });
 
 	// Write
-	const writable = await handle.createWritable();
 	const text = editor.getValue();
-	writable.write(text);
+	const blob = new Blob([text], { type: "text/markdown" });
+	const newHandle = await fileSave(blob, saveOptions, handle);
+	if (newHandle !== null && fileHandle?.handle?.isSameEntry(newHandle)) {
+		const newFileHandle = await toFileWithHandle(newHandle);
+		setFileHandle(newFileHandle);
+	}
 
-	// Done
 	setFileDirty(false);
-	await writable.close();
 };
 
 /**

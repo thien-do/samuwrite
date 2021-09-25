@@ -1,7 +1,12 @@
 import { FileHandle } from "./state";
+import { FirstFileOpenOptions } from "browser-fs-access";
+import {
+	toFileSystemFileHandle,
+	UnifiedFileSystemHandle,
+} from "~src/utils/file";
 
 const verifyPermission = async (
-	handle: FileHandle,
+	handle: UnifiedFileSystemHandle,
 	mode: FileSystemPermissionMode
 ): Promise<boolean> => {
 	// Check if permission was already granted. If so, return true.
@@ -14,22 +19,28 @@ const verifyPermission = async (
 	return false;
 };
 
-const safeRead = async (handle: FileHandle): Promise<string> => {
-	const permission = await verifyPermission(handle, "read");
+export const safeGetFile = async (
+	fileHandle: UnifiedFileSystemHandle
+): Promise<File> => {
+	const permission = await verifyPermission(fileHandle, "read");
 	if (permission === false)
 		throw Error("Cannot read file because permission is not granted");
+	const handle = toFileSystemFileHandle(fileHandle);
 	const file = await handle.getFile();
-	const text = await file.text();
+	return file;
+};
+
+const safeRead = async (fileHandle: FileHandle): Promise<string> => {
+	const text = await fileHandle.text();
 	return text;
 };
 
-const optionTypes: FilePickerOptions["types"] = [
+const optionTypes: [FirstFileOpenOptions<boolean>] = [
 	{
 		description: "Text files",
-		accept: {
-			"text/markdown": [".md", ".mdx"],
-			"text/plain": [".txt", ".text"],
-		},
+		mimeTypes: ["text/markdown", "text/plain"],
+		extensions: [".md", ".mdx", ".txt", ".text"],
+		multiple: false,
 	},
 ];
 

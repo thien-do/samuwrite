@@ -12,6 +12,8 @@ import { ERRORS } from "~src/utils/error";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 import { fileSystem } from "../file/system";
+import { fileOpen, FileWithHandle } from "browser-fs-access";
+import { toFileWithHandle } from "~src/utils/file";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -33,12 +35,16 @@ const useOpenCallbacks = (props: Props) => {
 		const params = { editor, fileDirty, setFileDirty, setFileHandle };
 
 		const open = async () => {
-			const [fileHandle] = await window.showOpenFilePicker({
-				multiple: false,
-				types: fileSystem.optionTypes,
-				excludeAcceptAllOption: false,
+			const fileHandle = await fileOpen(fileSystem.optionTypes);
+			if (!fileHandle) {
+				throw Error("No file is selected");
+			}
+			await openFile({
+				...params,
+				// fileSystem.optionTypes disables multiple selection
+				// so that, we can make sure than fileHandle is not an array
+				fileHandle: fileHandle as FileWithHandle,
 			});
-			await openFile({ ...params, fileHandle });
 		};
 
 		const openNew = async () => {
@@ -47,7 +53,8 @@ const useOpenCallbacks = (props: Props) => {
 
 		const openRecent = async () => {
 			if (fileRecent === null) throw ERRORS.recentNull;
-			await openFile({ ...params, fileHandle: fileRecent });
+			const handle = await toFileWithHandle(fileRecent);
+			await openFile({ ...params, fileHandle: handle });
 		};
 
 		return { open, openNew, openRecent };
