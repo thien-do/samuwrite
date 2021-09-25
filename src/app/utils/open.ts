@@ -1,7 +1,6 @@
 import * as monaco from "monaco-editor";
 import { Editor } from "~src/editor/state/state";
-import { FileHandle, FileState } from "~src/file/state";
-import { fileSystem } from "~src/file/system";
+import { FileState } from "~src/file/state";
 import { ERRORS } from "~src/utils/error";
 
 interface Params {
@@ -12,16 +11,18 @@ interface Params {
 	fileDirty: FileState["dirty"];
 	setFileDirty: FileState["setDirty"];
 	/**
-	 * The handle to open a file. Note that "openFile" does not specify a way
-	 * to obtain a handle (e.g. open the file picker). It only "read" the file
-	 * content from a handle.
+	 * The File to open in the editor. Note that this function does not specify
+	 * a way to "choose" a file (e.g. open the file picker). It only "read" the
+	 * file content to the editor.
 	 *
-	 * Note that this is a new handle to be opened, not the handle of the
-	 * current file. This is why the type is intentionally explicit, and not
-	 * `FileState["handle"]`.
+	 * Note that this is a new file to be opened, not the current file in the
+	 * app's state
 	 */
-	fileHandle: FileHandle | null;
-	setFileHandle: FileState["setHandle"];
+	fileModel: FileState["model"];
+	/**
+	 * Set the current file in the app state
+	 */
+	setFileModel: FileState["setModel"];
 }
 
 const confirmUnsaved = async (): Promise<boolean> => {
@@ -35,10 +36,10 @@ const confirmUnsaved = async (): Promise<boolean> => {
 };
 
 const updateEditor = async (params: Params): Promise<void> => {
-	const { editor, fileHandle } = params;
+	const { editor, fileModel } = params;
 	if (editor === null) throw ERRORS.editorNull;
 	editor.getModel()?.dispose();
-	const text = fileHandle === null ? "" : await fileSystem.safeRead(fileHandle);
+	const text = fileModel === null ? "" : await fileModel.text();
 	const model = monaco.editor.createModel(text, "markdown");
 	editor.setModel(model);
 };
@@ -47,7 +48,7 @@ const updateEditor = async (params: Params): Promise<void> => {
  * The safest function to open a file. It does all necessary things to open a
  * file. Always use this one unless you have good reason not to.
  */
-export const openFile = async (params: Params): Promise<void> => {
+export const appOpenFile = async (params: Params): Promise<void> => {
 	// Warn if there are unsaved changes
 	if (params.fileDirty === true) {
 		const confirmed = await confirmUnsaved();
@@ -55,7 +56,7 @@ export const openFile = async (params: Params): Promise<void> => {
 	}
 
 	// Set the state
-	params.setFileHandle(params.fileHandle);
+	params.setFileModel(params.fileModel);
 	params.setFileDirty(false);
 
 	// Update editor
