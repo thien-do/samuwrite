@@ -4,16 +4,106 @@
 	color: var(--sub-color);
 }
 
-.label {
-	width: 100%;
-	display: flex;
-	align-items: center;
-}
-
-.labelText {
-	padding-right: 8px;
-}
-
-.select {
+/* Slider */
+.slider {
+	margin-left: 16px;
 	flex-grow: 1;
+
+	-webkit-appearance: none;
+	background: transparent;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+}
+
+.slider:focus {
+	outline: none;
+}
+
+.slider::-ms-track {
+	width: 100%;
+
+	background-color: transparent;
+	border-color: transparent;
+	color: transparent;
+}
+
+/* Slider thumb */
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: var(--text-color);
+	border: 0 none;
+	height: 12px;
+	width: 12px;
+	border-radius: 8px;
+	margin-top: -5px;
+	cursor: grab;
+	box-shadow: var(--border-inset),
+		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+	background-color: var(--text-color);
+	border: 0 none;
+	height: 12px;
+	width: 12px;
+	border-radius: 8px;
+	cursor: grab;
+	box-shadow: var(--border-inset),
+		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
+}
+
+/* IE */
+.slider::-ms-thumb {
+	background-color: var(--text-color);
+	border: 0 none;
+	height: 12px;
+	width: 12px;
+	border-radius: 8px;
+	cursor: grab;
+	box-shadow: var(--border-inset),
+		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
+}
+
+/* Slider track */
+/* Chrome */
+.slider::-webkit-slider-runnable-track {
+	height: 2px;
+	background-color: var(--sub-color);
+	border-radius: 1px;
+}
+.slider:focus::-webkit-slider-runnable-track {
+	background-color: var(--sub-color);
+}
+
+/* Firefox */
+.slider::-moz-range-track {
+	height: 2px;
+	background-color: var(--sub-color);
+	border-radius: 1px;
+}
+
+/* IE */
+.slider::-ms-track {
+	height: 2px;
+	background: transparent;
+	border-color: transparent;
+	border-width: 16px 0;
+	color: transparent;
+}
+.slider::-ms-fill-lower {
+	background-color: var(--sub-color);
+	border-radius: 2px;
+}
+.slider:focus::-ms-fill-lower {
+	background-color: var(--sub-color);
+}
+.slider::-ms-fill-upper {
+	background-color: var(--sub-color);
+	border-radius: 2px;
+}
+.slider:focus::-ms-fill-upper {
+	background-color: var(--sub-color);
 }

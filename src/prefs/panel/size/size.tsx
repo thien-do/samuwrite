@@ -18,13 +18,14 @@ export const SizePref = (props: Props): JSX.Element => {
 					label: size,
 					value: size,
 				}))}
-				fill
 				// Don't use auto focus here as it will prevent the "enter"
 				// transition of prefs panel. Instead, set the focus in
 				// "afterEnter"
 			/>
+
 			<input
 				type="range"
+				className={s.slider}
 				min={0}
 				max={SIZE_NAMES.length - 1}
 				value={SIZE_NAMES.indexOf(props.prefs.size)}

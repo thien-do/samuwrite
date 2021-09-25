@@ -18,6 +18,7 @@ interface Props<T> {
 	setValue?: (value: T) => void;
 	disabled?: boolean;
 	fill?: boolean;
+	className?: string;
 }
 
 const findId = <T,>(props: Props<T>, value?: T): string | undefined => {
@@ -39,7 +40,7 @@ export const Select = <T,>(props: Props<T>): JSX.Element => {
 	const defaultValue = findId(props, props.defaultValue);
 
 	return (
-		<div className={[s.container, s.fill].join(" ")}>
+		<div className={[s.container, s.fill, props.className].join(" ")}>
 			<select
 				className={s.select}
 				disabled={props.disabled}
