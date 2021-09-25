@@ -41,6 +41,10 @@ const updateEditor = async (params: Params): Promise<void> => {
 	const text = fileHandle === null ? "" : await fileSystem.safeRead(fileHandle);
 	const model = monaco.editor.createModel(text, "markdown");
 	editor.setModel(model);
+};
+
+const focusEditor = (editor: Editor | null): void => {
+	if (editor === null) throw ERRORS.editorNull;
 	setTimeout(() => editor.focus(), 0);
 };
 
@@ -61,4 +65,7 @@ export const openFile = async (params: Params): Promise<void> => {
 
 	// Update editor
 	await updateEditor(params);
+
+	// Update focus to editor
+	focusEditor(params.editor);
 };
