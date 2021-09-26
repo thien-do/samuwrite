@@ -36,8 +36,18 @@ const MENU_ITEMS: MenuItem[] = [
 		target: "_blank",
 	},
 	{ type: "divider" },
-	{ type: "link", label: "About Us", url: "#", target: "_blank" },
-	{ type: "link", label: "Privacy Policy", url: "#", target: "_blank" },
+	{
+		type: "link",
+		label: "README",
+		url: "https://github.com/thien-do/samuwrite/blob/main/README.md",
+		target: "_blank",
+	},
+	{
+		type: "link",
+		label: "Privacy Policy",
+		url: "https://github.com/thien-do/samuwrite/blob/main/docs/privacy.md",
+		target: "_blank",
+	},
 ];
 
 export const ToolbarMenu = (props: Props): JSX.Element => (
