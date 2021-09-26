@@ -1,6 +1,7 @@
 .container {
 	border-radius: 4px;
 	outline: 0;
+	padding: 8px 0;
 
 	color: var(--text-color);
 	border: solid 1px var(--sub-color);
@@ -22,6 +23,6 @@
 }
 
 .help {
-	margin-top: -8px;
-	padding-bottom: 8px;
+	/* margin-top: -8px;
+	padding-bottom: 8px; */
 }

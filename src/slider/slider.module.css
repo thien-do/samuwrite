@@ -1,9 +1,10 @@
 .slider {
 	appearance: none;
 	background: none;
-	outline: none;
 	padding: 16px 0;
 	cursor: grab;
+	outline: none;
+	width: 100%;
 }
 
 .slider::-webkit-slider-thumb {

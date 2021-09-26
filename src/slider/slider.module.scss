@@ -6,11 +6,12 @@
 .slider {
 	appearance: none;
 	background: none;
-	// We will have focus outline in thumb
-	outline: none;
-
 	padding: 16px 0;
 	cursor: grab;
+	// We will have focus outline in thumb
+	outline: none;
+	// The default width doesn't make sense
+	width: 100%;
 }
 
 @mixin thumb {

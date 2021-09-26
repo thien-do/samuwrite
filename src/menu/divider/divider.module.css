@@ -1,5 +1,10 @@
+.container {
+	/* We prefer padding over margin */
+	padding: 8px 16px;
+}
+
 .hr {
-	margin: 8px 16px;
+	margin: 0;
 	border: none;
 	border-top: solid 1px var(--sub-color);
 }

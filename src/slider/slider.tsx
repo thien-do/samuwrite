@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import s from "./slider.module.css";
 
 interface Props {
@@ -5,10 +6,12 @@ interface Props {
 	max: number;
 	value: number;
 	setValue: (value: number) => void;
+	native?: HTMLAttributes<HTMLInputElement>;
 }
 
 export const Slider = (props: Props): JSX.Element => (
 	<input
+		{...props.native}
 		type="range"
 		className={s.slider}
 		min={props.min}
