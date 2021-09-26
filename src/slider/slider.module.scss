@@ -1,0 +1,61 @@
+// HEADS UP! We don't have SCSS processing in this repo. However, the styling
+// of input range would be too much without the "mixin", so please have the
+// code in this file, and manually run it through https://www.sassmeister.com/
+// to generate the code in slider.module.css
+
+.slider {
+	appearance: none;
+	background: none;
+	// We will have focus outline in thumb
+	outline: none;
+
+	padding: 16px 0;
+	cursor: grab;
+}
+
+@mixin thumb {
+	appearance: none;
+	border: none;
+	background-color: var(--text-color);
+	height: 12px;
+	width: 12px;
+	border-radius: 8px;
+	margin-top: -5px;
+
+	transition: outline 0.2s ease-out;
+	outline: 8px solid transparent;
+	outline-offset: 2px;
+}
+
+@mixin thumb-focus {
+	outline-width: 2px;
+	outline-color: var(--main-color);
+}
+
+@mixin track {
+	height: 2px;
+	background-color: var(--sub-color);
+	border-radius: 1px;
+}
+
+// Webkit
+.slider::-webkit-slider-thumb {
+	@include thumb;
+}
+.slider:focus-visible::-webkit-slider-thumb {
+	@include thumb-focus;
+}
+.slider::-webkit-slider-runnable-track {
+	@include track;
+}
+
+// Firefox
+.slider::-moz-range-thumb {
+	@include thumb;
+}
+.slider:focus-visible::-moz-range-thumb {
+	@include thumb-focus;
+}
+.slider::-moz-range-track {
+	@include track;
+}
