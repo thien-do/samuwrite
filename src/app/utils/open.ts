@@ -42,6 +42,7 @@ const updateEditor = async (params: Params): Promise<void> => {
 	const text = fileModel === null ? "" : await fileModel.text();
 	const model = monaco.editor.createModel(text, "markdown");
 	editor.setModel(model);
+	setTimeout(() => editor.focus(), 0);
 };
 
 /**
