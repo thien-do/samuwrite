@@ -1,16 +1,36 @@
 import * as monaco from "monaco-editor";
-import { ThemeColors } from "~src/theme/theme";
+import { ThemeDetail, ThemeColors } from "~src/theme/theme";
 
 type Rule = monaco.editor.ITokenThemeRule;
 
 const colors = {
-	red: "#F97583",
-	blue1: "#9ECBFF",
-	blue2: "79B8FF",
-	purple: "#B392F0",
-	gray: "#6A737D",
-	orange: "#FFAB70",
-	green: "#85E89D",
+	light: {
+		red: "#CF222E",
+		blue1: "#0969DA",
+		blue2: "#0550AE",
+		purple: "#8250DF",
+		gray: "#6E7781",
+		orange: "#BC4C00",
+		green: "#2DA44E",
+	},
+	dark: {
+		red: "#F97583",
+		blue1: "#9ECBFF",
+		blue2: "79B8FF",
+		purple: "#B392F0",
+		gray: "#6A737D",
+		orange: "#FFAB70",
+		green: "#85E89D",
+	},
+	"high-contrast": {
+		red: "#FF6A69",
+		blue1: "#409EFF",
+		blue2: "#409EFF",
+		purple: "#B87FFF",
+		gray: "#9EA7B3",
+		orange: "#E7811D",
+		green: "#09B43A",
+	},
 };
 
 interface Options {
@@ -22,6 +42,7 @@ interface Options {
  * comments)
  */
 export const getEditorThemeRules = (
+	scheme: ThemeDetail["scheme"],
 	theme: ThemeColors,
 	options: Options
 ): Rule[] => {
@@ -61,17 +82,17 @@ export const getEditorThemeRules = (
 	switch (options.code) {
 		case "colorful":
 			rules.push(
-				{ token: "keyword", foreground: colors.red },
-				{ token: "string", foreground: colors.blue1 },
-				{ token: "identifier", foreground: colors.purple },
-				{ token: "type.identifier", foreground: colors.orange },
-				{ token: "comment", foreground: colors.gray },
-				{ token: "number", foreground: colors.blue2 },
-				{ token: "tag", foreground: colors.green },
-				{ token: "tag.css", foreground: colors.purple },
-				{ token: "attribute.name", foreground: colors.purple },
-				{ token: "attribute.value", foreground: colors.orange },
-				{ token: "string.key", foreground: colors.purple }
+				{ token: "keyword", foreground: colors[scheme].red },
+				{ token: "string", foreground: colors[scheme].blue1 },
+				{ token: "identifier", foreground: colors[scheme].purple },
+				{ token: "type.identifier", foreground: colors[scheme].orange },
+				{ token: "comment", foreground: colors[scheme].gray },
+				{ token: "number", foreground: colors[scheme].blue2 },
+				{ token: "tag", foreground: colors[scheme].green },
+				{ token: "tag.css", foreground: colors[scheme].purple },
+				{ token: "attribute.name", foreground: colors[scheme].purple },
+				{ token: "attribute.value", foreground: colors[scheme].orange },
+				{ token: "string.key", foreground: colors[scheme].purple }
 			);
 			break;
 		case "duo":

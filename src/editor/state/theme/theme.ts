@@ -33,7 +33,7 @@ export const useEditorTheme = (params: Params): void => {
 			base: baseThemes[detail.scheme],
 			inherit: false,
 			colors: getEditorThemeColors(colors), // UI colors
-			rules: getEditorThemeRules(colors, { code: "colorful" }), // Token colors
+			rules: getEditorThemeRules(detail.scheme, colors, { code: "colorful" }), // Token colors
 		});
 		monaco.editor.setTheme("custom");
 	}, [name, editor]);
