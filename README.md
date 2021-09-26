@@ -1,33 +1,24 @@
 # Samuwrite
 
-Disciplinary Writing
+Samuwrite is a writing app. Its [Zen] design, from interface to typography, let you focus on your writing, and nothing else. With Vim mode and in-editor code highlight, it's made for developers. Without any trackers and ads, it's made for human.
 
-## Development
+Now available at [samuwrite.com]
 
-### Scripts
+[zen]: https://en.wikipedia.org/wiki/Zen
+[samuwrite.com]: https://samuwrite.com
 
-- `start`: Start the app locally for development
-- `build`: Build the app to deploy
-- `build-workers`: Build web workers for the editor. This makes local build run faster.
+### Highlights
 
-See `package.json/scripts` for other scripts (`lint`, `clean`, etc.)
+- Open and save Markdown files on your devices
+- Minimal, keyboard-first design
+- Optimized typography for writing
+- Vim mode, in-editor code highlight
+- No trackers, no ads, no cookies. Not even 3rd-party requests.
 
-### Technologies:
+### Screenshots
 
-- Built with [TypeScript], [React], [CSS Modules] and [Monaco]
-- Bundled with [Parcel] and [Yarn]
-- Used icons from [Codicons] and [Freepik]
+TBA
 
-[yarn]: https://yarnpkg.com/
-[monaco]: https://microsoft.github.io/monaco-editor/
-[freepik]: https://www.freepik.com/
-[codicons]: https://github.com/microsoft/vscode-codicons
-[typescript]: https://www.typescriptlang.org/
-[css modules]: https://github.com/css-modules/css-modules
-[react]: https://reactjs.org/
-[parcel]: https://parceljs.org/
+### Development
 
-### Structure:
-
-- Everything is under the `src` folder
-- See `package.json/source` for starting point
+Please see [development.md](/docs/development.md)

@@ -3,11 +3,12 @@ import { FileState } from "../file/state";
 import { PrefsState } from "../prefs/state";
 import { useEditorFile } from "./state/file";
 import { useEditorInit } from "./state/init/init";
-import { useEditorSize } from "./state/size";
 import { useEditorLength } from "./state/length";
+import { useEditorSize } from "./state/size";
 import { EditorState } from "./state/state";
 import { useEditorTheme } from "./state/theme/theme";
 import { useEditorVim } from "./state/vim";
+import { EditorStatus } from "./status/status";
 import "./style/editor.global.css";
 import s from "./style/editor.module.css";
 import "./style/font/font.css";
@@ -34,7 +35,9 @@ export const Editor = (props: Props): JSX.Element => {
 	return (
 		<div className={s.container}>
 			<div className={s.editor} ref={containerRef} />
-			<div className={s.status} ref={statusRef} />
+			<div className={s.status}>
+				<EditorStatus statusRef={statusRef} size={prefs.size} />
+			</div>
 		</div>
 	);
 };
