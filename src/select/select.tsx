@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ForwardedRef } from "react";
+import { ChangeEventHandler, ForwardedRef, HTMLAttributes } from "react";
 import { VscChevronDown } from "react-icons/vsc";
 import s from "./select.module.css";
 
@@ -19,6 +19,7 @@ interface Props<T> {
 	disabled?: boolean;
 	fill?: boolean;
 	className?: string;
+	native?: HTMLAttributes<HTMLSelectElement>;
 }
 
 const findId = <T,>(props: Props<T>, value?: T): string | undefined => {
@@ -42,6 +43,7 @@ export const Select = <T,>(props: Props<T>): JSX.Element => {
 	return (
 		<div className={[s.container, s.fill, props.className].join(" ")}>
 			<select
+				{...props.native}
 				className={s.select}
 				disabled={props.disabled}
 				autoFocus={props.autoFocus}
