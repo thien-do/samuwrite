@@ -22,25 +22,34 @@ const getMoreMenu = (props: Props): MenuItem[] => [
 	...getPreviewTemplateMenu(props.prefs),
 ];
 
+const usePreviewCallbacks = (props: Props) => {
+	const { editor } = props;
+	const { setPreviewVisible, previewVisible, previewSplit } = props.prefs;
+
+	const withMouse = useCallback(() => {
+		setPreviewVisible((visible) => !visible);
+	}, [setPreviewVisible]);
+
+	const withKeyboard = useCallback(() => {
+		setPreviewVisible(!previewVisible);
+		// Focus on editor if goes back from full preview
+		if (previewSplit === true) return;
+		if (previewVisible === false) return;
+		window.setTimeout(() => editor.focus(), 0);
+	}, [previewSplit, previewVisible, setPreviewVisible, editor]);
+
+	return { withMouse, withKeyboard };
+};
+
 export const ToolbarPreview = (props: Props): JSX.Element => {
-	const { previewVisible, setPreviewVisible, previewSplit } = props.prefs;
+	const callbacks = usePreviewCallbacks(props);
 
-	const toggle = useCallback(() => {
-		const previewing = !previewVisible;
-		setPreviewVisible(previewing);
-		// Not focus on editor when previewing in full mode
-		if (!previewSplit && previewing) return;
-		if (!props.editor.hasTextFocus()) {
-			props.editor.focus();
-		}
-	}, [props.editor, previewSplit, previewVisible, setPreviewVisible]);
-
-	useShortcut({ keys: SHORTCUTS.preview, callback: toggle });
+	useShortcut({ keys: SHORTCUTS.preview, callback: callbacks.withKeyboard });
 
 	return (
 		<Tooltip content="Toggle Preview" singleton={props.singleton}>
 			<Button
-				onClick={toggle}
+				onClick={callbacks.withMouse}
 				Icon={VscBook}
 				shortcut={SHORTCUTS.preview}
 				more={getMoreMenu(props)}
