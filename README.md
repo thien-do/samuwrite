@@ -22,3 +22,9 @@ TBA
 ### Development
 
 Please see [development.md](/docs/development.md)
+
+### Team
+
+| [![Thien Do](https://github.com/thien-do.png?size=100)](https://github.com/thien-do) | [![Huy Nguyen](https://github.com/huyng12.png?size=100)](https://github.com/huyng12) | [![Monody Le](https://github.com/monodyle.png?size=100)](https://github.com/monodyle) |
+| :----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
+|                       [Thien Do](https://github.com/thien-do)                        |                       [Huy Nguyen](https://github.com/huyng12)                       |                       [Monody Le](https://github.com/monodyle)                        |
