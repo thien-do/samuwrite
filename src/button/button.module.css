@@ -23,12 +23,12 @@
 }
 
 .button:hover,
-.button:focus-visible,
 .button.selected {
 	color: var(--text-color);
 }
 
 .button:focus-visible {
+	color: var(--text-color);
 	outline-width: 2px;
 	outline-color: var(--main-color);
 }

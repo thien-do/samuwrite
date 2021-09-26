@@ -27,12 +27,12 @@
 	transition: color 0.1s, outline 0.2s ease-out;
 }
 
-.select:hover,
-.select:focus-visible {
+.select:hover {
 	color: var(--text-color);
 }
 
 .select:focus-visible {
+	color: var(--text-color);
 	outline-width: 2px;
 	outline-color: var(--main-color);
 }
