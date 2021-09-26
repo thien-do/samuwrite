@@ -12,24 +12,24 @@
 	height: 40px;
 	border-radius: 2px;
 
-	outline: dashed 2px transparent;
+	outline: solid 8px transparent;
 	outline-offset: 2px;
 	font-size: 14px;
 	line-height: 21px;
 	font-family: "iA Writer Duo", monospace;
 
 	cursor: pointer;
-	transition: outline-color 100ms;
+	transition: outline 200ms ease-out;
 }
 
-.container:hover,
-.container:focus-visible,
 .container.selected {
+	outline-color: var(--text-color);
+	outline-width: 2px;
+}
+
+.container:focus-visible:not(.x) {
 	outline-color: var(--main-color);
-}
-
-.container.selected {
-	outline-style: solid;
+	outline-width: 2px;
 }
 
 .caret {
