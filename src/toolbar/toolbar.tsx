@@ -1,5 +1,5 @@
 import { useSingleton } from "@tippyjs/react";
-import { RefObject, useCallback, useRef } from "react";
+import { KeyboardEvent, RefObject, useCallback, useRef } from "react";
 import { Editor } from "~src/editor/state/state";
 import { FileState } from "~src/file/state";
 import { useShortcut } from "~src/shortcut/use-shortcut";
@@ -36,10 +36,21 @@ const useToolbarShorcut = (bodyRef: RefObject<HTMLDivElement>): void => {
 	useShortcut({ keys: SHORTCUTS.toolbar, callback });
 };
 
+const escToEditor =
+	(editor: Editor) =>
+	(event: KeyboardEvent<HTMLDivElement>): void => {
+		if (event.key === "Escape") {
+			editor.focus();
+			event.stopPropagation();
+		}
+	};
+
 export const Toolbar = (props: Props): JSX.Element => {
+	const { file, editor, prefs } = props;
+	const { size } = props.prefs;
+
 	const bodyRef = useRef<HTMLDivElement>(null);
 	const [source, target] = useSingleton();
-	const { size } = props.prefs;
 
 	useToolbarShorcut(bodyRef);
 
@@ -48,20 +59,15 @@ export const Toolbar = (props: Props): JSX.Element => {
 			className={s.body}
 			style={{ maxWidth: getContentWidth({ size }) }}
 			ref={bodyRef}
-			onKeyDown={(event) => {
-				if (event.key === "Escape") {
-					props.editor.focus();
-					event.stopPropagation();
-				}
-			}}
+			onKeyDown={escToEditor(editor)}
 		>
 			<TooltipSource singleton={source} />
-			<ToolbarOpen singleton={target} file={props.file} editor={props.editor} />
-			<ToolbarSave singleton={target} file={props.file} editor={props.editor} />
-			<ToolbarPreview singleton={target} prefs={props.prefs} />
-			<ToolbarVim singleton={target} prefs={props.prefs} />
+			<ToolbarOpen singleton={target} file={file} editor={editor} />
+			<ToolbarSave singleton={target} file={file} editor={editor} />
+			<ToolbarPreview singleton={target} prefs={prefs} editor={editor} />
+			<ToolbarVim singleton={target} prefs={prefs} />
 			<div className={s.grow} />
-			<ToolbarPrefs singleton={target} prefs={props.prefs} />
+			<ToolbarPrefs singleton={target} prefs={prefs} />
 			<ToolbarMenu singleton={target} />
 		</div>
 	);
