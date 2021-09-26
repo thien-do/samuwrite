@@ -7,7 +7,7 @@ interface Props {
 
 const getTitle = (file: FileState): string => {
 	const prefix = file.dirty ? "* " : "";
-	const name = file.handle?.name ?? "Untitled";
+	const name = file.model?.name ?? "Untitled";
 	return `${prefix}${name} - Samuwrite`;
 };
 

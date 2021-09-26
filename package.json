@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@headlessui/react": "^1.4.1",
 		"@tippyjs/react": "^4.2.5",
+		"browser-fs-access": "^0.20.5",
 		"color": "^4.0.1",
 		"idb-keyval": "^6.0.1",
 		"modern-normalize": "^1.1.0",

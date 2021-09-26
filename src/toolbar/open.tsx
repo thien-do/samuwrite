@@ -1,7 +1,8 @@
 import { TippyProps } from "@tippyjs/react";
+import { fileOpen } from "browser-fs-access";
 import { useMemo } from "react";
 import { VscFolder } from "react-icons/vsc";
-import { openFile } from "~src/app/utils/open";
+import { appOpenFile } from "~src/app/utils/open";
 import { Button } from "~src/button/button";
 import { FileState } from "~src/file/state";
 import { MenuItem } from "~src/menu/item/interface";
@@ -11,7 +12,7 @@ import { Tooltip } from "~src/tooltip/tooltip";
 import { ERRORS } from "~src/utils/error";
 import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
-import { fileSystem } from "../file/system";
+import { filePickerOptions, getFileModel } from "../file/system";
 
 interface Props {
 	singleton: TippyProps["singleton"];
@@ -27,31 +28,31 @@ const useOpenCallbacks = (props: Props) => {
 	const fileDirty = props.file.dirty;
 	const setFileDirty = props.file.setDirty;
 	const fileRecent = props.file.recent;
-	const setFileHandle = props.file.setHandle;
+	const setFileModel = props.file.setModel;
 
 	const callbacks = useMemo(() => {
-		const params = { editor, fileDirty, setFileDirty, setFileHandle };
+		const params = { editor, fileDirty, setFileDirty, setFileModel };
 
 		const open = async () => {
-			const [fileHandle] = await window.showOpenFilePicker({
+			const fileModel = await fileOpen({
 				multiple: false,
-				types: fileSystem.optionTypes,
-				excludeAcceptAllOption: false,
+				...filePickerOptions,
 			});
-			await openFile({ ...params, fileHandle });
+			await appOpenFile({ ...params, fileModel });
 		};
 
 		const openNew = async () => {
-			await openFile({ ...params, fileHandle: null });
+			await appOpenFile({ ...params, fileModel: null });
 		};
 
 		const openRecent = async () => {
 			if (fileRecent === null) throw ERRORS.recentNull;
-			await openFile({ ...params, fileHandle: fileRecent });
+			const fileModel = await getFileModel(fileRecent);
+			await appOpenFile({ ...params, fileModel });
 		};
 
 		return { open, openNew, openRecent };
-	}, [editor, fileDirty, setFileDirty, fileRecent, setFileHandle]);
+	}, [editor, fileDirty, setFileDirty, fileRecent, setFileModel]);
 
 	return callbacks;
 };

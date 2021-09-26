@@ -1,7 +1,12 @@
-import { FileHandle } from "./state";
+import { ERRORS } from "~src/utils/error";
+import { FileModel } from "./state";
+import {
+	FileSystemHandle as BfsaFileSystemHandle,
+	FirstCoreFileOptions,
+} from "browser-fs-access";
 
 const verifyPermission = async (
-	handle: FileHandle,
+	handle: FileSystemFileHandle,
 	mode: FileSystemPermissionMode
 ): Promise<boolean> => {
 	// Check if permission was already granted. If so, return true.
@@ -14,32 +19,25 @@ const verifyPermission = async (
 	return false;
 };
 
-const safeRead = async (handle: FileHandle): Promise<string> => {
+/**
+ * Build a file model from the native handle.
+ * - https://github.com/GoogleChromeLabs/browser-fs-access/blob/2522969fce3cbd05ba9386464dcd0ce02c7cedd9/src/fs-access/file-open.mjs#L18
+ */
+export const getFileModel = async (
+	handle: FileSystemFileHandle
+): Promise<FileModel> => {
 	const permission = await verifyPermission(handle, "read");
-	if (permission === false)
-		throw Error("Cannot read file because permission is not granted");
-	const file = await handle.getFile();
-	const text = await file.text();
-	return text;
+	if (permission === false) throw ERRORS.permission;
+	const file: FileModel = await handle.getFile();
+	file.handle = handle as unknown as BfsaFileSystemHandle;
+	return file;
 };
 
-const optionTypes: FilePickerOptions["types"] = [
-	{
-		description: "Text files",
-		accept: {
-			"text/markdown": [".md", ".mdx"],
-			"text/plain": [".txt", ".text"],
-		},
-	},
-];
-
-export const fileSystem = {
-	/**
-	 * Read a file, asking for permission if not granted
-	 */
-	safeRead,
-	/**
-	 * The "types" in open or save file dialog
-	 */
-	optionTypes,
+export const filePickerOptions: FirstCoreFileOptions = {
+	description: "Markdown files",
+	excludeAcceptAllOption: false,
+	extensions: [".md", ".txt", ".mdx"],
+	mimeTypes: ["text/markdown", "text/plain"],
+	startIn: "documents",
+	id: "samuwrite",
 };
