@@ -1,6 +1,10 @@
-# Samuwrite
+# [Samuwrite](https://samuwrite.com)
 
 Samuwrite is a writing app. Its [Zen] design, from interface to typography, let you focus on your writing, and nothing else. With Vim mode and in-editor code highlight, it's made for developers. Without any trackers and ads, it's made for human.
+
+<a href="https://samuwrite.com">
+<img src="./docs/shots/minimal.png" alt="Screenshot of Samuwrite" >        
+</a>
 
 Now available at [samuwrite.com]
 
@@ -9,20 +13,12 @@ Now available at [samuwrite.com]
 
 ### Highlights
 
-- Open and save Markdown files on your devices
-- Minimal, keyboard-first design
-- Optimized typography for writing
-- Vim mode, in-editor code highlight
-- No trackers, no ads, no cookies. Not even 3rd-party requests.
-
-### Screenshots
-
 |                                                                             |                                                                                     |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-|      ![Minimal interface](./docs/shots/minimal.png) Minimal interface       |   ![Real desktop-class saving](./docs/shots/local.png) Real desktop-class saving    |
-|            ![Custom theme](./docs/shots/theme.png) Custom theme             | ![Keyboard-first interaction](./docs/shots/keyboard.png) Keyboard-first interaction |
+|    ![No trackers, no ads](./docs/shots/privacy.png) No trackers, no ads     |   ![Real desktop-class saving](./docs/shots/local.png) Real desktop-class saving    |
+| ![In-editor code highlight](./docs/shots/code.png) In-editor code highlight |                     ![Vim mode](./docs/shots/vim.png) Vim mode                      |
 |       ![Real-time preview](./docs/shots/split.png) Real-time preview        |              ![Ready to print](./docs/shots/print.png) Ready to print               |
-| ![In-editor code highlight](./docs/shots/code.png) In-editor code highlight |                   ![Vim mode](./docs/shots/keyboard.png) Vim mode                   |
+|            ![Custom theme](./docs/shots/theme.png) Custom theme             | ![Keyboard-first interaction](./docs/shots/keyboard.png) Keyboard-first interaction |
 
 ### Development
 
