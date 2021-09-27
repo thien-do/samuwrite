@@ -17,7 +17,9 @@ Now available at [samuwrite.com]
 
 ### Screenshots
 
-TBA
+|            Solarized dark            |        Solarized Ocean         |
+| :----------------------------------: | :----------------------------: |
+| ![minimal](./docs/shots/minimal.png) | ![code](./docs/shots/code.png) |
 
 ### Development
 
