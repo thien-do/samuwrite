@@ -11,7 +11,7 @@ Now available at [samuwrite.com]
 [zen]: https://en.wikipedia.org/wiki/Zen
 [samuwrite.com]: https://samuwrite.com
 
-### Highlights
+## Highlights
 
 |                                                                             |                                                                                     |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
@@ -20,9 +20,9 @@ Now available at [samuwrite.com]
 |       ![Real-time preview](./docs/shots/split.png) Real-time preview        |              ![Ready to print](./docs/shots/print.png) Ready to print               |
 |            ![Custom theme](./docs/shots/theme.png) Custom theme             | ![Keyboard-first interaction](./docs/shots/keyboard.png) Keyboard-first interaction |
 
-### Development
+## Development
 
-Please see [development.md](/docs/development.md)
+Samuwrite is an [open-source project](https://opensource.guide/)! We will add a detailed contributing guide soon, but for now please see [development.md](/docs/development.md).
 
 ### Team
 
