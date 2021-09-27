@@ -1,11 +1,11 @@
 import { useSingleton } from "@tippyjs/react";
 import { TooltipSource } from "~src/tooltip/tooltip";
-import Brave from "./brave.svg";
 import { CompatBrowser, CompatBrowserLink } from "./browser/browser";
-import Chrome from "./chrome.svg";
 import s from "./compat.module.css";
-import Edge from "./edge.svg";
-import Opera from "./opera.svg";
+import Brave from "./icons/brave.svg";
+import Chrome from "./icons/chrome.svg";
+import Edge from "./icons/edge.svg";
+import Opera from "./icons/opera.svg";
 
 const BROWSERS: CompatBrowser[] = [
 	{ Icon: Brave, name: "Brave", link: "https://brave.com" },
@@ -14,15 +14,21 @@ const BROWSERS: CompatBrowser[] = [
 	{ Icon: Opera, name: "Opera", link: "https://www.opera.com" },
 ];
 
-// https://caniuse.com/native-filesystem-api
-
 export const Compat = (): JSX.Element => {
 	const [source, target] = useSingleton();
 	return (
 		<div className={s.container}>
 			<p>
-				Your browser cannot save over existing files. It will download documents
-				as new files on &quot;save&quot;.
+				Your browser{" "}
+				<a
+					href="https://caniuse.com/native-filesystem-api"
+					rel="noreferrer"
+					target="_blank"
+				>
+					cannot
+				</a>{" "}
+				save over existing files. It will download documents as new files on
+				&quot;save&quot;.
 			</p>
 			<p>To save over existing files, use one of the supported browsers:</p>
 			<div className={s.browsers}>

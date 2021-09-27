@@ -5,6 +5,7 @@ import s from "./browser.module.css";
 
 export interface CompatBrowser {
 	Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+	// Icon: IconType;
 	name: string;
 	link: string;
 }
@@ -22,7 +23,12 @@ export const CompatBrowserLink = (props: Props): JSX.Element => (
 			target="_blank"
 			rel="noreferrer"
 		>
-			<props.browser.Icon width={32} height={32} viewBox="0 0 48 48" />
+			<props.browser.Icon
+				// size={32}
+				width={32}
+				height={32}
+				viewBox="0 0 48 48"
+			/>
 		</a>
 	</Tooltip>
 );

@@ -8,7 +8,7 @@ export const SHORTCUTS = {
 	openRecent: "mod+shift+o",
 	menu: "mod+.",
 	prefs: "mod+,",
-	compat: "mod+shift+b",
+	compat: "f8",
 	preview: "mod+p",
 	print: "mod+shift+p",
 	save: "mod+s",

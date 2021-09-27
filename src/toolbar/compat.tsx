@@ -15,7 +15,7 @@ export const ToolbarCompat = (props: Props): JSX.Element | null => {
 	return (
 		<Tooltip content="Compatible issue…" singleton={props.singleton}>
 			<Popover
-				button={{ Icon: VscIssues, shortcut: SHORTCUTS.compat, error: true }}
+				button={{ Icon: VscIssues, shortcut: SHORTCUTS.compat }}
 				shortcut={SHORTCUTS.compat}
 			>
 				<Compat />

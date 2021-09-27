@@ -14,8 +14,12 @@
 	margin: 0;
 }
 
+.container a {
+	color: inherit;
+}
+
 .browsers {
 	display: flex;
 	justify-content: center;
-	gap: 8px;
+	gap: 16px;
 }
