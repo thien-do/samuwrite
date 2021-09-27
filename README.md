@@ -18,11 +18,11 @@ Now available at [samuwrite.com]
 ### Screenshots
 
 |                                                                             |                                                                                     |
-| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| ![Minimal interface](./docs/shots/minimal.png) Minimal interface            | ![Real desktop-class saving](./docs/shots/local.png) Real desktop-class saving      |
-| ![Custom theme](./docs/shots/theme.png) Custom theme                        | ![Keyboard-first interaction](./docs/shots/keyboard.png) Keyboard-first interaction |
-| ![Real-time preview](./docs/shots/split.png) Real-time preview              | ![Ready to print](./docs/shots/print.png) Ready to print                            |
-| ![In-editor code highlight](./docs/shots/code.png) In-editor code highlight | ![Vim mode](./docs/shots/keyboard.png) Vim mode                                     |
+| :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
+|      ![Minimal interface](./docs/shots/minimal.png) Minimal interface       |   ![Real desktop-class saving](./docs/shots/local.png) Real desktop-class saving    |
+|            ![Custom theme](./docs/shots/theme.png) Custom theme             | ![Keyboard-first interaction](./docs/shots/keyboard.png) Keyboard-first interaction |
+|       ![Real-time preview](./docs/shots/split.png) Real-time preview        |              ![Ready to print](./docs/shots/print.png) Ready to print               |
+| ![In-editor code highlight](./docs/shots/code.png) In-editor code highlight |                   ![Vim mode](./docs/shots/keyboard.png) Vim mode                   |
 
 ### Development
 
