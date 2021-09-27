@@ -31,6 +31,12 @@ const MENU_ITEMS: MenuItem[] = [
 	},
 	{
 		type: "link",
+		label: "Telegram",
+		url: "https://t.me/samuwrite",
+		target: "_blank",
+	},
+	{
+		type: "link",
 		label: "Twitter",
 		url: "https://twitter.com/_thiendo",
 		target: "_blank",
