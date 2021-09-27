@@ -22,6 +22,14 @@
 	outline: 8px solid transparent;
 }
 
+.button.error .icon {
+	color: var(--error-color);
+}
+
+.icon svg {
+	display: block;
+}
+
 .button:hover,
 .button.selected {
 	color: var(--text-color);
@@ -31,6 +39,8 @@
 	color: var(--text-color);
 	outline-width: 2px;
 	outline-color: var(--main-color);
+	/* Override Firefox's dotted style in focus */
+	outline-style: solid;
 }
 
 .primary {

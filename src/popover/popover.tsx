@@ -26,8 +26,6 @@ const Help = (): JSX.Element => (
 		<span> to navigate, </span>
 		<Key>↵</Key>
 		<span> to select</span>
-		{/* <Key>esc</Key>
-		<span> to close</span> */}
 	</div>
 );
 

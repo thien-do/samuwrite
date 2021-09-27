@@ -12,6 +12,7 @@ export interface ButtonProps {
 	shortcut?: string;
 	more?: MenuItem[];
 	selected?: boolean;
+	error?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -23,11 +24,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 						s.button,
 						s.primary,
 						props.selected ? s.selected : "",
+						props.error ? s.error : "",
 					].join(" ")}
 					onClick={props.onClick}
 					ref={ref}
 				>
-					<props.Icon size={24} />
+					<span className={s.icon}>
+						<props.Icon size={24} />
+					</span>
 					{props.shortcut && <ShortcutText keys={props.shortcut} />}
 				</button>
 				{props.more && (
