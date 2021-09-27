@@ -12,11 +12,12 @@ See `package.json/scripts` for other scripts (`lint`, `clean`, etc.)
 
 - Built with [TypeScript], [React], [CSS Modules] and [Monaco]
 - Bundled with [Parcel] and [Yarn]
-- Used icons from [Codicons] and [Freepik]
+- Used icons from [Codicons], [icons8] and [Freepik]
 
 [yarn]: https://yarnpkg.com/
 [monaco]: https://microsoft.github.io/monaco-editor/
 [freepik]: https://www.freepik.com/
+[icons8]: https://icons8.com
 [codicons]: https://github.com/microsoft/vscode-codicons
 [typescript]: https://www.typescriptlang.org/
 [css modules]: https://github.com/css-modules/css-modules

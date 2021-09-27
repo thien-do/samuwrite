@@ -6,6 +6,7 @@
 			"~*": ["./*"]
 		},
 		"module": "commonjs",
+		// "module": "ES2020",
 		"allowJs": false,
 		"jsx": "react-jsx",
 		"isolatedModules": true,

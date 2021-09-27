@@ -1,0 +1,12 @@
+.browsers {
+	display: flex;
+	gap: 8px;
+}
+
+.link {
+	display: block;
+}
+
+.browser svg {
+	display: block;
+}
