@@ -1,17 +1,17 @@
 import { TippyProps } from "@tippyjs/react";
-import { VscBug, VscIssues, VscWarning } from "react-icons/vsc";
+import { supported } from "browser-fs-access";
+import { VscIssues } from "react-icons/vsc";
+import { Compat } from "~src/compat/compat";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
 import { Tooltip } from "~src/tooltip/tooltip";
-import { Compat } from "~src/compat/compat";
 import { Popover } from "../popover/popover";
-import { supported } from "browser-fs-access";
 
 interface Props {
 	singleton: TippyProps["singleton"];
 }
 
 export const ToolbarCompat = (props: Props): JSX.Element | null => {
-	if (!supported) return null;
+	if (supported) return null;
 	return (
 		<Tooltip content="Compatible issue…" singleton={props.singleton}>
 			<Popover
