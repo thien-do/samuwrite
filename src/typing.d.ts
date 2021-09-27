@@ -4,6 +4,18 @@ declare module "*.module.css" {
 	export default classes;
 }
 
+declare module "*.svg" {
+	import { SVGProps } from "react";
+	const content: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+	export default content;
+}
+
+declare module "*.module.css" {
+	const classes: { readonly [key: string]: string };
+	export = classes;
+	export default classes;
+}
+
 declare module "monaco-vim" {
 	export interface EditorVimMode {
 		dispose: () => void;

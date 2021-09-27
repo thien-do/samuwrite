@@ -25,11 +25,15 @@
 .container.selected {
 	outline-color: var(--text-color);
 	outline-width: 2px;
+	/* Override Firefox's dotted style in focus */
+	outline-style: solid;
 }
 
 .container:focus-visible:not(.x) {
 	outline-color: var(--main-color);
 	outline-width: 2px;
+	/* Override Firefox's dotted style in focus */
+	outline-style: solid;
 }
 
 .caret {

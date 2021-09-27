@@ -1,5 +1,5 @@
 import * as ReactDom from "react-dom";
-import { App } from "./app/app";
+import { App } from "../app/app";
 import "./style/style.ts";
 
 const container = document.getElementById("app");

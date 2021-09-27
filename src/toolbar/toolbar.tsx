@@ -6,6 +6,7 @@ import { useShortcut } from "~src/shortcut/use-shortcut";
 import { TooltipSource } from "~src/tooltip/tooltip";
 import { getContentWidth } from "../prefs/size/size";
 import { PrefsState } from "../prefs/state";
+import { ToolbarCompat } from "./compat";
 import { ToolbarMenu } from "./menu";
 import { ToolbarOpen } from "./open";
 import { ToolbarPrefs } from "./prefs";
@@ -67,6 +68,7 @@ export const Toolbar = (props: Props): JSX.Element => {
 			<ToolbarPreview singleton={target} prefs={prefs} editor={editor} />
 			<ToolbarVim singleton={target} prefs={prefs} />
 			<div className={s.grow} />
+			<ToolbarCompat singleton={target} />
 			<ToolbarPrefs singleton={target} prefs={prefs} />
 			<ToolbarMenu singleton={target} />
 		</div>

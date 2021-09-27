@@ -1,7 +1,9 @@
 .slider {
 	appearance: none;
 	background: none;
-	padding: 16px 0;
+	padding: 0;
+	display: block;
+	height: 32px;
 	cursor: grab;
 	outline: none;
 	width: 100%;
