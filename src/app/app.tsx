@@ -9,7 +9,7 @@ import { AppDrop } from "./drop/drop";
 import { useAppDrop } from "./drop/state";
 import { AppTitle } from "./title";
 import { useToolbarAutohide } from "./toolbar/autohide";
-import { useUnload } from "./unload/unload";
+import { useEffect } from "react";
 
 export const App = (): JSX.Element => {
 	const editor = useEditor();
@@ -19,14 +19,18 @@ export const App = (): JSX.Element => {
 	const toolbar = useToolbarAutohide({ editor });
 	const drop = useAppDrop({ editor, file });
 
-	useUnload((e) => {
+	useEffect(() => {
 		if (!file.dirty) return;
-		e.preventDefault();
-		const exit = confirm(
-			"Your changes will be lost if you don't save them. Do you want to leave?"
-		);
-		if (exit) window.close();
-	});
+		const handleUnload = (e: BeforeUnloadEvent) => {
+			e.preventDefault();
+			const exit = confirm(
+				"Your changes will be lost if you don't save them. Do you want to leave?"
+			);
+			if (exit) window.close();
+		};
+		window.addEventListener("beforeunload", handleUnload);
+		return () => window.removeEventListener("beforeunload", handleUnload);
+	}, [file.dirty]);
 
 	return (
 		<div className={s.app} {...drop.handlers}>
