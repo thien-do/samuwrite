@@ -13,20 +13,20 @@ const MENU_ITEMS: MenuItem[] = [
 	{
 		type: "link",
 		label: "Version: 1.0",
-		url: "https://github.com/samuwrite/samuwrite/releases/tag/v1.0",
+		url: "https://github.com/thien-do/samuwrite/releases/tag/v1.0",
 		target: "_blank",
 	},
 	{ type: "divider" },
 	{
 		type: "link",
 		label: "Support",
-		url: "https://github.com/samuwrite/samuwrite/issues/new",
+		url: "https://github.com/thien-do/samuwrite/issues/new",
 		target: "_blank",
 	},
 	{
 		type: "link",
 		label: "GitHub",
-		url: "https://github.com/samuwrite/samuwrite",
+		url: "https://github.com/thien-do/samuwrite",
 		target: "_blank",
 	},
 	{
@@ -45,13 +45,13 @@ const MENU_ITEMS: MenuItem[] = [
 	{
 		type: "link",
 		label: "About",
-		url: "https://github.com/samuwrite/samuwrite/blob/main/README.md",
+		url: "https://github.com/thien-do/samuwrite/blob/main/README.md",
 		target: "_blank",
 	},
 	{
 		type: "link",
 		label: "Privacy Policy",
-		url: "https://github.com/samuwrite/samuwrite/blob/main/docs/privacy.md",
+		url: "https://github.com/thien-do/samuwrite/blob/main/docs/privacy.md",
 		target: "_blank",
 	},
 ];
