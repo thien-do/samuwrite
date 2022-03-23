@@ -1,9 +1,7 @@
-const ISSUES_URL = "https://github.com/samuwrite/samuwrite/issues";
+const ISSUES_URL = "https://github.com/thien-do/samuwrite/issues";
 
 const MESSAGE = `
 This feature is not yet available. Would you like to vote for it?
-
-Click OK to go to the corresponding issue on our GitHub.
 `.trim();
 
 export const vote = (issue: number): void => {
