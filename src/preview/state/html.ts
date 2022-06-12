@@ -4,14 +4,14 @@ import { rehypeSourceMap } from "rehype-source-map";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { unified } from "unified";
+import { Plugin, unified } from "unified";
 import { Editor } from "~src/editor/state/state";
 
 const processor = unified()
-	.use(remarkParse)
+	.use(remarkParse as Plugin)
 	.use(remarkGfm)
 	.use(remarkRehype)
-	.use(rehypeDomStringify)
+	.use(rehypeDomStringify as Plugin)
 	.use(rehypeSourceMap);
 
 interface Params {
