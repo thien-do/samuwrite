@@ -7,6 +7,7 @@
 	"scripts": {
 		"start": "parcel serve",
 		"build": "yarn clean && yarn build-workers && parcel build --no-source-maps --public-url ./",
+		"macos": "yarn clean && yarn build-workers && parcel build --no-source-maps --public-url ./ --dist-dir ./SamuwriteNative/SamuwriteNative/Resources/dist",
 		"build-workers": "parcel build node_modules/monaco-editor/esm/vs/editor/editor.worker.js --no-source-maps",
 		"clean": "rm -rf ./.parcel-cache ./dist",
 		"lint-fix": "eslint --fix . && prettier --write .",
