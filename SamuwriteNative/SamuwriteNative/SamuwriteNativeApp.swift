@@ -12,9 +12,14 @@ struct SamuwriteNativeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(minWidth: 800, maxWidth: .infinity, minHeight: 800, maxHeight: .infinity, alignment: .center)
+                .frame(
+                    minWidth: 300,
+                    maxWidth: .infinity,
+                    minHeight: 300,
+                    maxHeight: .infinity,
+                    alignment: .center)
         }
-        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
-        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowStyle(.hiddenTitleBar)
+        .windowToolbarStyle(.automatic)
     }
 }
