@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            WebView()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .edgesIgnoringSafeArea(.top)
-
+        WebView(environment: .webDebug)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.top)
     }
 }
 

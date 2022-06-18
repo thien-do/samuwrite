@@ -16,8 +16,7 @@ struct SamuwriteNativeApp: App {
                     minWidth: 300,
                     maxWidth: .infinity,
                     minHeight: 300,
-                    maxHeight: .infinity,
-                    alignment: .center)
+                    maxHeight: .infinity)
         }
         .windowStyle(.hiddenTitleBar)
         .windowToolbarStyle(.automatic)

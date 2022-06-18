@@ -11,6 +11,8 @@ import Combine
 import Cocoa
 
 struct WebView: NSViewRepresentable {
+    var environment: Environment
+    
     func makeNSView(context: Context) -> WKWebView {
         let preferences = WKPreferences()
         
@@ -24,8 +26,20 @@ struct WebView: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: WKWebView, context: Context) {
-        if let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "dist") {
-            nsView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        switch environment {
+        case .prod:
+            if let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "dist") {
+                nsView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+            }
+        case .webDebug:
+            if let url = URL(string: "https://samuwrite.com") {
+                nsView.load(URLRequest(url: url))
+            }
         }
     }
+}
+
+enum Environment {
+    case prod
+    case webDebug
 }
