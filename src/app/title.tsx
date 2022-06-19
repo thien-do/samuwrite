@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import { FileState } from "~src/file/state";
 
 interface Props {
@@ -12,7 +11,5 @@ const getTitle = (file: FileState): string => {
 };
 
 export const AppTitle = (props: Props): JSX.Element => (
-	<Helmet>
-		<title>{getTitle(props.file)}</title>
-	</Helmet>
+	<div>{getTitle(props.file)}</div>
 );
