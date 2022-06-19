@@ -8,7 +8,7 @@
 		"module": "commonjs",
 		// "module": "ES2020",
 		"allowJs": false,
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"isolatedModules": true,
 		"strict": true,
 		// "exactOptionalPropertyTypes": true,
@@ -16,7 +16,12 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"types": ["wicg-file-system-access", "css-font-loading-module"]
+		"types": ["wicg-file-system-access", "css-font-loading-module"],
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"noEmit": true,
+		"incremental": true,
+		"resolveJsonModule": true
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
 }
