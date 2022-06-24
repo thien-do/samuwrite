@@ -1,9 +1,9 @@
-// import { useEditor } from "~src/editor/state/state";
-// import { Layout } from "~src/layout/layout";
-// import { Toolbar } from "~src/toolbar/toolbar";
-// import { usePrefs } from "~src/prefs/state";
-// import { ThemeInject } from "~src/theme/inject";
-import * as s from "./main.module.css";
+// import { useEditor } from "~/src/editor/state/state";
+// import { Layout } from "~/src/layout/layout";
+// import { Toolbar } from "~/src/toolbar/toolbar";
+import { usePrefs } from "~/src/app/prefs/state";
+// import { ThemeInject } from "~/src/theme/inject";
+import s from "./main.module.css";
 // import { useToolbarAutohide } from "./toolbar/autohide";
 
 export const Main = (): JSX.Element => {
@@ -13,7 +13,6 @@ export const Main = (): JSX.Element => {
 
   return (
     <div className={s.app}>
-      hello
       {/* <ThemeInject theme={prefs.theme} /> */}
       {/* It is actually ok to render Toolbar when editor is null (not
 				initialized). However, most actions in Toolbar depends on the
