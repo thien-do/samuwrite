@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { MenuHeading } from "~/src/menu/heading/heading";
+import { MenuHeading } from "~/src/lib/menu/heading/heading";
 import { ThemePref } from "../../theme/pref/pref";
 import { PrefsState } from "../state";
 import s from "./panel.module.css";

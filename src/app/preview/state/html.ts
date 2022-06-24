@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { Plugin, unified } from "unified";
-import { Editor } from "~/src/editor/state/state";
+import { Editor } from "~/src/app/editor/state/state";
 
 const processor = unified()
   .use(remarkParse as Plugin)

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useShortcut } from "~/src/shortcut/use-shortcut";
+import { useShortcut } from "~/src/lib/shortcut/use-shortcut";
 
 interface Props {
   keys: string;

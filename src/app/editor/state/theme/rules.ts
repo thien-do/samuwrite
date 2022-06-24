@@ -1,5 +1,5 @@
 import type * as monaco from "monaco-editor";
-import { ThemeDetail, ThemeColors } from "~/src/theme/theme";
+import { ThemeDetail, ThemeColors } from "~/src/app/theme/theme";
 
 type Rule = monaco.editor.ITokenThemeRule;
 

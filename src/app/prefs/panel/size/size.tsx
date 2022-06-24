@@ -1,5 +1,5 @@
-import { Select } from "~/src/select/select";
-import { Slider } from "~/src/slider/slider";
+import { Select } from "~/src/lib/select/select";
+import { Slider } from "~/src/lib/slider/slider";
 import { SizeName, SIZE_NAMES } from "../../size/size";
 import { PrefsState } from "../../state";
 import s from "./size.module.css";

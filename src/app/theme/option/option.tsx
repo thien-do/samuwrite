@@ -1,6 +1,6 @@
 import { TippyProps } from "@tippyjs/react";
-import { PrefsState } from "~/src/prefs/state";
-import { Tooltip } from "~/src/tooltip/tooltip";
+import { PrefsState } from "~/src/app/prefs/state";
+import { Tooltip } from "~/src/lib/tooltip/tooltip";
 import { ThemeName, THEME_DETAILS } from "../theme";
 import s from "./option.module.css";
 

@@ -1,7 +1,7 @@
-import { EditorState } from "~/src/editor/state/state";
+import { EditorState } from "~/src/app/editor/state/state";
 import { RefObject, useEffect } from "react";
 import { initVimMode } from "monaco-vim";
-import { PrefsState } from "~/src/prefs/state";
+import { PrefsState } from "~/src/app/prefs/state";
 
 interface Params {
   editor: EditorState;

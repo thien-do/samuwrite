@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from "react";
-import { getContentWidth, SizeName } from "~/src/prefs/size/size";
-import { PrefsState } from "~/src/prefs/state";
-import { getRef } from "~/src/utils/ref";
+import { getContentWidth, SizeName } from "~/src/app/prefs/size/size";
+import { PrefsState } from "~/src/app/prefs/state";
+import { getRef } from "~/src/lib/utils/ref";
 import { EditorState } from "./state";
 
 interface Params {

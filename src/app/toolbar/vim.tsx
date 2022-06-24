@@ -1,11 +1,11 @@
 import { TippyProps } from "@tippyjs/react";
 import { useCallback } from "react";
 import { DiVim } from "react-icons/di";
-import { Button } from "~/src/button/button";
-import { PrefsState } from "~/src/prefs/state";
-import { useShortcut } from "~/src/shortcut/use-shortcut";
-import { SHORTCUTS } from "~/src/toolbar/shortcuts";
-import { Tooltip } from "~/src/tooltip/tooltip";
+import { Button } from "~/src/lib/button/button";
+import { PrefsState } from "~/src/app/prefs/state";
+import { useShortcut } from "~/src/lib/shortcut/use-shortcut";
+import { SHORTCUTS } from "~/src/app/toolbar/shortcuts";
+import { Tooltip } from "~/src/lib/tooltip/tooltip";
 
 interface Props {
   singleton: TippyProps["singleton"];

@@ -1,5 +1,5 @@
-import { isApple } from "~/src/utils/platform";
-import { HAIR_SPACE } from "~/src/utils/typography";
+import { isApple } from "~/src/lib/utils/platform";
+import { HAIR_SPACE } from "~/src/lib/utils/typography";
 
 interface Props {
   keys: string;

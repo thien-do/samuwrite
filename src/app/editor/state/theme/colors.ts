@@ -1,5 +1,5 @@
 import type * as monaco from "monaco-editor";
-import { ThemeColors } from "~/src/theme/theme";
+import { ThemeColors } from "~/src/app/theme/theme";
 
 /**
  * Returns monaco theme's colors (i.e. colors for UI elements such as search

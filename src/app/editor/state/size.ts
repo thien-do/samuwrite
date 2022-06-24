@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { SizeName, SIZE_METRICS } from "~/src/prefs/size/size";
-import { PrefsState } from "~/src/prefs/state";
-import { ThemeName, THEME_DETAILS } from "~/src/theme/theme";
-import { isApple } from "~/src/utils/platform";
+import { SizeName, SIZE_METRICS } from "~/src/app/prefs/size/size";
+import { PrefsState } from "~/src/app/prefs/state";
+import { ThemeName, THEME_DETAILS } from "~/src/app/theme/theme";
+import { isApple } from "~/src/lib/utils/platform";
 import { EditorState } from "./state";
 
 interface Params {

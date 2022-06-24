@@ -1,9 +1,9 @@
 import { TippyProps } from "@tippyjs/react";
 import { useRef } from "react";
 import { VscSettings } from "react-icons/vsc";
-import { SHORTCUTS } from "~/src/toolbar/shortcuts";
-import { Tooltip } from "~/src/tooltip/tooltip";
-import { Popover } from "../popover/popover";
+import { SHORTCUTS } from "~/src/app/toolbar/shortcuts";
+import { Popover } from "~src/lib/popover/popover";
+import { Tooltip } from "~src/lib/tooltip/tooltip";
 import { PrefsPanel } from "../prefs/panel/panel";
 import { PrefsState } from "../prefs/state";
 

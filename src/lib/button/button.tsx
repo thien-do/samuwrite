@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import { IconType } from "react-icons";
 import { VscChevronDown } from "react-icons/vsc";
-import { MenuItem } from "~/src/menu/item/interface";
-import { Menu } from "~/src/menu/menu";
+import { MenuItem } from "~/src/lib/menu/item/interface";
+import { Menu } from "~/src/lib/menu/menu";
 import { ShortcutText } from "../shortcut/shortcut";
 import s from "./button.module.css";
 

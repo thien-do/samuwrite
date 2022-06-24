@@ -1,9 +1,9 @@
 import { Popover as HLPopover } from "@headlessui/react";
 import { ForwardedRef, forwardRef, ReactNode, useState } from "react";
-import { Button, ButtonProps } from "~/src/button/button";
-import { Key } from "~/src/key/key";
-import { MenuDivider } from "~/src/menu/divider/divider";
-import { MenuHelp } from "~/src/menu/help/help";
+import { Button, ButtonProps } from "~/src/lib/button/button";
+import { Key } from "~/src/lib/key/key";
+import { MenuDivider } from "~/src/lib/menu/divider/divider";
+import { MenuHelp } from "~/src/lib/menu/help/help";
 import s from "./popover.module.css";
 import { PopoverPortal } from "./portal/portal";
 import { PopoverShortcut } from "./shortcut/shortcut";

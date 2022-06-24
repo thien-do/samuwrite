@@ -1,14 +1,14 @@
 import { TippyProps } from "@tippyjs/react";
 import { useCallback } from "react";
 import { VscBook } from "react-icons/vsc";
-import { Button } from "~/src/button/button";
-import { Editor } from "~/src/editor/state/state";
-import { MenuItem } from "~/src/menu/item/interface";
-import { getPreviewSplitMenu } from "~/src/preview/layout/split";
-import { getPreviewTemplateMenu } from "~/src/preview/template/menu";
-import { useShortcut } from "~/src/shortcut/use-shortcut";
-import { SHORTCUTS } from "~/src/toolbar/shortcuts";
-import { Tooltip } from "~/src/tooltip/tooltip";
+import { Button } from "~/src/lib/button/button";
+import { Editor } from "~/src/app/editor/state/state";
+import { MenuItem } from "~/src/lib/menu/item/interface";
+import { getPreviewSplitMenu } from "~/src/app/preview/layout/split";
+import { getPreviewTemplateMenu } from "~/src/app/preview/template/menu";
+import { useShortcut } from "~/src/lib/shortcut/use-shortcut";
+import { SHORTCUTS } from "~/src/app/toolbar/shortcuts";
+import { Tooltip } from "~/src/lib/tooltip/tooltip";
 import { PrefsState } from "../prefs/state";
 
 interface Props {

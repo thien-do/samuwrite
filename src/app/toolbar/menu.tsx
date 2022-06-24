@@ -1,9 +1,9 @@
 import { TippyProps } from "@tippyjs/react";
 import { VscMenu } from "react-icons/vsc";
-import { MenuItem } from "~/src/menu/item/interface";
-import { Menu } from "~/src/menu/menu";
-import { SHORTCUTS } from "~/src/toolbar/shortcuts";
-import { Tooltip } from "~/src/tooltip/tooltip";
+import { MenuItem } from "~/src/lib/menu/item/interface";
+import { Menu } from "~/src/lib/menu/menu";
+import { SHORTCUTS } from "~/src/app/toolbar/shortcuts";
+import { Tooltip } from "~/src/lib/tooltip/tooltip";
 
 interface Props {
   singleton: TippyProps["singleton"];

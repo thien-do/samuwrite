@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { EditorState } from "~/src/editor/state/state";
+import { EditorState } from "~/src/app/editor/state/state";
 
 interface Params {
   editor: EditorState;

@@ -1,4 +1,4 @@
-import { ShortcutText } from "~/src/shortcut/shortcut";
+import { ShortcutText } from "~/src/lib/shortcut/shortcut";
 import { MenuAction as MenuActionType } from "../item/interface";
 import { Menu } from "@headlessui/react";
 import s from "./action.module.css";

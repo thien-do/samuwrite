@@ -1,6 +1,6 @@
 import { useSingleton } from "@tippyjs/react";
-import { PrefsState } from "~/src/prefs/state";
-import { TooltipSource } from "~/src/tooltip/tooltip";
+import { PrefsState } from "~/src/app/prefs/state";
+import { TooltipSource } from "~/src/lib/tooltip/tooltip";
 import { ThemeOption } from "../option/option";
 import { THEME_NAMES } from "../theme";
 import s from "./pref.module.css";

@@ -1,10 +1,10 @@
 import { Menu as HLMenu } from "@headlessui/react";
 import { ForwardedRef, forwardRef, useState } from "react";
-import { Button, ButtonProps } from "~/src/button/button";
-import { Key } from "~/src/key/key";
-import sPopover from "~/src/popover/popover.module.css";
-import { PopoverPortal } from "~/src/popover/portal/portal";
-import { PopoverShortcut } from "~/src/popover/shortcut/shortcut";
+import { Button, ButtonProps } from "~/src/lib/button/button";
+import { Key } from "~/src/lib/key/key";
+import sPopover from "~/src/lib/popover/popover.module.css";
+import { PopoverPortal } from "~/src/lib/popover/portal/portal";
+import { PopoverShortcut } from "~/src/lib/popover/shortcut/shortcut";
 import { MenuDivider } from "./divider/divider";
 import { MenuHelp } from "./help/help";
 import { MenuItem as MenuItemType } from "./item/interface";

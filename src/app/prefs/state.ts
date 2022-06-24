@@ -1,11 +1,11 @@
 import {
-  PreviewTemplateState,
-  usePreviewTemplateState,
-} from "~/src/preview/template/state";
-import {
   PreviewLayoutState,
   usePreviewLayoutState,
 } from "../preview/layout/state";
+import {
+  PreviewTemplateState,
+  usePreviewTemplateState,
+} from "../preview/template/state";
 import { ThemePrefsState, useThemePrefs } from "../theme/state";
 import { SizeState, usePrefsSize } from "./size/state";
 import { usePrefsVim, VimState } from "./vim";

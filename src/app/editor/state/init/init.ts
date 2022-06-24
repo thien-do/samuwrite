@@ -2,7 +2,7 @@ import type * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
 import { Editor, EditorState } from "../state";
 import { RefObject, useEffect } from "react";
-import { getRef } from "~/src/utils/ref";
+import { getRef } from "~/src/lib/utils/ref";
 import { EDITOR_STATIC_OPTIONS } from "./options";
 
 interface Options {

@@ -1,5 +1,5 @@
-import { MenuItem } from "~/src/menu/item/interface";
-import { PrefsState } from "~/src/prefs/state";
+import { MenuItem } from "~/src/lib/menu/item/interface";
+import { PrefsState } from "~/src/app/prefs/state";
 
 export const getPreviewSplitMenu = (prefs: PrefsState): MenuItem[] => [
   {

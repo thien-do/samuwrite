@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import { Editor } from "~/src/editor/state/state";
-import debounce from "lodash.debounce";
+import { Editor } from "~/src/app/editor/state/state";
 
 interface Params {
   editor: Editor | null;
@@ -26,7 +25,7 @@ export const usePreviewScroll = (params: Params): Ref => {
 
   const listener: null | (() => void) = useMemo(() => {
     if (editor === null) return null;
-    return debounce(() => scrollPreview(editor, contentRef), 100);
+    return () => scrollPreview(editor, contentRef);
   }, [editor]);
 
   useEffect(() => {

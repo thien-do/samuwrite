@@ -1,5 +1,5 @@
-import { MenuAction, MenuItem } from "~/src/menu/item/interface";
-import { PrefsState } from "~/src/prefs/state";
+import { MenuAction, MenuItem } from "~/src/lib/menu/item/interface";
+import { PrefsState } from "~/src/app/prefs/state";
 import {
   PreviewTemplateName,
   PREVIEW_TEMPLATE_DETAILS,

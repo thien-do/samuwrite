@@ -1,5 +1,5 @@
-import { useStorageState } from "~/src/utils/state/storage";
-import { SetState } from "~/src/utils/state/type";
+import { useStorageState } from "~/src/lib/utils/state/storage";
+import { SetState } from "~/src/lib/utils/state/type";
 import * as styles from "./styles/styles";
 
 export const PREVIEW_TEMPLATE_NAMES = ["tailwind", "github", "serif"] as const;

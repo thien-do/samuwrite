@@ -1,12 +1,12 @@
 import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscFolder } from "react-icons/vsc";
-import { Button } from "~/src/button/button";
-import { MenuItem } from "~/src/menu/item/interface";
-import { useShortcut } from "~/src/shortcut/use-shortcut";
-import { SHORTCUTS } from "~/src/toolbar/shortcuts";
-import { Tooltip } from "~/src/tooltip/tooltip";
-import { vote } from "~/src/utils/vote";
+import { Button } from "~/src/lib/button/button";
+import { MenuItem } from "~/src/lib/menu/item/interface";
+import { useShortcut } from "~/src/lib/shortcut/use-shortcut";
+import { SHORTCUTS } from "~/src/app/toolbar/shortcuts";
+import { Tooltip } from "~/src/lib/tooltip/tooltip";
+import { vote } from "~/src/lib/utils/vote";
 import { Editor } from "../editor/state/state";
 
 interface Props {

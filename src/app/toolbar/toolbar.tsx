@@ -1,8 +1,8 @@
 import { useSingleton } from "@tippyjs/react";
 import { KeyboardEvent, RefObject, useCallback, useRef } from "react";
-import { Editor } from "~/src/editor/state/state";
-import { useShortcut } from "~/src/shortcut/use-shortcut";
-import { TooltipSource } from "~/src/tooltip/tooltip";
+import { Editor } from "~/src/app/editor/state/state";
+import { useShortcut } from "~/src/lib/shortcut/use-shortcut";
+import { TooltipSource } from "~/src/lib/tooltip/tooltip";
 import { getContentWidth } from "../prefs/size/size";
 import { PrefsState } from "../prefs/state";
 import { ToolbarMenu } from "./menu";
