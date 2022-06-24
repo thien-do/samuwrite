@@ -1,27 +1,5 @@
 {
-	"compilerOptions": {
-		"target": "ES2021",
-		"baseUrl": ".",
-		"paths": {
-			"~*": ["./*"]
-		},
-		"module": "commonjs",
-		// "module": "ES2020",
-		"allowJs": false,
-		"jsx": "preserve",
-		"isolatedModules": true,
-		"strict": true,
-		// "exactOptionalPropertyTypes": true,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"types": ["wicg-file-system-access", "css-font-loading-module"],
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"noEmit": true,
-		"incremental": true,
-		"resolveJsonModule": true
-	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "strict": true
+  }
 }

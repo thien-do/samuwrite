@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as platform from "monaco-editor/esm/vs/platform/registry/common/platform";
 

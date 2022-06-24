@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor";
+import type * as monaco from "monaco-editor";
 import { ensureEditorEnv } from "./env";
 import { Editor, EditorState } from "../state";
 import { RefObject, useEffect } from "react";
@@ -9,7 +9,7 @@ interface Options {
 	container: HTMLDivElement;
 }
 
-const createEditor = ({ container }: Options): Editor => {
+const createEditor = async ({ container }: Options): Promise<Editor> => {
 	ensureEditorEnv();
 	const editor = monaco.editor.create(container, EDITOR_STATIC_OPTIONS);
 	return editor;
@@ -26,12 +26,13 @@ export const useEditorInit = (params: Params): void => {
 
 	useEffect(() => {
 		const container = getRef(containerRef, "editor container is null");
-		const editor = createEditor({ container });
-		editor.focus();
-		setEditor(editor);
-		return () => {
-			setEditor(null);
-			editor.dispose();
-		};
+		createEditor({ container }).then((editor) => {
+			editor.focus();
+			setEditor(editor);
+		});
+		// return () => {
+		// 	setEditor(null);
+		// 	editor.dispose();
+		// };
 	}, [setEditor, containerRef]);
 };

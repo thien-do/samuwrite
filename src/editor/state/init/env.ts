@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor";
+import type * as monaco from "monaco-editor";
 // import { VimMode } from "monaco-vim";
 
 const setup = {
@@ -10,7 +10,6 @@ export const ensureEditorEnv = (): void => {
 
 	// Setup workers
 	// https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md#using-parcel
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(self as any).MonacoEnvironment = {
 		getWorkerUrl: function (_moduleId, _label) {
 			return "/editor.worker.js";

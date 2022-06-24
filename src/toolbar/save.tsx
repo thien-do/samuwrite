@@ -1,9 +1,7 @@
 import { TippyProps } from "@tippyjs/react";
 import { useMemo } from "react";
 import { VscSave } from "react-icons/vsc";
-import { appSaveFile } from "~src/app/utils/save";
 import { Button } from "~src/button/button";
-import { FileState } from "~src/file/state";
 import { MenuItem } from "~src/menu/item/interface";
 import { useShortcut } from "~src/shortcut/use-shortcut";
 import { SHORTCUTS } from "~src/toolbar/shortcuts";
@@ -12,7 +10,6 @@ import { vote } from "~src/utils/vote";
 import { Editor } from "../editor/state/state";
 
 interface Props {
-	file: FileState;
 	editor: Editor;
 	singleton: TippyProps["singleton"];
 }
@@ -21,24 +18,18 @@ interface Props {
  * Memoized our callbacks so they can be used safely in effects
  */
 const useCallbacks = (props: Props) => {
-	const editor = props.editor;
-	const fileModel = props.file.model;
-	const setFileModel = props.file.setModel;
-	const setFileDirty = props.file.setDirty;
-
 	const callbacks = useMemo(() => {
-		const params = { fileModel, setFileDirty, setFileModel, editor };
 		const save = async () => {
-			appSaveFile({ ...params, saveAs: false });
+			window.alert("todo save");
 		};
 		const saveAs = async () => {
-			appSaveFile({ ...params, saveAs: true });
+			window.alert("todo save as");
 		};
 		const print = () => {
 			vote(86);
 		};
 		return { save, saveAs, print };
-	}, [editor, fileModel, setFileModel, setFileDirty]);
+	}, []);
 
 	return callbacks;
 };

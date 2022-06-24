@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor";
+import type * as monaco from "monaco-editor";
 import { useEffect, useState } from "react";
 import { EditorState } from "~src/editor/state/state";
 

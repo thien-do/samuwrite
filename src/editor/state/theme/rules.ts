@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor";
+import type * as monaco from "monaco-editor";
 import { ThemeDetail, ThemeColors } from "~src/theme/theme";
 
 type Rule = monaco.editor.ITokenThemeRule;

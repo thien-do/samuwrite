@@ -1,26 +1,18 @@
 import { useEditor } from "~src/editor/state/state";
-import { useFile } from "~src/file/state";
 import { Layout } from "~src/layout/layout";
 import { Toolbar } from "~src/toolbar/toolbar";
 import { usePrefs } from "~src/prefs/state";
 import { ThemeInject } from "~src/theme/inject";
 import s from "./app.module.css";
-import { AppDrop } from "./drop/drop";
-import { useAppDrop } from "./drop/state";
-import { AppTitle } from "./title";
 import { useToolbarAutohide } from "./toolbar/autohide";
 
 export const App = (): JSX.Element => {
 	const editor = useEditor();
-	const file = useFile();
 	const prefs = usePrefs();
-
 	const toolbar = useToolbarAutohide({ editor });
-	const drop = useAppDrop({ editor, file });
 
 	return (
-		<div className={s.app} {...drop.handlers}>
-			<AppTitle file={file} />
+		<div className={s.app}>
 			<ThemeInject theme={prefs.theme} />
 			{/* It is actually ok to render Toolbar when editor is null (not
 				initialized). However, most actions in Toolbar depends on the
@@ -30,18 +22,12 @@ export const App = (): JSX.Element => {
 					className={[s.toolbar, toolbar.mute ? s.muted : ""].join(" ")}
 					{...toolbar.handlers}
 				>
-					<Toolbar
-						show={toolbar.show}
-						editor={editor.value}
-						file={file}
-						prefs={prefs}
-					/>
+					<Toolbar show={toolbar.show} editor={editor.value} prefs={prefs} />
 				</div>
 			)}
 			<div className={s.body}>
-				<Layout editor={editor} file={file} prefs={prefs} />
+				<Layout editor={editor} prefs={prefs} />
 			</div>
-			{drop.dragging && <AppDrop />}
 		</div>
 	);
 };
