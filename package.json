@@ -1,6 +1,6 @@
 {
   "name": "samuwrite",
-  "source": "src/index.html",
+  "source": "src/app/index.html",
   "scripts": {
     "dev": "sh scripts/dev.sh",
     "build-web": "sh scripts/build-web.sh",
@@ -9,8 +9,8 @@
   "browserslist": "defaults",
   "dependencies": {
     "monaco-editor": "0.31.0",
-    "parcel": "2.6.1",
-    "@headlessui/react": "1.6.4",
+    "parcel": "2.6.2",
+    "@headlessui/react": "1.6.5",
     "@tippyjs/react": "4.2.6",
     "@types/color": "3.0.3",
     "@types/node": "18.0.0",
@@ -28,7 +28,7 @@
     "remark-gfm": "3.0.1",
     "remark-parse": "10.0.1",
     "remark-rehype": "10.1.0",
-    "typescript": "4.7.3",
+    "typescript": "4.7.4",
     "unified": "10.1.2",
     "process": "0.11.10",
     "buffer": "6.0.3"
