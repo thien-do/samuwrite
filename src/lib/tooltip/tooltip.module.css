@@ -1,0 +1,41 @@
+.container:global(.tippy-box)[data-animation="fade"][data-state="hidden"] {
+	opacity: 0;
+}
+
+/*
+This is the moving element in a Tooltip group (singleton) so backdrop
+must be applied here
+*/
+.container[data-tippy-root] {
+	max-width: calc(100vw - 10px);
+
+	border-radius: 4px;
+	color: var(--text-color);
+	border: solid 1px var(--sub-color);
+	box-shadow: var(--border-inset),
+		0px 8px 16px rgba(0, 0, 0, var(--shadow-opacity));
+}
+
+.container :global(.tippy-box) {
+	position: relative;
+	font-size: 14px;
+	line-height: 20px;
+	outline: 0;
+}
+
+@supports (backdrop-filter: blur(20px)) {
+	.container[data-tippy-root] {
+		background-color: rgba(var(--bg-color-rgb), 0.5);
+		backdrop-filter: blur(20px);
+	}
+}
+
+.container :global(.tippy-content) {
+	position: relative;
+	padding: 4px 8px;
+	z-index: 1;
+}
+
+.container:global(.tippy-no-padding) :global(.tippy-content) {
+	padding: 0;
+}
